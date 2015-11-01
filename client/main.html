@@ -1,0 +1,23 @@
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta charset="utf-8"/>
+  <meta name="description" content="Gérez vos avoirs et vos cartes de fidélité simplement avec votre smartphone."/>
+  <meta name="author" content="Guidouil"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+  <link rel="icon" href="/favicon.png"/>
+  <title>mes avoirs</title>
+</head>
+
+
+<template name="main">
+  {{> sidebar}}
+  <div class="pusher">
+    {{> header}}
+    <div class="container">
+      <div class="scroll">
+        {{> yield}}
+      </div>
+    </div>
+    {{> footer}}
+  </div>
+</template>

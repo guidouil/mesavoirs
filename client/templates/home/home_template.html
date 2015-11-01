@@ -1,0 +1,22 @@
+<template name='home'>
+
+    <div class="ui basic segment">
+      <div class="ui raised center aligned segment">
+        <h2>Gérez vos avoirs et vos cartes de fidélité</h2>
+        <p>
+          Pour ne plus avoir de petits papiers ni de cartes perdus dans votre porte monnaye.
+        </p>
+        {{#unless isConnected}}
+        <p>
+          Vous devez d'abord vous connecter.
+        </p>
+        <div class="ui buttons">
+          <button class="ui button" data-action="signIn">Se connecter</button>
+          <div class="or" data-text="ou"></div>
+          <button class="ui button" data-action="signUp">S'enregistrer</button>
+        </div>
+        {{/unless}}
+      </div>
+    </div>
+
+</template>

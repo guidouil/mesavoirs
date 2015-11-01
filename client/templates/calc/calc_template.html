@@ -1,0 +1,37 @@
+<template name='calc'>
+  <div class="ui segment basic">
+    <div class="ui form">
+      <div class="three fields">
+        <div class="field">
+          <label for="total">Total a payer</label>
+          <div class="ui right labeled left icon large input">
+            <i class="calculator icon"></i>
+            <input type="number" step="any" placeholder="Total a payer" id="total">
+            <div class="ui label"><i class="euro icon"></i></div>
+          </div>
+        </div>
+        <div class="field">
+          <label for="ticketValue">Montant du ticket</label>
+          <div class="ui right labeled left icon large input">
+            <i class="money icon"></i>
+            <input type="number" step="any" placeholder="Montant du ticket" id="ticketValue">
+            <div class="ui label"><i class="euro icon"></i></div>
+          </div>
+        </div>
+        <div class="field">
+          <label for="ticketCount">Nombre de tickets</label>
+          <select class="ui dropdown" id="ticketCount" name="ticketCount">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <h2 class="ui right aligned header">Avoir : {{formatMoney vouncher}}</h2>
+    <button class="fluid ui button">recalculer</button>
+  </div>
+</template>

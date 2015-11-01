@@ -1,0 +1,19 @@
+<template name='header'>
+  <div class="ui top fixed menu borderless green inverted">
+    <div class="left item" data-action="sidebar">
+      <i class="big sidebar icon"></i>
+    </div>
+    <div class="center header item" data-action="goHome">
+      <h1>mes avoirs</h1>
+    </div>
+    {{#unless isConnected}}
+    <div class="right item" data-action="signIn">
+      <i class="big sign in icon"></i>
+    </div>
+    {{else}}
+    <div class="right item" data-action="signOut">
+      <i class="big sign out icon"></i>
+    </div>
+    {{/unless}}
+  </div>
+</template>

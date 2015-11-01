@@ -1,0 +1,24 @@
+<template name='sidebar'>
+  <div class="ui left vertical inverted sidebar labeled icon menu">
+    <a class="item {{isActiveRoute 'home'}}" href="{{pathFor 'home'}}">
+      <i class="home icon"></i>
+      Accueil
+    </a>
+    <a class="item {{isActiveRoute 'vounchers'}}" href="{{pathFor 'vounchers'}}">
+      <i class="money icon"></i>
+      Avoirs
+    </a>
+    <a class="item {{isActiveRoute 'loyaltyCards'}}" href="{{pathFor 'loyaltyCards'}}">
+      <i class="star icon"></i>
+      C. Fidélité
+    </a>
+    <a class="item {{isActiveRoute 'profil'}}" href="{{pathFor 'profil'}}">
+      <i class="user icon"></i>
+      Profil
+    </a>
+    <a class="item {{isActiveRoute 'calc'}}" href="{{pathFor 'calc'}}">
+      <i class="calculator icon"></i>
+      Calc.
+    </a>
+  </div>
+</template>
