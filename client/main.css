@@ -13,3 +13,6 @@ body, .pusher, .container {
   overflow: scroll;
   -webkit-overflow-scrolling: touch;
 }
+.top.menu .item {
+  cursor: pointer;
+}
