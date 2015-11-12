@@ -1,0 +1,35 @@
+<template name='place'>
+  <div class="ui container">
+    <div class="ui statistics">
+      <div class="statistic">
+        <div class="value">
+          22
+        </div>
+        <div class="label">
+          Clients
+        </div>
+      </div>
+      <div class="statistic">
+        <div class="value">
+          5
+        </div>
+        <div class="label">
+          Avoirs
+        </div>
+      </div>
+      <div class="statistic">
+        <div class="value">
+          {{formatMoney 13}}
+        </div>
+        <div class="label">
+          D'avoir
+        </div>
+      </div>
+    </div>
+    <h2>{{name}}</h2>
+    <p>
+      {{description}}
+    </p>
+    <a href="{{pathFor 'placeEdit' placeId=_id}}" class="positive ui button">Editer</a>
+  </div>
+</template>

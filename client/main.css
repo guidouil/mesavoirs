@@ -1,12 +1,12 @@
 /* CSS declarations go here */
-body, .pusher, .container {
+body, .pusher, .content {
   height: 100%;
   width: 100%;
   min-height: 100%;
   overflow: hidden;
 }
 .pusher {
-  padding-top: 61px;
+  padding-top: 62px;
 }
 .scroll {
   height: 100%;

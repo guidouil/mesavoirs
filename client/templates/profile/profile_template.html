@@ -1,3 +1,32 @@
 <template name='profile'>
-
+  <div class="ui container">
+    <h3>Mon profil</h3>
+    <p>
+      {{email}}
+    </p>
+    <button class="ui red button" data-action="logout">
+      Se déconnecter
+    </button>
+    {{#if myPlaces}}
+    <h3>Mes commerces</h3>
+    <div class="ui link cards">
+    {{#each myPlaces}}
+      <a class="card" href="{{pathFor 'place' placeId=_id}}">
+        <div class="image" >
+          <img src="/default-image.png">
+        </div>
+        <div class="content">
+          <div class="header">{{name}}</div>
+          <div class="meta">
+            <span class="date">Créé le {{formatDate createdAt}} {{#if updatedAt}}(mis à jours {{fromNow updatedAt}}){{/if}}</span>
+          </div>
+          <div class="description">
+            {{description}}
+          </div>
+        </div>
+      </a>
+    {{/each}}
+    </div>
+    {{/if}}
+  </div>
 </template>

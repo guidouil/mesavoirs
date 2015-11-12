@@ -56,6 +56,13 @@ UI.registerHelper('formatDate', function (date) {
   }
 });
 
+UI.registerHelper('fromNow', function (date) {
+  if (date !== null) {
+    moment.locale('fr');
+    return moment(date).fromNow();
+  }
+});
+
 UI.registerHelper('truncateString', function (stringToShorten, maxCharsAmount) {
   if (stringToShorten && stringToShorten.length > maxCharsAmount) {
     return stringToShorten.substring(0, maxCharsAmount) + '...';

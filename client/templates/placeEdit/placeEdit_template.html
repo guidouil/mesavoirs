@@ -1,0 +1,7 @@
+<template name='placeEdit'>
+  <div class="ui container">
+    <h2>Editez {{name}}</h2>
+    {{> quickForm id="editPlace" type="update" collection="Places" enctype="multipart/form-data" doc=this buttonContent="Enregistrer"}}
+    <button class="negative ui right floated button" data-action="deletePlace">Supprimer</button>
+  </div>
+</template>
