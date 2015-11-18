@@ -1,11 +1,7 @@
 if (Meteor.isServer) {
   Meteor.startup(function () {
-    // inserting fake products
-    // var productsCount = Products.find({}).count();
-    // if (productsCount === 0) {
-    //   for (var i = 0; i < 80; i++) {
-    //     Meteor.call('insertFakeProduct');
-    //   }
-    // }
+    // Houstan admin view collections users and _admins
+    Houston.add_collection(Meteor.users);
+    Houston.add_collection(Houston._admins);
   });
 }

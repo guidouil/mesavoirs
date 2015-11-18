@@ -4,6 +4,7 @@ body, .pusher, .content {
   width: 100%;
   min-height: 100%;
   overflow: hidden;
+  background-color: #ffffff;
 }
 .pusher {
   padding-top: 62px;

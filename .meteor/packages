@@ -48,3 +48,6 @@ accounts-ui
 semantic:ui-list
 cfs:standard-packages
 cfs:gridfs
+houston:admin
+alanning:roles
+khrone:img-qrcode

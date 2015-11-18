@@ -1,7 +1,8 @@
 AutoForm.hooks({
   createPlace: {
     onSuccess: function (formType, result) {
-      Router.go('profile');
+      Meteor.call('addOwnersRole');
+      Router.go('myPlaces');
     },
   }
 });

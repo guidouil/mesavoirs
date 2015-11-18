@@ -1,0 +1,33 @@
+<template name='myPlaces'>
+  <div class="ui container">
+    {{ #if myPlaces }}
+      <h3>Mes commerces</h3>
+      <div class="ui link cards">
+      {{#each myPlaces}}
+        <a class="card" href="{{pathFor 'place' placeId=_id}}">
+          <div class="image" >
+            {{> image imageId=imageId}}
+          </div>
+          <div class="content">
+            <div class="header">{{name}}</div>
+            <div class="meta">
+              <span class="date">Créé le {{formatDate createdAt}} {{#if updatedAt}}(mis à jours {{fromNow updatedAt}}){{/if}}</span>
+            </div>
+            <div class="description">
+              {{description}}
+            </div>
+          </div>
+        </a>
+      {{/each}}
+      </div>
+    {{ else }}
+    <div class="ui stacked center aligned segment">
+      <h3>Commerçants, utilisez notre service.</h3>
+      <p>
+        C'est gratuit pour toujours.
+      </p>
+      <button class="ui button" data-action="createPlace">Inscrivez votre commerce</button>
+    </div>
+    {{ /if }}
+  </div>
+</template>

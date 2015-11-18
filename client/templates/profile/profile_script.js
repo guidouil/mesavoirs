@@ -2,8 +2,8 @@ Template.profile.helpers({
   email: function () {
     return Meteor.user().emails[0].address;
   },
-  myPlaces: function () {
-    return Places.find({}).fetch();
+  qrText: function () {
+    return 'userId:' + Meteor.userId();
   }
 });
 
@@ -14,9 +14,5 @@ Template.profile.events({
 });
 
 Template.profile.onRendered(function () {
-  Meteor.subscribe('Images');
-  if (! Session.get('myPlacesLimit')) {
-    Session.set('myPlacesLimit', 10);
-  }
-  Meteor.subscribe('MyPlaces', Session.get('myPlacesLimit'));
+
 });

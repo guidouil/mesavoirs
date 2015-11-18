@@ -4,6 +4,23 @@
       <i class="home icon"></i>
       Accueil
     </a>
+    {{#if isInRole 'owners'}}
+    <a class="item {{isActiveRoute 'myPlaces'}}" href="{{pathFor 'myPlaces'}}">
+      <i class="line chart icon"></i>
+      Commerces
+    </a>
+      {{#if isMobile}}
+      <a class="item" data-action="scan">
+        <i class="qr-code icon"></i>
+        Scan
+      </a>
+      {{else}}
+      <a class="item"  data-action="fakeScan">
+        <i class="qrcode icon"></i>
+        Scan
+      </a>
+      {{/if}}
+    {{/if}}
     <a class="item {{isActiveRoute 'vounchers'}}" href="{{pathFor 'vounchers'}}">
       <i class="money icon"></i>
       Avoirs
