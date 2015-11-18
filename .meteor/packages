@@ -46,3 +46,5 @@ service-configuration
 mrt:googlemaps
 accounts-ui
 semantic:ui-list
+cfs:standard-packages
+cfs:gridfs

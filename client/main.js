@@ -6,6 +6,10 @@ UI.registerHelper('isMobile', function () {
   return Meteor.isCordova;
 });
 
+UI.registerHelper('getImage', function (imageUrl) {
+  return imageUrl || '/default-image.png';
+});
+
 UI.registerHelper('formatMoney', function (value) {
   if (isNumeric(value)) {
     switch (Session.get('language')) {

@@ -13,7 +13,7 @@
     {{#each myPlaces}}
       <a class="card" href="{{pathFor 'place' placeId=_id}}">
         <div class="image" >
-          <img src="/default-image.png">
+          {{> image imageId=imageId}}
         </div>
         <div class="content">
           <div class="header">{{name}}</div>

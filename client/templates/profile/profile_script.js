@@ -13,7 +13,8 @@ Template.profile.events({
   }
 });
 
-Template.profile.onRendered(function ( ){
+Template.profile.onRendered(function () {
+  Meteor.subscribe('Images');
   if (! Session.get('myPlacesLimit')) {
     Session.set('myPlacesLimit', 10);
   }

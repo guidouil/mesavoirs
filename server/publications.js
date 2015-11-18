@@ -13,6 +13,13 @@ Meteor.publish('Place', function (placeId) {
   return Places.find({ _id: placeId }, { reactive: true });
 });
 
+Meteor.publish('Images', function () {
+  return Images.find();
+});
+
+Meteor.publish('Image', function (imageId) {
+  return Images.find({ _id: imageId }, { reactive: true });
+});
 
 Meteor.publish('Product', function (productId) {
   return Products.find({ _id: productId }, { reactive: true });

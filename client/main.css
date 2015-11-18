@@ -16,3 +16,7 @@ body, .pusher, .content {
 .top.menu .item {
   cursor: pointer;
 }
+.hidden {
+  visibility: hidden;
+  display: none;
+}
