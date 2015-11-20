@@ -4,6 +4,16 @@ Meteor.methods({
       Roles.addUsersToRoles(this.userId, ['owners']);
     }
   },
+  enablePlace: function (placeId, enabled) {
+    var place = Places.findOne({_id: placeId});
+    if (place && place.owners && place.owners.length >= 1) {
+      if (_.contains(place.owners, this.userId)) {
+        Places.update({_id: placeId}, {$set:{
+          enabled: enabled
+        }});
+      }
+    }
+  },
   getCustomerEmail: function (placeId, customerId) {
     // check if current user is place owners
     var place = Places.findOne({_id: placeId});

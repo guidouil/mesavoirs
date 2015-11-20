@@ -1,18 +1,8 @@
-/* CSS declarations go here */
-body, .pusher, .content {
-  height: 100%;
-  width: 100%;
-  min-height: 100%;
-  overflow: hidden;
-  background-color: #ffffff;
+html.ios, html.ios body{
+  height: 100%!important;
 }
 .pusher {
   padding-top: 62px;
-}
-.scroll {
-  height: 100%;
-  overflow: scroll;
-  -webkit-overflow-scrolling: touch;
 }
 .top.menu .item {
   cursor: pointer;

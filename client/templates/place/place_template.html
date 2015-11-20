@@ -1,35 +1,59 @@
 <template name='place'>
   <div class="ui container">
-    <div class="ui statistics">
-      <div class="statistic">
-        <div class="value">
-          22
-        </div>
-        <div class="label">
-          Clients
-        </div>
+    {{#if isOwner}}
+    <div class="ui stacked segment">
+      <div class="ui slider checkbox">
+        <input type="checkbox" name="enabled" checked="{{enabled}}" data-action="enablePlace">
+        <label>Commerce {{#unless enabled}}in{{/unless}}actif</label>
       </div>
-      <div class="statistic">
-        <div class="value">
-          5
+      <a href="{{pathFor 'placeEdit' placeId=_id}}" class="orange right floated ui circular icon button"><i class="pencil icon"></i></a>
+      <div class="ui statistics">
+        <div class="statistic">
+          <div class="value">
+            22
+          </div>
+          <div class="label">
+            Clients
+          </div>
         </div>
-        <div class="label">
-          Avoirs
+        <div class="statistic">
+          <div class="value">
+            5
+          </div>
+          <div class="label">
+            Avoirs
+          </div>
         </div>
-      </div>
-      <div class="statistic">
-        <div class="value">
-          {{formatMoney 13}}
-        </div>
-        <div class="label">
-          D'avoir
+        <div class="statistic">
+          <div class="value">
+            {{formatMoney 13}}
+          </div>
+          <div class="label">
+            D'avoir
+          </div>
         </div>
       </div>
     </div>
-    <h2>{{name}}</h2>
-    <p>
-      {{description}}
-    </p>
-    <a href="{{pathFor 'placeEdit' placeId=_id}}" class="positive ui button">Editer</a>
+    {{/if}}
+    <div class="ui stacked segment">
+      <h1 class="ui center aligned header">
+        {{name}}
+        <div class="sub header">{{description}}</div>
+      </h1>
+
+      {{> image imageId=imageId classNames='ui centered medium image'}}
+
+      <div class="ui list">
+        {{#each addresses}}
+          <div class="item">
+            <i class="map marker icon"></i>
+            <div class="content">
+              <a class="header">{{street}}</a>
+              <div class="description">{{zip}} {{city}}</div>
+            </div>
+          </div>
+        {{/each}}
+      </div>
+    </div>
   </div>
 </template>

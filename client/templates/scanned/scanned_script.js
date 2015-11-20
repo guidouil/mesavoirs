@@ -48,3 +48,7 @@ Template.scanned.onCreated(function () {
     });
   }
 });
+
+Template.scanned.onDestroyed(function () {
+
+});

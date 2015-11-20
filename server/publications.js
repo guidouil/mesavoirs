@@ -1,8 +1,5 @@
-Meteor.publish('Products', function (limit) {
-  return Products.find({ }, { reactive: true, sort: {createdAt: -1}, limit: limit });
-});
 Meteor.publish('Places', function (limit) {
-  return Places.find({ }, { reactive: true, sort: {createdAt: -1}, limit: limit });
+  return Places.find({$or: [{enabled: true}, {owners: this.userId}]}, { reactive: true, sort: {createdAt: -1}, limit: limit });
 });
 
 Meteor.publish('MyPlaces', function (limit) {
@@ -10,17 +7,13 @@ Meteor.publish('MyPlaces', function (limit) {
 });
 
 Meteor.publish('Place', function (placeId) {
-  return Places.find({ _id: placeId }, { reactive: true });
+  return Places.find({ _id: placeId, $or: [{enabled: true}, {owners: this.userId}] }, { reactive: true });
 });
 
-Meteor.publish('Images', function () {
-  return Images.find();
+Meteor.publish('MyPlace', function (placeId) {
+  return Places.find({ _id: placeId, owners: this.userId }, { reactive: true });
 });
 
 Meteor.publish('Image', function (imageId) {
   return Images.find({ _id: imageId }, { reactive: true });
-});
-
-Meteor.publish('Product', function (productId) {
-  return Products.find({ _id: productId }, { reactive: true });
 });
