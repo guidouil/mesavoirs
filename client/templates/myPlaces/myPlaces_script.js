@@ -7,10 +7,10 @@ Template.myPlaces.helpers({
 Template.myPlaces.events({
 });
 
-Template.myPlaces.onRendered(function ( ){
-})
+Template.myPlaces.onRendered(function () {
+});
 
-Template.myPlaces.onCreated(function(){
+Template.myPlaces.onCreated(function () {
   if (! Session.get('myPlacesLimit')) {
     Session.set('myPlacesLimit', 10);
   }

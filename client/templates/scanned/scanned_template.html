@@ -1,3 +1,30 @@
 <template name='scanned'>
+  <div class="ui container">
+    {{#if isInRole 'owners'}}
+      <h3>{{customerEmail}}</h3>
+      <select class="ui dropdown">
+        {{#each myPlaces}}
+        <option value="{{_id}}" {{selectedPlace}}>{{name}}</option>
+        {{/each}}
+      </select>
+      <h4>Avoir</h4>
+      <div class="ui left icon action input">
+        <i class="euro icon"></i>
+        <input type="number" step="any" placeholder="Montant de l'avoir">
+        <button class="ui teal button">
+          Envoyer
+        </button>
+      </div>
 
+      <h4>Carte de fidélité</h4>
+      <div class="ui labeled button" tabindex="0">
+        <div class="ui olive button">
+          <i class="star icon"></i> +1 point
+        </div>
+        <a class="ui basic label">
+          7
+        </a>
+      </div>
+    {{/if}}
+  </div>
 </template>
