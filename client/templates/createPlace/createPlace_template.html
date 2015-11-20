@@ -2,12 +2,12 @@
   <div class="ui container">
     <h2>Inscrivez votre commerce</h2>
     {{#autoForm id="createPlace" type="insert" collection="Places" enctype="multipart/form-data" doc=this}}
-      {{> afQuickField name="name"}}
-      {{> afQuickField name="description"}}
-      {{> afQuickField name="addresses.0.street"}}
-      {{> afQuickField name="addresses.0.zip"}}
-      {{> afQuickField name="addresses.0.city"}}
-      {{> afQuickField name="addresses.0.country"}}
+      {{> afQuickField placeholder="schemaLabel" name="name"}}
+      {{> afQuickField placeholder="schemaLabel" name="description"}}
+      {{> afQuickField placeholder="schemaLabel" name="addresses.0.street"}}
+      {{> afQuickField placeholder="schemaLabel" name="addresses.0.zip"}}
+      {{> afQuickField placeholder="schemaLabel" name="addresses.0.city"}}
+      {{> afQuickField placeholder="schemaLabel" name="addresses.0.country"}}
       <button class="fluid ui positive button" type="submit">Enregistrer</button>
     {{/autoForm}}
   </div>
