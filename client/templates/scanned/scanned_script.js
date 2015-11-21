@@ -19,12 +19,29 @@ Template.scanned.helpers({
       return loyaltyCard.points || 0;
     }
     return 0;
+  },
+  vouchers: function () {
+    return Vouchers.find({placeId: Session.get('placeId'), userId: Session.get('customerId')}).fetch();
   }
 });
 
 Template.scanned.events({
   'change #place': function (evt) {
     Session.set('placeId', evt.currentTarget.value);
+  },
+  'click #giveVoucher': function () {
+    if (Session.get('placeId') && Session.get('customerId')) {
+      var value = parseFloat($('#voucherValue').val());
+      console.log(value);
+      Meteor.call('giveVoucher',  Session.get('placeId'), Session.get('customerId'), value, function (error, result) {
+        if (error){
+          console.error(error);
+        }
+        if (result){
+          swal('Excellent', 'Un avoir de ' + value + '€ à été remis votre client.', 'success');
+        }
+      });
+    }
   },
   'click #addOnePoint': function () {
     if (Session.get('placeId') && Session.get('customerId')) {
@@ -33,7 +50,7 @@ Template.scanned.events({
           console.error(error);
         }
         if (result){
-          swal('Ajouté', '1 point à été ajouté à la carte de fidélité de votre client.', 'success');
+          swal('C\'est fait', '1 point ajouté à la carte de fidélité de votre client.', 'success');
         }
       });
     }
@@ -42,6 +59,12 @@ Template.scanned.events({
 
 Template.scanned.onRendered(function () {
   $('select').dropdown();
+  Tracker.autorun(function () {
+    if (Session.get('placeId') && Session.get('customerId')) {
+      Meteor.subscribe('UserPlaceVouchers', Session.get('placeId'), Session.get('customerId'));
+      Meteor.subscribe('UserPlaceLoyaltyCard', Session.get('placeId'), Session.get('customerId'));
+    }
+  });
 });
 
 Template.scanned.onCreated(function () {
@@ -52,9 +75,7 @@ Template.scanned.onCreated(function () {
       Session.set('placeId', place._id);
     }
     if (scanType === 'userId') {
-      var userId = Router.current().params.id;
-      Meteor.subscribe('UserPlaceLoyaltyCard', place._id, userId);
-      Session.set('customerId', userId);
+      Session.set('customerId', Router.current().params.id);
       Meteor.call('getCustomerEmail', Session.get('placeId'), Session.get('customerId'), function (error, result) {
         if (error) {
           console.error(error);

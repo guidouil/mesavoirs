@@ -1,3 +1,16 @@
 <template name='vouchers'>
-
+  <div class="ui container">
+    <h2>Mes avoirs</h2>
+    <div class="ui list">
+      {{#each vouchers}}
+      <div class="item">
+        <i class="large money icon"></i>
+        <div class="content">
+          <a class="header" href="{{pathFor 'place' placeId=placeId}}">{{name}}</a>
+          <div class="description">{{formatMoney value}}</div>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
 </template>

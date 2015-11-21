@@ -14,13 +14,18 @@ Meteor.methods({
     return false;
   },
   addOnePoint: function (placeId, customerId) {
+    check(placeId, String);
+    check(customerId, String);
     if (isPlaceOwner(placeId, this.userId)) {
       var place = Places.findOne({_id: placeId});
       var loyaltyCard = LoyaltyCards.findOne({placeId: placeId, userId: customerId});
+      var points = false;
       if (loyaltyCard) {
         if (loyaltyCard.points === (place.loyaltyCard.cardSize - 1)) {
+          points = 0;
           var voucher = {
             'placeId': placeId,
+            'name': place.name,
             'userId': customerId,
             'creatorId': this.userId,
             'value': place.loyaltyCard.voucherValue,
@@ -34,23 +39,43 @@ Meteor.methods({
           LoyaltyCards.update({_id:loyaltyCard._id}, {$inc:{
             points: 1
           }});
+          points = loyaltyCard.points + 1;
         }
         return true;
       } else {
+        points = 1;
         var newLoyaltyCard = {
           'placeId': placeId,
+          'name': place.name,
           'userId': customerId,
-          'points': 1,
-          'creatorId': this.userId,
-          'name': place.name
+          'points': points,
+          'creatorId': this.userId
         };
         LoyaltyCards.insert(newLoyaltyCard);
-        return true;
       }
     }
-    return false;
+    return points;
+  },
+  giveVoucher: function (placeId, customerId, value) {
+    check(placeId, String);
+    check(customerId, String);
+    check(value, Number);
+    if (isPlaceOwner(placeId, this.userId)) {
+      var place = Places.findOne({_id: placeId});
+      var voucher = {
+        'placeId': placeId,
+        'name': place.name,
+        'userId': customerId,
+        'creatorId': this.userId,
+        'value': value,
+        'available': true
+      };
+      Vouchers.insert(voucher);
+    }
   },
   getCustomerEmail: function (placeId, customerId) {
+    check(placeId, String);
+    check(customerId, String);
     if (isPlaceOwner(placeId, this.userId)) {
       var customer = Meteor.users.findOne({_id: customerId});
       if (customer) {
@@ -77,7 +102,7 @@ var contactEmail = function (user) {
   return null;
 };
 
-var isPlaceOwner = function (placeId, userId) {
+isPlaceOwner = function (placeId, userId) {
   // check if current user is one of the place owners
   var place = Places.findOne({_id: placeId});
   if (place && place.owners && place.owners.length >= 1) {

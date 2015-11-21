@@ -73,3 +73,7 @@ UI.registerHelper('truncateString', function (stringToShorten, maxCharsAmount) {
   }
   return stringToShorten;
 });
+
+UI.registerHelper('greaterThan', function (a, b) {
+  return a > b;
+});
