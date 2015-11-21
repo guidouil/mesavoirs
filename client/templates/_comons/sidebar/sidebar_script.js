@@ -10,8 +10,7 @@ Template.sidebar.events({
     scan();
   },
   'click [data-action=fakeScan]': function () {
-    Session.set('scanned', 'userId:FHGCCmkspM83uf2mq');
-    Router.go('scanned');
+    Router.go('scanned', {type: 'userId', id: 'FHGCCmkspM83uf2mq'});
   }
 });
 

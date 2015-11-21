@@ -17,3 +17,7 @@ Meteor.publish('MyPlace', function (placeId) {
 Meteor.publish('Image', function (imageId) {
   return Images.find({ _id: imageId }, { reactive: true });
 });
+
+Meteor.publish('UserPlaceLoyaltyCard', function (placeId, userId) {
+  return LoyaltyCards.find({placeId: placeId, userId: userId});
+});

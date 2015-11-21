@@ -3,7 +3,7 @@
     {{#if isInRole 'owners'}}
       <h3>Client : {{customerEmail}}</h3>
       <h4>Commerce</h4>
-      <select class="ui dropdown" id="place">
+      <select class="ui dropdown" id="place" tabindex="0">
         {{#each myPlaces}}
         <option value="{{_id}}" {{selectedPlace}}>{{name}}</option>
         {{/each}}
@@ -11,18 +11,18 @@
       <h4>Avoir</h4>
       <div class="ui left icon action input">
         <i class="euro icon"></i>
-        <input type="number" step="any" placeholder="Montant de l'avoir">
+        <input type="number" step="any" placeholder="Montant de l'avoir" tabindex="1">
         <button class="ui teal button">
           Envoyer
         </button>
       </div>
       {{#if place.loyaltyCard.enabled}}
       <h4>Carte de fidélité</h4>
-      <div class="ui left labeled button" tabindex="0">
+      <div class="ui left labeled button" tabindex="2">
         <a class="ui basic label">
-          <i class="star icon"></i> 7 / {{place.loyaltyCard.cardSize}}
+          <i class="star icon"></i> {{userPoints}} / {{place.loyaltyCard.cardSize}}
         </a>
-        <div class="ui olive button">
+        <div class="ui olive button" id="addOnePoint">
            +1 point
         </div>
       </div>
