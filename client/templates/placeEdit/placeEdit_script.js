@@ -17,7 +17,7 @@ Template.placeEdit.events({
       // TODO delete img
       Places.remove({_id: placeId});
       swal('Effacé!', 'Le commerce à été supprimé.', 'success');
-      Router.go('/profile');
+      Router.go('/my-places');
     });
   }
 });

@@ -3,8 +3,33 @@
     {{> image imageId=imageId classNames='small right floated'}}
     {{> imageEdit imageId=imageId}}
     <h2>Editer : {{name}}</h2>
-    {{> quickForm id="editPlace" type="update" collection="Places" enctype="multipart/form-data" doc=this buttonContent="Enregistrer"}}
-    <button class="negative ui right floated button" data-action="deletePlace">Supprimer</button>
+    {{#autoForm id="editPlace" type="update" collection="Places" enctype="multipart/form-data" doc=this}}
+      {{> afQuickField placeholder="schemaLabel" name="name"}}
+      {{> afQuickField placeholder="schemaLabel" name="description"}}
+      {{> afQuickField placeholder="schemaLabel" name="addresses.0.street"}}
+      {{> afQuickField placeholder="schemaLabel" name="addresses.0.zip"}}
+      {{> afQuickField placeholder="schemaLabel" name="addresses.0.city"}}
+      {{> afQuickField placeholder="schemaLabel" name="addresses.0.country"}}
+      {{> afQuickField placeholder="schemaLabel" name="loyaltyCard.enabled" checkboxType="slider"}}
+      <div class="loyaltyCard">
+        {{#if loyaltyCard.pointCost}}
+        <p>
+          Chaque tranche d'achat de {{formatMoney loyaltyCard.pointCost}} ajoute 1 point à la carte de fidélité.<br>
+          Quand la carte du client atteint {{loyaltyCard.cardSize}} points, il reçoit automatiquement un avoir de {{formatMoney loyaltyCard.voucherValue}} et la carte est vidée.
+        </p>
+        {{/if}}
+        {{> afQuickField defaultValue="10" name="loyaltyCard.pointCost"}}
+        {{> afQuickField defaultValue="10" name="loyaltyCard.cardSize"}}
+        {{> afQuickField defaultValue="5" name="loyaltyCard.voucherValue"}}
+      </div>
+      <p></p>
+      <button class="fluid ui positive button" type="submit">Enregistrer</button>
+    {{/autoForm}}
+    <br>
+    <a class="fluid ui button" href="{{pathFor 'place' placeId=_id}}">Annuler</a>
+    <br>
+    <hr>
+    <button class="negative ui fluid button" data-action="deletePlace">Supprimer</button>
   </div>
 
 </template>

@@ -10,12 +10,15 @@ Template.scanned.helpers({
       return 'selected';
     }
   },
-  placeId: function () {
-    return Session.get('placeId');
+  place: function () {
+    return Places.findOne({_id: Session.get('placeId')});
   }
 });
 
 Template.scanned.events({
+  'change #place': function (evt) {
+    Session.set('placeId', evt.currentTarget.value);
+  }
 });
 
 Template.scanned.onRendered(function () {
@@ -23,15 +26,10 @@ Template.scanned.onRendered(function () {
 });
 
 Template.scanned.onCreated(function () {
-  if (! Session.get('myPlacesLimit')) {
-    Session.set('myPlacesLimit', 10);
-  }
-  Meteor.subscribe('MyPlaces', Session.get('myPlacesLimit'));
   var placesCount = Places.find().count();
   if (placesCount >= 1) {
     var place = Places.findOne();
     Session.set('placeId', place._id);
-
   }
   var scanned = Session.get('scanned');
   if (scanned && scanned.search('userId:') === 0) {
@@ -47,8 +45,4 @@ Template.scanned.onCreated(function () {
       }
     });
   }
-});
-
-Template.scanned.onDestroyed(function () {
-
 });

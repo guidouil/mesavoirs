@@ -11,8 +11,5 @@ Template.myPlaces.onRendered(function () {
 });
 
 Template.myPlaces.onCreated(function () {
-  if (! Session.get('myPlacesLimit')) {
-    Session.set('myPlacesLimit', 10);
-  }
-  Meteor.subscribe('MyPlaces', Session.get('myPlacesLimit'));
+
 });
