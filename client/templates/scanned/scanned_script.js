@@ -32,7 +32,6 @@ Template.scanned.events({
   'click #giveVoucher': function () {
     if (Session.get('placeId') && Session.get('customerId')) {
       var value = parseFloat($('#voucherValue').val());
-      console.log(value);
       Meteor.call('giveVoucher',  Session.get('placeId'), Session.get('customerId'), value, function (error, result) {
         if (error){
           console.error(error);
@@ -42,6 +41,22 @@ Template.scanned.events({
         }
       });
     }
+  },
+  'click #useVoucher': function (evt) {
+    var voucherValue = this.value;
+    var voucherId = this._id;
+    swal({
+      title: 'Utiliser l\'avoir de ' + voucherValue + '€ ?',
+      text: 'Il sera supprimé des avoirs de votre client.',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#DD6B55',
+      confirmButtonText: 'Oui',
+      cancelButtonText: 'Non',
+      closeOnConfirm: true
+    }, function () {
+      Meteor.call('useVoucher', Session.get('placeId'), voucherId);
+    });
   },
   'click #addOnePoint': function () {
     if (Session.get('placeId') && Session.get('customerId')) {

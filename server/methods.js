@@ -73,6 +73,13 @@ Meteor.methods({
       Vouchers.insert(voucher);
     }
   },
+  useVoucher: function (placeId, voucherId) {
+    check(placeId, String);
+    check(voucherId, String);
+    if (isPlaceOwner(placeId, this.userId)) {
+      Vouchers.remove({_id: voucherId});
+    }
+  },
   getCustomerEmail: function (placeId, customerId) {
     check(placeId, String);
     check(customerId, String);
