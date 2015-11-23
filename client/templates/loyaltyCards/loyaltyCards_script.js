@@ -1,6 +1,6 @@
 Template.loyaltyCards.helpers({
   loyaltyCards: function () {
-    return LoyaltyCards.find({}, {sort: {name: 1}});
+    return LoyaltyCards.find({}, {sort: {name: 1, updatedAt: -1}});
   }
 });
 

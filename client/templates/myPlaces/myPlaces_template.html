@@ -6,12 +6,12 @@
       {{#each myPlaces}}
         <a class="card" href="{{pathFor 'place' placeId=_id}}">
           <div class="image" >
-            {{> image imageId=imageId}}
+            {{> image imageId=imageId }}
           </div>
           <div class="content">
             <div class="header">{{name}}</div>
             <div class="meta">
-              <span class="date">Créé le {{formatDate createdAt}} {{#if updatedAt}}(mis à jours {{fromNow updatedAt}}){{/if}}</span>
+              Mis à jour {{#if updatedAt}}{{fromNow updatedAt}}{{else}}{{fromNow createdAt}}{{/if}}
             </div>
             <div class="description">
               {{description}}

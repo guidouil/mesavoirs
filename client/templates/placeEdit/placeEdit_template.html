@@ -15,11 +15,11 @@
         {{#if loyaltyCard.pointCost}}
         <p>
           Chaque tranche d'achat de {{formatMoney loyaltyCard.pointCost}} ajoute 1 point à la carte de fidélité.<br>
-          Quand la carte du client atteint {{loyaltyCard.cardSize}} points, il reçoit automatiquement un avoir de {{formatMoney loyaltyCard.voucherValue}} et la carte est vidée.
+          Quand la carte du client atteint {{loyaltyCard.size}} points, il reçoit automatiquement un avoir de {{formatMoney loyaltyCard.voucherValue}} et le compte de points est remis a zéro.
         </p>
         {{/if}}
         {{> afQuickField defaultValue="10" name="loyaltyCard.pointCost"}}
-        {{> afQuickField defaultValue="10" name="loyaltyCard.cardSize"}}
+        {{> afQuickField defaultValue="10" name="loyaltyCard.size"}}
         {{> afQuickField defaultValue="5" name="loyaltyCard.voucherValue"}}
       </div>
       <p></p>

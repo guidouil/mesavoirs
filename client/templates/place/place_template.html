@@ -10,26 +10,26 @@
       <div class="ui statistics">
         <div class="statistic">
           <div class="value">
-            42
+            {{customers.length}}
           </div>
           <div class="label">
-            Clients
+            Client{{#if greaterThan customers.length 1}}s{{/if}}
           </div>
         </div>
         <div class="statistic">
           <div class="value">
-            5
+            {{voucherCount}}
           </div>
           <div class="label">
-            Avoirs
+            Avoir{{#if greaterThan voucherCount 1}}s{{/if}}
           </div>
         </div>
         <div class="statistic">
           <div class="value">
-            {{formatMoney 13}}
+            {{loyaltyCardCount}}
           </div>
           <div class="label">
-            D'avoir
+            Carte{{#if greaterThan loyaltyCardCount 1}}s{{/if}}
           </div>
         </div>
       </div>
@@ -40,9 +40,7 @@
         {{name}}
         <div class="sub header">{{description}}</div>
       </h1>
-
       {{> image imageId=imageId classNames='ui centered medium image'}}
-
       <div class="ui list">
         {{#each addresses}}
           <div class="item">
@@ -54,6 +52,46 @@
           </div>
         {{/each}}
       </div>
+    </div>
+    <div class="ui stacked segment">
+      {{#if isOwner}}
+
+      {{/if}}
+      <div class="ui relaxed divided items">
+      {{#if myVoucher}}
+        <div class="item">
+          <div class="content">
+            <a class="header"><i class="big teal money icon"></i> Vous avez {{formatMoney myVoucher.value}} d'avoir disponible ici</a>
+            <div class="meta">
+              <span>Mis à jour {{#if updatedAt}}{{fromNow myVoucher.updatedAt}}{{else}}{{fromNow myVoucher.createdAt}}{{/if}}</span>
+            </div>
+            <div class="extra">
+              <i class="time icon"></i>Voir historique
+            </div>
+          </div>
+        </div>
+      {{/if}}
+      {{#if myLoyaltyCard}}
+        <div class="item">
+          <div class="content">
+            <a class="header"><i class="big yellow star icon"></i> Vous avez {{myLoyaltyCard.points}} point{{#if greaterThan myLoyaltyCard.points 1}}s{{/if}} sur {{myLoyaltyCard.size}} de votre carte de fidélité</a>
+            <div class="meta">
+              <span>Mise à jour {{#if updatedAt}}{{fromNow myLoyaltyCard.updatedAt}}{{else}}{{fromNow myLoyaltyCard.createdAt}}{{/if}}</span>
+            </div>
+            <div class="description">
+              <p>
+                Chaque tranche d'achat de {{formatMoney loyaltyCard.pointCost}} ajoute 1 point à la carte de fidélité.<br>
+                Quand votre carte atteint {{loyaltyCard.size}} points, vous recevez automatiquement un avoir de {{formatMoney loyaltyCard.voucherValue}} et le compte de points est remis a zéro.
+              </p>
+            </div>
+            <div class="extra">
+              <i class="time icon"></i>Voir historique
+            </div>
+          </div>
+        </div>
+      {{/if}}
+      </div>
+
     </div>
   </div>
 </template>

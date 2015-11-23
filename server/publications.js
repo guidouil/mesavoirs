@@ -18,6 +18,22 @@ Meteor.publish('Image', function (imageId) {
   return Images.find({ _id: imageId }, { reactive: true });
 });
 
+Meteor.publish('UserPlaceVouchers', function (placeId, userId) {
+  if (isPlaceOwner(placeId, this.userId)) {
+    return Vouchers.find({ placeId: placeId, userId: userId });
+  }
+});
+
+Meteor.publish('PlaceVouchers', function (placeId) {
+  if (isPlaceOwner(placeId, this.userId)) {
+    return Vouchers.find({ placeId: placeId });
+  }
+});
+
+Meteor.publish('UserVouchers', function () {
+  return Vouchers.find({ userId: this.userId });
+});
+
 Meteor.publish('UserPlaceLoyaltyCard', function (placeId, userId) {
   if (isPlaceOwner(placeId, this.userId)) {
     return LoyaltyCards.find({ placeId: placeId, userId: userId });
@@ -34,18 +50,9 @@ Meteor.publish('UserLoyaltyCards', function () {
   return LoyaltyCards.find({ userId: this.userId });
 });
 
-Meteor.publish('UserPlaceVouchers', function (placeId, userId) {
+Meteor.publish('placeCounts', function (placeId) {
   if (isPlaceOwner(placeId, this.userId)) {
-    return Vouchers .find({ placeId: placeId, userId: userId });
+    Counts.publish(this, 'voucherCount', Vouchers.find({ placeId: placeId }));
+    Counts.publish(this, 'loyaltyCardCount', LoyaltyCards.find({ placeId: placeId }));
   }
-});
-
-Meteor.publish('PlaceVouchers', function (placeId) {
-  if (isPlaceOwner(placeId, this.userId)) {
-    return Vouchers .find({ placeId: placeId });
-  }
-});
-
-Meteor.publish('UserVouchers', function () {
-  return Vouchers .find({ userId: this.userId });
 });

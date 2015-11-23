@@ -17,13 +17,13 @@
         </button>
       </div>
       <p>
-        <div class="ui horizontal link list">
+        <div class="ui horizontal list">
         {{#each vouchers}}
           <div class="item" id="useVoucher">
             <i class="large money icon"></i>
             <div class="content">
               <div class="header">{{formatMoney value}}</div>
-              {{fromNow createdAt}}
+              Mis à jour {{#if updatedAt}}{{fromNow updatedAt}}{{else}}{{fromNow createdAt}}{{/if}}
             </div>
           </div>
         {{/each}}
@@ -33,12 +33,20 @@
       <h4>Carte de fidélité</h4>
       <div class="ui left labeled button" tabindex="2">
         <a class="ui basic label">
-          <i class="star icon"></i> {{userPoints}} / {{place.loyaltyCard.cardSize}}
+          <i class="star icon"></i> {{userPoints}} / {{place.loyaltyCard.size}}
         </a>
         <div class="ui olive button" id="addOnePoint">
            +1 point
         </div>
       </div>
+      {{#if loyaltyCardDate}}
+        <p>
+          <i class="time icon"></i>
+          Mise à jour {{fromNow loyaltyCardDate}}<br>
+          Chaque tranche d'achat de {{formatMoney place.loyaltyCard.pointCost}} ajoute 1 point à la carte de fidélité.<br>
+          Quand la carte du client atteint {{place.loyaltyCard.size}} points, il reçoit automatiquement un avoir de {{formatMoney place.loyaltyCard.voucherValue}} et la carte est vidée.
+        </p>
+      {{/if}}
       {{/if}}
     {{/if}}
   </div>

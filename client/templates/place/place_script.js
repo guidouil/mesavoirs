@@ -1,6 +1,18 @@
 Template.place.helpers({
   isOwner: function () {
     return _.contains( this.owners, Meteor.userId() );
+  },
+  myVoucher: function () {
+    return Vouchers.findOne({userId: Meteor.userId()});
+  },
+  myLoyaltyCard: function () {
+    return LoyaltyCards.findOne({userId: Meteor.userId()});
+  },
+  voucherCount: function () {
+    return Counts.get('voucherCount');
+  },
+  loyaltyCardCount: function () {
+    return Counts.get('loyaltyCardCount');
   }
 });
 
@@ -10,5 +22,11 @@ Template.place.events({
   }
 });
 
-Template.place.onRendered(function ( ){
+Template.place.onRendered(function () {
+
+});
+
+Template.place.onCreated(function () {
+  this.subscribe('UserPlaceVouchers', this.data._id, Meteor.userId());
+  this.subscribe('UserPlaceLoyaltyCard', this.data._id, Meteor.userId());
 });
