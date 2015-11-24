@@ -4,7 +4,7 @@
     <div class="ui relaxed divided list">
       {{#each loyaltyCards}}
       <div class="item">
-        <i class="large star icon"></i>
+        <i class="large yellow star icon"></i>
         <div class="content">
           <a class="header" href="{{pathFor 'place' placeId=placeId}}">{{name}}</a>
           <div class="description">
@@ -12,6 +12,16 @@
             Mise à jour {{#if updatedAt}}{{fromNow updatedAt}}{{else}}{{fromNow createdAt}}{{/if}}
           </div>
         </div>
+      </div>
+      {{else}}
+      <div class="ui basic center aligned segment">
+        <h2 class="ui icon header">
+          <i class="yellow star icon"></i>
+          <div class="content">
+            Vous n'avez pas encore de cartes de fidélité
+            <div class="sub header">Cherchez l'affichette <strong>mesavoirs.fr</strong> dans vos commerces habituels ou parlez en à votre commerçant. Merci ツ</div>
+          </div>
+        </h2>
       </div>
       {{/each}}
     </div>

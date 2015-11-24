@@ -1,0 +1,12 @@
+<template name="loginText">
+  {{#unless isConnected}}
+  <p>
+    Vous devez d'abord vous connecter.
+  </p>
+  <div class="ui buttons">
+    <button class="ui button" data-action="signIn">Se connecter</button>
+    <div class="or" data-text="ou"></div>
+    <button class="ui button" data-action="signUp">S'enregistrer</button>
+  </div>
+  {{/unless}}
+</template>

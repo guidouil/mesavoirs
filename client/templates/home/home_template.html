@@ -1,6 +1,6 @@
 <template name='home'>
-  <div class="ui container">
-    <div class="ui stacked center aligned segment">
+  <div class="ui main text container">
+    <div class="ui basic center aligned segment">
       <h2 class="ui icon header">
         <i class="teal money icon"></i>
         <div class="content">
@@ -8,20 +8,11 @@
           <div class="sub header">Pour ne plus avoir de petits papiers ni de cartes perdus dans votre porte monnaie.</div>
         </div>
       </h2>
-      {{#unless isConnected}}
-      <p>
-        Vous devez d'abord vous connecter.
-      </p>
-      <div class="ui buttons">
-        <button class="ui button" data-action="signIn">Se connecter</button>
-        <div class="or" data-text="ou"></div>
-        <button class="ui button" data-action="signUp">S'enregistrer</button>
-      </div>
-      {{/unless}}
+      {{> loginText}}
     </div>
-    <div class="ui stacked center aligned segment">
+    <div class="ui raised center aligned segment">
       <h2 class="ui icon header">
-        <i class="olive users icon"></i>
+        <i class="yellow star icon"></i>
         <div class="content">
           Utilisez notre service pour votre commerce
           <div class="sub header">C'est gratuit pour toujours.</div>
@@ -32,4 +23,5 @@
       </p>
     </div>
   </div>
+  {{> footer}}
 </template>

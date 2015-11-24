@@ -1,13 +1,15 @@
 <template name='place'>
   <div class="ui container">
     {{#if isOwner}}
-    <div class="ui stacked segment">
+    <div class="ui basic segment">
+      <a href="{{pathFor 'placeEdit' placeId=_id}}" class="teal right floated ui circular icon button"><i class="pencil icon"></i></a>
       <div class="ui slider checkbox">
         <input type="checkbox" name="enabled" checked="{{enabled}}" data-action="enablePlace">
         <label>Commerce {{#unless enabled}}in{{/unless}}actif</label>
       </div>
-      <a href="{{pathFor 'placeEdit' placeId=_id}}" class="teal right floated ui circular icon button"><i class="pencil icon"></i></a>
-      <div class="ui statistics">
+    </div>
+    <div class="ui basic segment">
+      <div class="ui center aligned statistics">
         <div class="statistic">
           <div class="value">
             {{customers.length}}
@@ -35,7 +37,7 @@
       </div>
     </div>
     {{/if}}
-    <div class="ui stacked segment">
+    <div class="ui basic segment">
       <h1 class="ui center aligned header">
         {{name}}
         <div class="sub header">{{description}}</div>
@@ -53,7 +55,7 @@
         {{/each}}
       </div>
     </div>
-    <div class="ui stacked segment">
+    <div class="ui basic segment">
       {{#if isOwner}}
 
       {{/if}}
@@ -63,7 +65,7 @@
           <div class="content">
             <a class="header"><i class="big teal money icon"></i> Vous avez {{formatMoney myVoucher.value}} d'avoir disponible ici</a>
             <div class="meta">
-              <span>Mis à jour {{#if updatedAt}}{{fromNow myVoucher.updatedAt}}{{else}}{{fromNow myVoucher.createdAt}}{{/if}}</span>
+              <span>Mis à jour {{#if myVoucher.updatedAt}}{{fromNow myVoucher.updatedAt}}{{else}}{{fromNow myVoucher.createdAt}}{{/if}}</span>
             </div>
             <div class="extra">
               <i class="time icon"></i>Voir historique
@@ -76,7 +78,7 @@
           <div class="content">
             <a class="header"><i class="big yellow star icon"></i> Vous avez {{myLoyaltyCard.points}} point{{#if greaterThan myLoyaltyCard.points 1}}s{{/if}} sur {{myLoyaltyCard.size}} de votre carte de fidélité</a>
             <div class="meta">
-              <span>Mise à jour {{#if updatedAt}}{{fromNow myLoyaltyCard.updatedAt}}{{else}}{{fromNow myLoyaltyCard.createdAt}}{{/if}}</span>
+              <span>Mise à jour {{#if myLoyaltyCard.updatedAt}}{{fromNow myLoyaltyCard.updatedAt}}{{else}}{{fromNow myLoyaltyCard.createdAt}}{{/if}}</span>
             </div>
             <div class="description">
               <p>
