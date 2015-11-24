@@ -6,12 +6,12 @@ Template.scanned.helpers({
     return Session.get('customerEmail');
   },
   selectedPlace: function () {
-    if (Session.equals('placeId', this._id)) {
+    if (this._id && Session.equals('placeId', this._id)) {
       return 'selected';
     }
   },
   selectedCustomer: function () {
-    if (Session.equals('customerId', this._id)) {
+    if (this._id && Session.equals('customerId', this._id)) {
       return 'selected';
     }
   },
@@ -123,11 +123,12 @@ Template.scanned.onCreated(function () {
   if (place) {
     if (! Session.get('placeId')) {
       Session.set('placeId', place._id);
-    }
-    if (scanType === 'userId') {
-      if (Router.current().params.id) {
-        Session.set('customerId', Router.current().params.id);
+      if (place.customers.length === 1 && scanType === 'userId' && !Router.current().params.id) {
+        Session.set('customerId', place.customers[0].customerId);
       }
+    }
+    if (scanType === 'userId' && Router.current().params.id) {
+      Session.set('customerId', Router.current().params.id);
     }
   }
 });
