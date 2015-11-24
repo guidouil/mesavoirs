@@ -1,4 +1,4 @@
-Template.loginText.helpers({
+Template.loginText.events({
   'click [data-action=signIn]': function () {
     Router.go('/sign-in');
   },
