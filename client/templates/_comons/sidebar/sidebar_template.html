@@ -10,14 +10,14 @@
       Commerces
     </a>
       {{#if isMobile}}
-      <a class="item" data-action="scan">
+      <a class="item {{isActiveRoute 'scanned'}}" data-action="scan">
         <i class="qr-code icon"></i>
         Scan
       </a>
       {{else}}
-      <a class="item"  data-action="fakeScan">
-        <i class="qrcode icon"></i>
-        Scan
+      <a class="item {{isActiveRoute 'scanned'}}"  data-action="fakeScan">
+        <i class="users icon"></i>
+        Clients
       </a>
       {{/if}}
     {{/if}}

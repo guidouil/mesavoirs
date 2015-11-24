@@ -61,21 +61,23 @@
       {{/if}}
       <div class="ui relaxed divided items">
       {{#if myVoucher}}
-        <div class="item">
+        <div class="item" data-action="voucherHistory">
           <div class="content">
             <a class="header"><i class="big teal money icon"></i> Vous avez {{formatMoney myVoucher.value}} d'avoir disponible ici</a>
             <div class="meta">
               <span>Mis à jour {{#if myVoucher.updatedAt}}{{fromNow myVoucher.updatedAt}}{{else}}{{fromNow myVoucher.createdAt}}{{/if}}</span>
             </div>
+            {{#if myVoucher.histories}}
             <div class="extra">
               <i class="time icon"></i>Voir historique
             </div>
+            {{/if}}
           </div>
         </div>
       {{/if}}
       {{#if myLoyaltyCard}}
         <div class="item">
-          <div class="content">
+          <div class="content"  data-action="loyaltyCardHistory">
             <a class="header"><i class="big yellow star icon"></i> Vous avez {{myLoyaltyCard.points}} point{{#if greaterThan myLoyaltyCard.points 1}}s{{/if}} sur {{myLoyaltyCard.size}} de votre carte de fidélité</a>
             <div class="meta">
               <span>Mise à jour {{#if myLoyaltyCard.updatedAt}}{{fromNow myLoyaltyCard.updatedAt}}{{else}}{{fromNow myLoyaltyCard.createdAt}}{{/if}}</span>
@@ -86,14 +88,16 @@
                 Quand votre carte atteint {{loyaltyCard.size}} points, vous recevez automatiquement un avoir de {{formatMoney loyaltyCard.voucherValue}} et le compte de points est remis a zéro.
               </p>
             </div>
+            {{#if myLoyaltyCard.histories}}
             <div class="extra">
               <i class="time icon"></i>Voir historique
             </div>
+            {{/if}}
           </div>
         </div>
       {{/if}}
       </div>
-
     </div>
   </div>
+  {{> histories}}
 </template>

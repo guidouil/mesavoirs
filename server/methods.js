@@ -141,8 +141,8 @@ var contactEmail = function (user) {
   if (user.services && user.services.google && user.services.google.email) {
     return user.services.google.email;
   }
-  if (user.services && user.services.twitter && user.services.twitter.email) {
-    return user.services.twitter.email;
+  if (user.services && user.services.twitter && user.services.twitter.screenName) {
+    return '@' + user.services.twitter.screenName;
   }
   return null;
 };

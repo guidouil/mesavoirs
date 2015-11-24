@@ -10,6 +10,11 @@ Template.scanned.helpers({
       return 'selected';
     }
   },
+  selectedCustomer: function () {
+    if (Session.equals('customerId', this._id)) {
+      return 'selected';
+    }
+  },
   place: function () {
     return Places.findOne({_id: Session.get('placeId')});
   },
@@ -33,11 +38,19 @@ Template.scanned.helpers({
 
 Template.scanned.events({
   'change #place': function (evt) {
-    Session.set('placeId', evt.currentTarget.value);
+    if (evt.currentTarget.value) {
+      Session.set('placeId', evt.currentTarget.value);
+    }
+  },
+  'change #customer': function (evt) {
+    if (evt.currentTarget.value) {
+      Session.set('customerId', evt.currentTarget.value);
+      Router.go('/scanned/userId/' + evt.currentTarget.value);
+    }
   },
   'click #giveVoucher': function () {
     if (Session.get('placeId') && Session.get('customerId')) {
-      var value = parseFloat($('#voucherValue').val());
+      var value = Math.abs(parseFloat($('#voucherValue').val()));
       if (_.isNumber(value)) {
         Meteor.call('giveVoucher',  Session.get('placeId'), Session.get('customerId'), value, function (error, result) {
           if (error){
@@ -45,6 +58,22 @@ Template.scanned.events({
           }
           if (_.isNumber(result)){
             swal('Excellent', 'L\'avoir de votre client est maintenant de ' + result + '€', 'success');
+            $('#voucherValue').val('');
+          }
+        });
+      }
+    }
+  },
+  'click #takeVoucher': function () {
+    if (Session.get('placeId') && Session.get('customerId')) {
+      var value = Math.abs(parseFloat($('#voucherValue').val())) * -1;
+      if (_.isNumber(value)) {
+        Meteor.call('giveVoucher',  Session.get('placeId'), Session.get('customerId'), value, function (error, result) {
+          if (error){
+            console.error(error);
+          }
+          if (_.isNumber(result)){
+            swal('Splendide', 'L\'avoir de votre client est maintenant de ' + result + '€', 'success');
             $('#voucherValue').val('');
           }
         });
@@ -76,6 +105,14 @@ Template.scanned.onRendered(function () {
     if (Session.get('placeId') && Session.get('customerId')) {
       instance.subscribe('UserPlaceVouchers', Session.get('placeId'), Session.get('customerId'));
       instance.subscribe('UserPlaceLoyaltyCard', Session.get('placeId'), Session.get('customerId'));
+      Meteor.call('getCustomerEmail', Session.get('placeId'), Session.get('customerId'), function (error, result) {
+        if (error) {
+          console.error(error);
+        }
+        if (result) {
+          Session.set('customerEmail', result);
+        }
+      });
     }
   });
 });
@@ -88,15 +125,9 @@ Template.scanned.onCreated(function () {
       Session.set('placeId', place._id);
     }
     if (scanType === 'userId') {
-      Session.set('customerId', Router.current().params.id);
-      Meteor.call('getCustomerEmail', Session.get('placeId'), Session.get('customerId'), function (error, result) {
-        if (error) {
-          console.error(error);
-        }
-        if (result) {
-          Session.set('customerEmail', result);
-        }
-      });
+      if (Router.current().params.id) {
+        Session.set('customerId', Router.current().params.id);
+      }
     }
   }
 });

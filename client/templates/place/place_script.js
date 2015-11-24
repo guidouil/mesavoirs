@@ -17,8 +17,28 @@ Template.place.helpers({
 });
 
 Template.place.events({
-  'click [data-action=enablePlace]': function (evt, tmpl) {
+  'click [data-action=enablePlace]': function () {
     Meteor.call('enablePlace', this._id, evt.currentTarget.checked);
+  },
+  'click [data-action=voucherHistory]': function () {
+    var voucher = Vouchers.findOne({userId: Meteor.userId()});
+    if (voucher.histories) {
+      Session.set('histories', voucher.histories);
+      Session.set('historyFormat', 'formatMoney');
+      $('.histories-modal').modal('show');
+    }
+  },
+  'click [data-action=loyaltyCardHistory]': function () {
+    var loyaltyCard = LoyaltyCards.findOne({userId: Meteor.userId()});
+    if (loyaltyCard.histories) {
+      Session.set('histories', loyaltyCard.histories);
+      Session.set('historyFormat', 'formatPoint');
+      $('.histories-modal').modal('show');
+    }
+  },
+  'click .statistics': function () {
+    Session.set('placeId', Router.current().params.placeId);
+    Router.go('/scanned/userId');
   }
 });
 

@@ -1,26 +1,41 @@
 <template name='scanned'>
   <div class="ui container">
     {{#if isInRole 'owners'}}
-      <h3>Client : {{customerEmail}}</h3>
       <h4>Commerce</h4>
       <select class="ui dropdown" id="place" tabindex="0">
         {{#each myPlaces}}
         <option value="{{_id}}" {{selectedPlace}}>{{name}}</option>
         {{/each}}
       </select>
+
+      {{#if place.customers}}
+      <h4>Clients</h4>
+      <select id="customer" name="customer" class="ui dropdown">
+        <option value="">Selectionnez un client</option>
+        {{#each place.customers}}
+          <option value="{{customerId}}" {{selectedCustomer}}>{{email}}</option>
+        {{/each}}
+      </select>
+      {{/if}}
+      {{#if customerEmail}}
+      <h3><i class="shop icon"></i> {{customerEmail}}</h3>
+      {{/if}}
       <h4>Avoir</h4>
-      <div class="ui left icon action input">
+      <div class="ui fluid left icon action input">
         <i class="euro icon"></i>
-        <input type="number" step="any" placeholder="Montant de l'avoir" tabindex="1" id="voucherValue">
-        <button class="ui teal button" id="giveVoucher">
-          Envoyer
+        <input type="number" step="any" placeholder="Montant" tabindex="1" id="voucherValue" size="3">
+        <button class="ui green button" id="giveVoucher">
+          Donner
+        </button>
+        <button class="ui red button" id="takeVoucher">
+          Prendre
         </button>
       </div>
       <p>
         <div class="ui horizontal list">
         {{#each vouchers}}
           <div class="item" id="useVoucher">
-            <i class="large money icon"></i>
+            <i class="large teal money icon"></i>
             <div class="content">
               <div class="header">{{formatMoney value}}</div>
               Mis à jour {{#if updatedAt}}{{fromNow updatedAt}}{{else}}{{fromNow createdAt}}{{/if}}
@@ -31,22 +46,19 @@
       </p>
       {{#if place.loyaltyCard.enabled}}
       <h4>Carte de fidélité</h4>
-      <div class="ui left labeled button" tabindex="2">
+      <div class="fluid ui left labeled button" tabindex="2">
         <a class="ui basic label">
-          <i class="star icon"></i> {{userPoints}} / {{place.loyaltyCard.size}}
+          <i class="yellow star icon"></i> {{userPoints}} / {{place.loyaltyCard.size}}
         </a>
         <div class="ui olive button" id="addOnePoint">
            +1 point
         </div>
       </div>
-      {{#if loyaltyCardDate}}
-        <p>
-          <i class="time icon"></i>
-          Mise à jour {{fromNow loyaltyCardDate}}<br>
-          Chaque tranche d'achat de {{formatMoney place.loyaltyCard.pointCost}} ajoute 1 point à la carte de fidélité.<br>
-          Quand la carte du client atteint {{place.loyaltyCard.size}} points, il reçoit automatiquement un avoir de {{formatMoney place.loyaltyCard.voucherValue}} et la carte est vidée.
-        </p>
-      {{/if}}
+      <p>
+        {{#if loyaltyCardDate}}<i class="time icon"></i> Mise à jour {{fromNow loyaltyCardDate}}<br>{{/if}}
+        Chaque tranche d'achat de {{formatMoney place.loyaltyCard.pointCost}} ajoute 1 point à la carte de fidélité.<br>
+        Quand la carte atteint {{place.loyaltyCard.size}} points, votre client reçoit automatiquement un avoir de {{formatMoney place.loyaltyCard.voucherValue}} et le compte de points est remis a zéro.
+      </p>
       {{/if}}
     {{/if}}
   </div>

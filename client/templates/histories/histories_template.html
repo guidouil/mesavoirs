@@ -1,0 +1,12 @@
+<template name='histories'>
+  <div class="ui modal histories-modal">
+    <div class="header">Historique</div>
+    <div class="content">
+      {{#each histories}}
+      <p>
+        <strong>{{plusSign what}}</strong> {{fromNow when}}
+      </p>
+      {{/each}}
+    </div>
+  </div>
+</template>
