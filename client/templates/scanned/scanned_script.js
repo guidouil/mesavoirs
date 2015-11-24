@@ -132,3 +132,9 @@ Template.scanned.onCreated(function () {
     }
   }
 });
+
+Template.scanned.onDestroyed(function () {
+  Session.set('placeId', null);
+  Session.set('customerId', null);
+  Session.set('customerEmail', null);
+});
