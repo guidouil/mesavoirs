@@ -1,9 +1,9 @@
 Template.image.helpers({
   imageUrl: function () {
     if (this.imageId) {
-      return '/cfs/files/images/' + this.imageId;
+      return Meteor.absoluteUrl() + 'cfs/files/images/' + this.imageId;
     } else {
-      return '/default-image.png';
+      return Meteor.absoluteUrl() + 'default-image.png';
     }
   }
 });
