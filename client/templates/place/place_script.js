@@ -47,6 +47,7 @@ Template.place.onRendered(function () {
 });
 
 Template.place.onCreated(function () {
+  Session.set('placeName', this.data.name);
   this.subscribe('UserPlaceVouchers', this.data._id, Meteor.userId());
   this.subscribe('UserPlaceLoyaltyCard', this.data._id, Meteor.userId());
 });

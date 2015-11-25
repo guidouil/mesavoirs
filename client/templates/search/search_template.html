@@ -1,0 +1,30 @@
+<template name='search'>
+  <div class="ui main text container">
+    <form id="search">
+      <div class="ui large fluid icon input">
+        <input type="text" placeholder="Commerce, ville, cp" id="searchQuery" value="{{searchQuery}}">
+        <i class="search icon"></i>
+      </div>
+    </form>
+    <div class="ui basic segment">
+      <div class="ui four doubling link cards">
+        {{#each places}}
+        <a class="card" href="{{pathFor 'place' placeId=_id}}">
+          <div class="image" >
+            {{> image imageId=imageId }}
+          </div>
+          <div class="content">
+            <div class="header">{{name}}</div>
+            <div class="meta">
+              {{addresses.[0].zip}} {{addresses.[0].city}}
+            </div>
+            <div class="description">
+              {{description}}
+            </div>
+          </div>
+        </a>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</template>

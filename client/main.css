@@ -11,3 +11,6 @@ html.ios, html.ios body{
   visibility: hidden;
   display: none;
 }
+.main {
+  padding-top: 0.7em;
+}

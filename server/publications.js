@@ -1,4 +1,5 @@
 Meteor.publish('Places', function (limit) {
+  check(limit, Number);
   return Places.find({$or: [{enabled: true}, {owners: this.userId}]}, { reactive: true, sort: {createdAt: -1}, limit: limit });
 });
 
@@ -7,24 +8,43 @@ Meteor.publish('MyPlaces', function () {
 });
 
 Meteor.publish('Place', function (placeId) {
+  check(placeId, String);
   return Places.find({ _id: placeId, $or: [{enabled: true}, {owners: this.userId}] }, { reactive: true });
 });
 
 Meteor.publish('MyPlace', function (placeId) {
+  check(placeId, String);
   return Places.find({ _id: placeId, owners: this.userId }, { reactive: true });
 });
 
+Meteor.publish('SearchPlaces', function (searchQuery, limit) {
+  check(searchQuery, String);
+  check(limit, Number);
+  return Places.find({ enabled: true, $or: [
+    {name: { $regex: searchQuery, $options: 'i' }},
+    {'addresses.city': { $regex: searchQuery, $options: 'i' }},
+    {'addresses.city': { $regex: searchQuery, $options: 'i' }},
+    {'addresses.zip': { $regex: searchQuery, $options: 'i' }}
+  ] }, { reactive: true, limit: limit });
+});
+
+
+
 Meteor.publish('Image', function (imageId) {
+  check(imageId, String);
   return Images.find({ _id: imageId }, { reactive: true });
 });
 
 Meteor.publish('UserPlaceVouchers', function (placeId, userId) {
+  check(placeId, String);
+  check(userId, String);
   if (isPlaceOwner(placeId, this.userId)) {
     return Vouchers.find({ placeId: placeId, userId: userId });
   }
 });
 
 Meteor.publish('PlaceVouchers', function (placeId) {
+  check(placeId, String);
   if (isPlaceOwner(placeId, this.userId)) {
     return Vouchers.find({ placeId: placeId });
   }
@@ -35,12 +55,15 @@ Meteor.publish('UserVouchers', function () {
 });
 
 Meteor.publish('UserPlaceLoyaltyCard', function (placeId, userId) {
+  check(placeId, String);
+  check(userId, String);
   if (isPlaceOwner(placeId, this.userId)) {
     return LoyaltyCards.find({ placeId: placeId, userId: userId });
   }
 });
 
 Meteor.publish('PlaceLoyaltyCards', function (placeId) {
+  check(placeId, String);
   if (isPlaceOwner(placeId, this.userId)) {
     return LoyaltyCards.find({ placeId: placeId });
   }
@@ -51,6 +74,7 @@ Meteor.publish('UserLoyaltyCards', function () {
 });
 
 Meteor.publish('placeCounts', function (placeId) {
+  check(placeId, String);
   if (isPlaceOwner(placeId, this.userId)) {
     Counts.publish(this, 'voucherCount', Vouchers.find({ placeId: placeId }));
     Counts.publish(this, 'loyaltyCardCount', LoyaltyCards.find({ placeId: placeId }));

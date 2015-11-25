@@ -12,6 +12,13 @@ Template.home.events({
   'click [data-action=loyaltyCards]': function () {
     Router.go('loyaltyCards');
   },
+  'submit #search': function (evt) {
+    evt.preventDefault();
+    var searchQuery = $('#searchQuery').val();
+    if (searchQuery) {
+      Router.go('search', {'searchQuery': encodeURIComponent(searchQuery)});
+    }
+  }
 });
 
 Template.home.onRendered(function ( ){

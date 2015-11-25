@@ -1,6 +1,11 @@
 Template.histories.helpers({
+  placeName: function () {
+    return Session.get('placeName');
+  },
   histories: function () {
-    return Session.get('histories');
+    if (Session.get('histories')) {
+      return Session.get('histories');
+    }
   },
   plusSign: function (value) {
     var formatedValue = value;
@@ -21,8 +26,7 @@ Template.histories.helpers({
   }
 });
 
-Template.histories.events({
-});
-
-Template.histories.onRendered(function ( ){
+Template.histories.onDestroyed(function () {
+  Session.set('histories', '');
+  Session.set('historyFormat', '');
 });
