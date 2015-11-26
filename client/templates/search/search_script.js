@@ -3,7 +3,7 @@ Template.search.helpers({
     return Router.current().params.searchQuery;
   },
   places: function () {
-    return Places.find({}).fetch();
+    return Session.get('searchResults');
   }
 });
 
@@ -18,21 +18,29 @@ Template.search.events({
 });
 
 Template.search.onRendered(function () {
-  var instance = this;
   Tracker.autorun(function () {
     if (Session.get('searchQuery')) {
-      instance.subscribe('SearchPlaces', Session.get('searchQuery'), 10);
+      Meteor.call('SearchPlaces', Session.get('searchQuery'), parseInt(Session.get('searchLimit')), function(error, results){
+        if(error){
+          console.log("error", error);
+        }
+        if(results){
+           Session.set('searchResults', results);
+        }
+      });
     }
   });
 });
 
 Template.search.onCreated = function () {
+  Session.set('searchLimit', 10);
   if (Router.current().params.searchQuery) {
     Session.set('searchQuery', Router.current().params.searchQuery);
-    this.subscribe('SearchPlaces', Router.current().params.searchQuery, 10);
   }
 };
 
 Template.search.onDestroyed(function () {
   Session.set('searchQuery', '');
+  Session.set('searchResults', '');
+  Session.set('searchLimit', '');
 });

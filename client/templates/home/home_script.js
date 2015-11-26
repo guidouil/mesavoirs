@@ -16,6 +16,7 @@ Template.home.events({
     evt.preventDefault();
     var searchQuery = $('#searchQuery').val();
     if (searchQuery) {
+      Session.set('searchQuery', searchQuery);
       Router.go('search', {'searchQuery': encodeURIComponent(searchQuery)});
     }
   }

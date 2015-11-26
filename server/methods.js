@@ -1,10 +1,22 @@
 Meteor.methods({
+  SearchPlaces: function (searchQuery, limit) {
+    check(searchQuery, String);
+    check(limit, Number);
+    return Places.find({ enabled: true, $or: [
+      {name: { $regex: searchQuery, $options: 'i' }},
+      {'addresses.city': { $regex: searchQuery, $options: 'i' }},
+      {'addresses.city': { $regex: searchQuery, $options: 'i' }},
+      {'addresses.zip': { $regex: searchQuery, $options: 'i' }}
+    ] }, { reactive: true, limit: limit }).fetch();
+  },
   addOwnersRole: function () {
     if (this.userId) {
       Roles.addUsersToRoles(this.userId, ['owners']);
     }
   },
   enablePlace: function (placeId, enabled) {
+    check(placeId, String);
+    check(enabled, Boolean);
     if (isPlaceOwner(placeId, this.userId)) {
       Places.update({_id: placeId}, {$set:{
         enabled: enabled
