@@ -17,7 +17,7 @@ Template.place.helpers({
 });
 
 Template.place.events({
-  'click [data-action=enablePlace]': function () {
+  'click [data-action=enablePlace]': function (evt) {
     Meteor.call('enablePlace', this._id, evt.currentTarget.checked);
   },
   'click [data-action=voucherHistory]': function () {
