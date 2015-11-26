@@ -2,7 +2,7 @@
   <div class="ui container">
     {{ #if myPlaces }}
       <h3>Mes commerces</h3>
-      <div class="ui link cards">
+      <div class="ui four doubling link cards">
       {{#each myPlaces}}
         <a class="card" href="{{pathFor 'place' placeId=_id}}">
           <div class="image" >
@@ -11,7 +11,8 @@
           <div class="content">
             <div class="header">{{name}}</div>
             <div class="meta">
-              Mis à jour {{#if updatedAt}}{{fromNow updatedAt}}{{else}}{{fromNow createdAt}}{{/if}}
+              <i class="grey history icon"></i> {{#if updatedAt}}{{fromNow updatedAt}}{{else}}{{fromNow createdAt}}{{/if}}<br>
+              {{addresses.[0].zip}} {{addresses.[0].city}}
             </div>
             <div class="description">
               {{description}}

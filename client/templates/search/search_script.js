@@ -17,16 +17,22 @@ Template.search.events({
   }
 });
 
-Template.search.onRendered(function ( ){
-  Tracker.autorun(function(){
-     if (Session.get('searchQuery')) {
-       Meteor.subscribe('SearchPlaces', Session.get('searchQuery'), 10);
-     }
+Template.search.onRendered(function () {
+  var instance = this;
+  Tracker.autorun(function () {
+    if (Session.get('searchQuery')) {
+      instance.subscribe('SearchPlaces', Session.get('searchQuery'), 10);
+    }
   });
 });
 
-Template.search.onCreated = function(){
+Template.search.onCreated = function () {
   if (Router.current().params.searchQuery) {
-    Meteor.subscribe('SearchPlaces', Router.current().params.searchQuery, 10);
+    Session.set('searchQuery', Router.current().params.searchQuery);
+    this.subscribe('SearchPlaces', Router.current().params.searchQuery, 10);
   }
 };
+
+Template.search.onDestroyed(function () {
+  Session.set('searchQuery', '');
+});
