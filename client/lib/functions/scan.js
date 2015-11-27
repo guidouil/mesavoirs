@@ -6,12 +6,9 @@ scan = function () {
           if (result.text.search('userId:') === 0 || result.text.search('placeId:') === 0) {
             var scanned = result.text.split(':');
             Router.go('scanned', {type: scanned[0], id: scanned[1]});
-          } else {
-            Session.set('scanned', result.text);
           }
-        } else {
-          Router.go('scanned', {type: result.format, id: result.text});
         }
+        Router.go('scanned', {type: result.format, id: result.text});
       }
     },
     function (error) {

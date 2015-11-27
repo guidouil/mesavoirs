@@ -28,8 +28,6 @@ Meteor.publish('SearchPlaces', function (searchQuery, limit) {
   ] }, { reactive: true, limit: limit });
 });
 
-
-
 Meteor.publish('Image', function (imageId) {
   check(imageId, String);
   return Images.find({ _id: imageId }, { reactive: true });
@@ -71,6 +69,15 @@ Meteor.publish('PlaceLoyaltyCards', function (placeId) {
 
 Meteor.publish('UserLoyaltyCards', function () {
   return LoyaltyCards.find({ userId: this.userId });
+});
+
+Meteor.publish('PrivateLoyaltyCards', function () {
+  return PrivateLoyaltyCards.find({ userId: this.userId });
+});
+
+Meteor.publish('PrivateLoyaltyCard', function (cardId) {
+  check(cardId, String);
+  return PrivateLoyaltyCards.find({ _id: cardId, userId: this.userId });
 });
 
 Meteor.publish('placeCounts', function (placeId) {

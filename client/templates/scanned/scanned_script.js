@@ -1,4 +1,10 @@
 Template.scanned.helpers({
+  scanType: function () {
+    return Router.current().params.type;
+  },
+  scanId: function () {
+    return Router.current().params.id;
+  },
   myPlaces: function () {
     return Places.find({}, {sort: {name: 1}}).fetch();
   },
@@ -95,6 +101,11 @@ Template.scanned.events({
         }
       });
     }
+  },
+  'click #addThisCard': function () {
+    Session.set('cardCode', Router.current().params.id);
+    Session.set('cardFormat', Router.current().params.type);
+    Router.go('addCard');
   }
 });
 
@@ -118,7 +129,16 @@ Template.scanned.onRendered(function () {
 });
 
 Template.scanned.onCreated(function () {
+  if (Session.equals('scanCard', true)) {
+    Session.set('cardCode', Router.current().params.id);
+    Session.set('cardFormat', Router.current().params.type);
+    Session.set('scanCard', false);
+    Router.go('addCard');
+  }
   var scanType = Router.current().params.type;
+  if (scanType === 'placeId' && Router.current().params.id) {
+    Router.go('place', {placeId: Router.current().params.id});
+  }
   var place = Places.findOne();
   if (place) {
     if (! Session.get('placeId')) {

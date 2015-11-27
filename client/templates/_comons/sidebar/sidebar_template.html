@@ -20,14 +20,21 @@
         Clients
       </a>
       {{/if}}
+    {{else}}
+      {{#if isMobile}}
+      <a class="item {{isActiveRoute 'scanned'}}" data-action="scan">
+        <i class="qrcode icon"></i>
+        Scan
+      </a>
+      {{/if}}
     {{/if}}
-    <a class="item {{isActiveRoute 'vouchers'}}" href="{{pathFor 'vouchers'}}">
-      <i class="money icon"></i>
-      Avoirs
-    </a>
     <a class="item {{isActiveRoute 'loyaltyCards'}}" href="{{pathFor 'loyaltyCards'}}">
       <i class="star icon"></i>
       C. Fidélité
+    </a>
+    <a class="item {{isActiveRoute 'vouchers'}}" href="{{pathFor 'vouchers'}}">
+      <i class="money icon"></i>
+      Avoirs
     </a>
     <a class="item {{isActiveRoute 'calc'}}" href="{{pathFor 'calc'}}">
       <i class="calculator icon"></i>

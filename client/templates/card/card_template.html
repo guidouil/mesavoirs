@@ -1,0 +1,19 @@
+<template name='card'>
+  <div class="ui basic segment">
+    <a href="{{pathFor 'editCard' cardId=_id}}" class="teal right floated ui circular icon button"><i class="pencil icon"></i></a>
+    <h1 class="ui center aligned header">
+      {{name}}
+      <div class="sub header">{{notes}}</div>
+    </h1>
+    {{#if imageId}}
+    {{> image imageId=imageId classNames='ui centered medium image'}}
+    {{/if}}
+    <div class="ui list">
+      {{#if equals format 'QRCODE'}}
+        {{> QrCode text=code }}
+      {{else}}
+        {{> barcode text=code type=format}}
+      {{/if}}
+    </div>
+  </div>
+</template>

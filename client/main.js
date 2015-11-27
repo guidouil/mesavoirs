@@ -78,6 +78,10 @@ UI.registerHelper('greaterThan', function (a, b) {
   return a > b;
 });
 
+UI.registerHelper('equals', function (a, b) {
+  return a === b;
+});
+
 UI.registerHelper('sortArray', function (array, sortKey) {
   return _.sortBy( array, sortKey);
 });

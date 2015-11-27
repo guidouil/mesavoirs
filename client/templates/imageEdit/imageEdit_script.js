@@ -4,17 +4,24 @@ Template.imageEdit.events({
   },
   'change #imageFile': function (event, tmpl) {
     var placeId = Router.current().params.placeId;
+    var cardId = Router.current().params.cardId;
     FS.Utility.eachFile(event, function (file) {
       Images.insert(file, function (err, fileObj) {
         if (err){
-           // handle error
+          console.error(err);
         } else {
-           // handle success depending what you need to do
           var imageId = {
             imageId: fileObj._id
           };
-          Places.update(placeId, {$set: imageId});
-          $(event.currentTarget).replaceWith($(event.currentTarget).clone());
+          $(event.currentTarget).replaceWith($(event.currentTarget).clone()); // empty file form
+          if (placeId) {
+            Places.update(placeId, {$set: imageId});
+            Router.go('place', {placeId: placeId});
+          }
+          if (cardId) {
+            PrivateLoyaltyCards.update(cardId, {$set: imageId});
+            Router.go('card', {cardId: cardId});
+          }
         }
       });
     });

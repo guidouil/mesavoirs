@@ -22,6 +22,7 @@ Template.profile.helpers({
 Template.profile.events({
   'click [data-action=logout]': function () {
     Meteor.logout();
+    Router.go('home');
   }
 });
 
