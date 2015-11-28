@@ -143,7 +143,7 @@ Template.scanned.onCreated(function () {
   if (place) {
     if (! Session.get('placeId')) {
       Session.set('placeId', place._id);
-      if (place.customers.length === 1 && scanType === 'userId' && !Router.current().params.id) {
+      if (place.customers && place.customers.length === 1 && scanType === 'userId' && !Router.current().params.id) {
         Session.set('customerId', place.customers[0].customerId);
       }
     }
