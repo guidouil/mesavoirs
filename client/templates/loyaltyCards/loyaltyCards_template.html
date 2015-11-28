@@ -1,12 +1,12 @@
 <template name='loyaltyCards'>
   <div class="ui container">
+    <a href="{{pathFor 'addCard'}}" class="teal right floated ui circular icon button"><i class="add icon"></i></a>
     <h2>Mes cartes de fidélité</h2>
-
-    <div class="ui top attached tabular menu" id="loyaltyTabs">
-      <a class="active fluid item" data-tab="allofid">allofid</a>
-      <a class="right fluid item" data-tab="private">personnelles</a>
+    <div class="ui top fluid attached tabular menu" id="loyaltyTabs">
+      <a class="{{activeLoyaltyTab 'allofid'}} item loyaltyTabHead" data-tab="allofid">allofid</a>
+      <a class="{{activeLoyaltyTab 'private'}} right item loyaltyTabHead" data-tab="private">personnelles</a>
     </div>
-    <div class="ui bottom attached tab basic segment active" data-tab="allofid">
+    <div class="ui bottom attached tab basic segment {{activeLoyaltyTab 'allofid'}}" data-tab="allofid">
       <div class="ui relaxed divided list">
         {{#each loyaltyCards}}
         <div class="item">
@@ -32,7 +32,7 @@
         {{/each}}
       </div>
     </div>
-    <div class="ui bottom attached tab basic segment" data-tab="private">
+    <div class="ui bottom attached tab basic segment {{activeLoyaltyTab 'private'}}" data-tab="private">
       <div class="ui relaxed divided list">
         {{#each privateLoyaltyCards}}
         <div class="item">
@@ -51,7 +51,7 @@
             <i class="yellow star icon"></i>
             <div class="content">
               Vous n'avez pas encore ajouté de cartes de fidélité personelles
-              <div class="sub header">allofid vous permet de dématerialiser vos cartes de fidélité en les scannant.</div>´
+              <div class="sub header">allofid vous permet de dématerialiser vos cartes de fidélité en les scannant.</div>
             </div>
             <p>
               <a href="{{pathFor 'addCard'}}" class="ui button">Ajouter une carte de fidélité</a>

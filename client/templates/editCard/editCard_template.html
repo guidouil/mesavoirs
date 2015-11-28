@@ -1,6 +1,8 @@
 <template name='editCard'>
   <div class="ui container">
-    <h2>Editer votre carte de fidéli†é</h2>
+    {{> image imageId=imageId classNames='small right floated'}}
+    {{> imageEdit imageId=imageId}}
+    <h2>Editer votre carte de fidélité {{name}}</h2>
     {{#if isMobile}}
     <button id="scanCard" class="ui fluid button">Scanner la carte</button>
     {{/if}}

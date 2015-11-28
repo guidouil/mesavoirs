@@ -1,13 +1,15 @@
 <template name='profile'>
   <div class="ui container">
     <h3>Mon profil</h3>
-    <p>
-      {{email}}
-    </p>
-    {{> QrCode text=qrText }}
-    <br>
-    <button class="ui red button" data-action="logout">
-      Se déconnecter
-    </button>
+    <div class="ui center aligned basic segment">
+      <p>
+        {{email}}
+      </p>
+      {{> QrCode text=qrText }}
+      <br>
+      <button class="ui red button" data-action="logout">
+        Se déconnecter
+      </button>
+    </div>
   </div>
 </template>

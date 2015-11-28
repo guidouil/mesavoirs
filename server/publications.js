@@ -72,12 +72,12 @@ Meteor.publish('UserLoyaltyCards', function () {
 });
 
 Meteor.publish('PrivateLoyaltyCards', function () {
-  return PrivateLoyaltyCards.find({ userId: this.userId });
+  return PrivateLoyaltyCards.find({ owner: this.userId });
 });
 
 Meteor.publish('PrivateLoyaltyCard', function (cardId) {
   check(cardId, String);
-  return PrivateLoyaltyCards.find({ _id: cardId, userId: this.userId });
+  return PrivateLoyaltyCards.find({ _id: cardId, owner: this.userId });
 });
 
 Meteor.publish('placeCounts', function (placeId) {

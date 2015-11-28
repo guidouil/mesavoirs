@@ -1,19 +1,24 @@
 <template name='card'>
-  <div class="ui basic segment">
-    <a href="{{pathFor 'editCard' cardId=_id}}" class="teal right floated ui circular icon button"><i class="pencil icon"></i></a>
-    <h1 class="ui center aligned header">
-      {{name}}
-      <div class="sub header">{{notes}}</div>
-    </h1>
-    {{#if imageId}}
-    {{> image imageId=imageId classNames='ui centered medium image'}}
-    {{/if}}
-    <div class="ui list">
-      {{#if equals format 'QRCODE'}}
-        {{> QrCode text=code }}
-      {{else}}
-        {{> barcode text=code type=format}}
+  <div class="ui container">
+    <div class="ui center aligned basic segment">
+      <h1 class="ui header">
+        {{name}}
+        <div class="sub header">{{points}}</div>
+      </h1>
+      {{#if imageId}}
+        {{> image imageId=imageId classNames='small centered'}}<br>
       {{/if}}
+      {{#if isQrCode}}
+        {{> QrCode text=code classNames="large centered"}}
+      {{else}}
+        <canvas class="ui large centered image" id="barcode-canvas"></canvas>
+      {{/if}}
+      <h5 class="ui header">{{code}}</h5>
+      <p>
+        {{notes}}
+      </p>
+      <a href="{{pathFor 'loyaltyCards'}}" class="left floated ui circular icon button"><i class="arrow left icon"></i></a>
+      <a href="{{pathFor 'editCard' cardId=_id}}" class="teal right floated ui circular icon button"><i class="pencil icon"></i></a>
     </div>
   </div>
 </template>
