@@ -22,30 +22,7 @@
         {{#if customerEmail}}
           <h3><i class="blue pointing right icon"></i> {{customerEmail}}</h3>
         {{/if}}
-        <h4>Son avoir</h4>
-        <div class="ui fluid left icon action input">
-          <i class="euro icon"></i>
-          <input type="number" step="any" placeholder="Montant" tabindex="1" id="voucherValue" size="3">
-          <button class="ui green button" id="giveVoucher">
-            Donner
-          </button>
-          <button class="ui red button" id="takeVoucher">
-            Prendre
-          </button>
-        </div>
-        <p>
-          <div class="ui horizontal list">
-          {{#each vouchers}}
-            <div class="item" id="useVoucher">
-              <i class="large teal money icon"></i>
-              <div class="content">
-                <div class="header">{{formatMoney value}}</div>
-                Mis à jour {{#if updatedAt}}{{fromNow updatedAt}}{{else}}{{fromNow createdAt}}{{/if}}
-              </div>
-            </div>
-          {{/each}}
-          </div>
-        </p>
+
         {{#if place.loyaltyCard.enabled}}
           <h4>Sa carte de fidélité</h4>
           <div class="fluid ui left labeled big button" tabindex="2">
@@ -62,6 +39,32 @@
             Quand la carte atteint {{place.loyaltyCard.size}} points, votre client reçoit automatiquement un avoir de {{formatMoney place.loyaltyCard.voucherValue}} et le compte de points est remis a zéro.
           </p>
         {{/if}}
+        <h4>Son avoir</h4>
+
+
+          <div class="ui horizontal list">
+          {{#each vouchers}}
+            <div class="item" id="useVoucher">
+              <i class="large blue ticket icon"></i>
+              <div class="content">
+                <div class="header">{{formatMoney value}}</div>
+                Mis à jour {{#if updatedAt}}{{fromNow updatedAt}}{{else}}{{fromNow createdAt}}{{/if}}
+              </div>
+            </div>
+          {{/each}}
+          </div>
+          <div class="ui fluid left icon action input">
+            <i class="euro icon"></i>
+            <input type="number" step="any" placeholder="Montant" tabindex="1" id="voucherValue" size="3">
+            <button class="ui green button" id="giveVoucher">
+              Donner
+            </button>
+            <button class="ui red button" id="takeVoucher">
+              Prendre
+            </button>
+          </div>
+        
+
       {{/if}}
     {{else}}
     <div class="ui basic center aligned segment">

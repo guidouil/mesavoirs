@@ -56,25 +56,9 @@
       </div>
     </div>
     <div class="ui basic segment">
-      {{#if isOwner}}
 
-      {{/if}}
       <div class="ui relaxed divided items">
-      {{#if myVoucher}}
-        <div class="item" data-action="voucherHistory">
-          <div class="content">
-            <a class="header"><i class="big teal money icon"></i> Vous avez {{formatMoney myVoucher.value}} d'avoir disponible ici</a>
-            <div class="meta">
-              <span>Mis à jour {{#if myVoucher.updatedAt}}{{fromNow myVoucher.updatedAt}}{{else}}{{fromNow myVoucher.createdAt}}{{/if}}</span>
-            </div>
-            {{#if myVoucher.histories}}
-            <div class="extra">
-              <i class="grey history icon"></i>Voir historique
-            </div>
-            {{/if}}
-          </div>
-        </div>
-      {{/if}}
+
       {{#if myLoyaltyCard}}
         <div class="item">
           <div class="content"  data-action="loyaltyCardHistory">
@@ -96,6 +80,23 @@
           </div>
         </div>
       {{/if}}
+
+      {{#if myVoucher}}
+        <div class="item" data-action="voucherHistory">
+          <div class="content">
+            <a class="header"><i class="big blue ticket icon"></i> Vous avez {{formatMoney myVoucher.value}} d'avoir disponible ici</a>
+            <div class="meta">
+              <span>Mis à jour {{#if myVoucher.updatedAt}}{{fromNow myVoucher.updatedAt}}{{else}}{{fromNow myVoucher.createdAt}}{{/if}}</span>
+            </div>
+            {{#if myVoucher.histories}}
+            <div class="extra">
+              <i class="grey history icon"></i>Voir historique
+            </div>
+            {{/if}}
+          </div>
+        </div>
+      {{/if}}
+
       </div>
     </div>
   </div>
