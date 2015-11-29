@@ -114,8 +114,8 @@ Template.scanned.onRendered(function () {
   $('select').dropdown();
   Tracker.autorun(function () {
     if (Session.get('placeId') && Session.get('customerId')) {
-      instance.subscribe('UserPlaceVouchers', Session.get('placeId'), Session.get('customerId'));
-      instance.subscribe('UserPlaceLoyaltyCard', Session.get('placeId'), Session.get('customerId'));
+      Meteor.subscribe('UserPlaceVouchers', Session.get('placeId'), Session.get('customerId'));
+      Meteor.subscribe('UserPlaceLoyaltyCard', Session.get('placeId'), Session.get('customerId'));
       Meteor.call('getCustomerEmail', Session.get('placeId'), Session.get('customerId'), function (error, result) {
         if (error) {
           console.error(error);
