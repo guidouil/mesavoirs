@@ -1,8 +1,9 @@
 <template name='placeEdit'>
+  {{#if isOwner}}
   <div class="ui container">
     {{> image imageId=imageId classNames='small right floated'}}
     {{> imageEdit imageId=imageId}}
-    <h2>Editer : {{name}}</h2>
+    <h2 class="ui header">Editer {{name}}</h2>
     {{#autoForm id="editPlace" type="update" collection="Places" enctype="multipart/form-data" doc=this}}
       {{> afQuickField placeholder="schemaLabel" name="name"}}
       {{> afQuickField placeholder="schemaLabel" name="description"}}
@@ -22,7 +23,10 @@
         {{> afQuickField defaultValue="10" name="loyaltyCard.size"}}
         {{> afQuickField defaultValue="5" name="loyaltyCard.voucherValue"}}
       </div>
-      <p></p>
+
+      <h3 class="ui center aligned header">{{owners.length}} propriétaire{{#if greaterThan owners.length 1}}s{{/if}} <a href="{{pathFor 'owners' placeId=_id}}"><i class="users icon"></i></a></h3>
+      <p>
+      </p>
       <button class="fluid ui positive button" type="submit">Enregistrer</button>
     {{/autoForm}}
     <br>
@@ -31,5 +35,5 @@
     <hr>
     <button class="negative ui fluid button" data-action="deletePlace">Supprimer</button>
   </div>
-
+  {{/if}}
 </template>

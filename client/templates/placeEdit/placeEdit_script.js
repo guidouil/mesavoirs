@@ -14,7 +14,7 @@ Template.placeEdit.events({
       cancelButtonText: 'Non',
       closeOnConfirm: false
     }, function () {
-      // TODO delete img
+      // TODO delete image vouchers and loyaltyCards
       Places.remove({_id: placeId});
       swal('Effacé!', 'Le commerce à été supprimé.', 'success');
       Router.go('/my-places');

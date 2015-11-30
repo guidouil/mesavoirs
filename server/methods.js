@@ -140,6 +140,21 @@ Meteor.methods({
       };
       Places.update({_id: placeId}, {$addToSet: { customers: customer }});
     }
+  },
+  getPlaceOwners: function (placeId) {
+    check(placeId, String);
+    if (isPlaceOwner(placeId, this.userId)) {
+      var place = Places.findOne({_id: placeId});
+      var owners = [];
+      _.each(place.owners, function (ownerId) {
+        var owner = Meteor.users.findOne({_id: ownerId});
+        owners.push({
+          userId: ownerId,
+          email: contactEmail(owner)
+        });
+      });
+      return owners;
+    }
   }
 });
 

@@ -2,6 +2,10 @@ UI.registerHelper('isConnected', function () {
   return Meteor.userId();
 });
 
+UI.registerHelper('isOwner', function () {
+  return _.contains( this.owners, Meteor.userId() );
+});
+
 UI.registerHelper('isMobile', function () {
   return Meteor.isCordova;
 });

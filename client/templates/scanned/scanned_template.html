@@ -25,7 +25,7 @@
 
         {{#if place.loyaltyCard.enabled}}
           <h4>Sa carte de fidélité</h4>
-          <div class="fluid ui left labeled big button" tabindex="2">
+          <div class="fluid ui left labeled center aligned big button" tabindex="2">
             <a class="ui basic label">
               <i class="yellow star icon"></i> {{userPoints}} / {{place.loyaltyCard.size}} points
             </a>
@@ -33,22 +33,29 @@
                +1 point
             </div>
           </div>
-          {{#if loyaltyCardDate}}<i class="time icon"></i> Mise à jour {{fromNow loyaltyCardDate}}<br>{{/if}}
+          {{#if loyaltyCardDate}}
+          <span data-action="loyaltyCardHistory">
+            <i class="history icon"></i> Mise à jour {{fromNow loyaltyCardDate}}<br>
+          </span>
+          {{/if}}
           <p>
             Chaque tranche d'achat de {{formatMoney place.loyaltyCard.pointCost}} ajoute 1 point à la carte de fidélité.<br>
             Quand la carte atteint {{place.loyaltyCard.size}} points, votre client reçoit automatiquement un avoir de {{formatMoney place.loyaltyCard.voucherValue}} et le compte de points est remis a zéro.
           </p>
         {{/if}}
         <h4>Son avoir</h4>
-
-
           <div class="ui horizontal list">
           {{#each vouchers}}
-            <div class="item" id="useVoucher">
+            <div class="item" id="useVoucher" data-action="voucherHistory">
               <i class="large blue ticket icon"></i>
               <div class="content">
                 <div class="header">{{formatMoney value}}</div>
                 Mis à jour {{#if updatedAt}}{{fromNow updatedAt}}{{else}}{{fromNow createdAt}}{{/if}}
+                {{#if histories}}
+                <div class="extra">
+                  <i class="grey history icon"></i>Voir historique
+                </div>
+                {{/if}}
               </div>
             </div>
           {{/each}}
@@ -63,8 +70,7 @@
               Prendre
             </button>
           </div>
-        
-
+          {{> histories}}
       {{/if}}
     {{else}}
     <div class="ui basic center aligned segment">

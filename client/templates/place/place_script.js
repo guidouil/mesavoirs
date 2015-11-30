@@ -1,7 +1,4 @@
 Template.place.helpers({
-  isOwner: function () {
-    return _.contains( this.owners, Meteor.userId() );
-  },
   myVoucher: function () {
     return Vouchers.findOne({userId: Meteor.userId()});
   },
