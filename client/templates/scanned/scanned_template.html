@@ -26,7 +26,7 @@
         {{#if place.loyaltyCard.enabled}}
           <h4>Sa carte de fidélité</h4>
           <div class="fluid ui left labeled center aligned big button" tabindex="2">
-            <a class="ui basic label">
+            <a class="ui basic label" data-action="loyaltyCardHistory">
               <i class="yellow star icon"></i> {{userPoints}} / {{place.loyaltyCard.size}} points
             </a>
             <div class="ui olive button" id="addOnePoint">
@@ -50,10 +50,9 @@
               <i class="large blue ticket icon"></i>
               <div class="content">
                 <div class="header">{{formatMoney value}}</div>
-                Mis à jour {{#if updatedAt}}{{fromNow updatedAt}}{{else}}{{fromNow createdAt}}{{/if}}
                 {{#if histories}}
                 <div class="extra">
-                  <i class="grey history icon"></i>Voir historique
+                  <i class="grey history icon"></i>Mis à jour {{#if updatedAt}}{{fromNow updatedAt}}{{else}}{{fromNow createdAt}}{{/if}}
                 </div>
                 {{/if}}
               </div>

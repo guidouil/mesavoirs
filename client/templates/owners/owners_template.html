@@ -1,10 +1,10 @@
 <template name='owners'>
   {{#if isOwner}}
-  <div class="ui container">
+  <div class="ui main container">
     <h2 class="ui header">Propriétaires</h2>
     <div class="ui list">
     {{#each owners}}
-    <div class="item" id="{{userId}}">{{email}}   <i class="red remove icon" id="remove"></i></div>  
+    <div class="item" id="{{userId}}">{{email}}   <i class="red remove icon" id="remove"></i></div>
     {{/each}}
     </div>
   </div>
