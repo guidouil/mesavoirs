@@ -1,10 +1,10 @@
 App.info({
-  id: 'fr.mesavoirs',
-  name: 'mesavoirs',
-  description: 'Gérez vos avoirs et vos cartes de fidélité',
-  author: 'mesavoirs.fr',
-  email: 'moncontact@mesavoirs.fr',
-  website: 'http://mesavoirs.fr',
+  id: 'com.allofid.app',
+  name: 'allofid',
+  description: 'Gérez vos cartes de fidélité et vos avoirs',
+  author: 'allofid.com',
+  email: 'allo@allofid.com',
+  website: 'http://allofid.com',
   version: '0.0.1'
 });
 
@@ -56,4 +56,4 @@ App.accessRule('http://*.openfoodfacts.org/*');
 App.accessRule('http://*.meteor.com/*');
 
 // upload bug
-App.accessRule("blob:*");
+App.accessRule('blob:*');
