@@ -1,4 +1,5 @@
 <template name='myPlaces'>
+      <a href="{{pathFor 'createPlace'}}" class="teal right floated ui circular icon button"><i class="plus icon"></i></a>
   <div class="ui container">
     {{ #if myPlaces }}
       <h3>Mes commerces</h3>
@@ -23,7 +24,7 @@
       </div>
     {{ else }}
     <div class="ui stacked center aligned segment">
-      <h3>Commerçants, utilisez notre service.</h3>
+      <h3>Commerçants, utilisez allofid.</h3>
       <p>
         C'est gratuit pour toujours.
       </p>

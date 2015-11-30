@@ -1,5 +1,15 @@
 <template name='home'>
   <div class="ui main container">
+    {{#if isInRole 'owners'}}
+      <div class="ui raised center aligned segment">
+        <h3 class="ui header">Bienvenue sur votre allofid</h3>
+        <a class="ui button fluid positive" href="{{pathFor 'scanned' type='userId'}}">Gérez vos clients</a>
+        <br>
+        <a class="ui button fluid blue" href="{{pathFor 'myPlaces'}}">Gérez vos commerces</a>
+        <br>
+        <a class="ui button fluid" href="{{pathFor 'contact'}}">Besoin d'aide ?</a>
+      </div>
+    {{/if}}
     <form id="search">
       <div class="ui large fluid icon input">
         <input type="text" placeholder="Commerce, ville, cp" id="searchQuery">
@@ -16,6 +26,7 @@
       </h2>
       {{> loginText}}
     </div>
+    {{#unless isInRole 'owners'}}
     <div class="ui raised center aligned segment">
       <h2 class="ui icon header">
         <i class="blue ticket icon" data-action="vouchers"></i>
@@ -28,6 +39,7 @@
         <button class="ui button positive" data-action="createPlace">Inscrivez votre commerce</button>
       </p>
     </div>
+    {{/unless}}
   </div>
   {{> footer}}
 </template>
