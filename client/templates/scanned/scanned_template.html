@@ -1,14 +1,18 @@
 <template name='scanned'>
-  <div class="ui container">
+  <div class="ui main container">
     {{#if equals scanType 'userId'}}
     {{#if myPlaces}}
       {{#if isInRole 'owners'}}
+        {{#if equals myPlacesCount 1}}
+          <h4 class="ui header">Commerce : {{myPlaces.[0].name}}</h4>
+        {{else}}
         <h4>Commerce</h4>
         <select class="fluid ui dropdown" id="place" tabindex="0">
           {{#each myPlaces}}
-          <option value="{{_id}}" {{selectedPlace}}>{{name}}</option>
+          <option value="{{_id}}" {{selectedPlace}} data-name="{{name}}">{{name}}</option>
           {{/each}}
         </select>
+        {{/if}}
 
         {{#if place.customers}}
         <h4>Clients</h4>
@@ -19,12 +23,9 @@
           {{/each}}
         </select>
         {{/if}}
-        {{#if customerEmail}}
-          <h3><i class="blue pointing right icon"></i> {{customerEmail}}</h3>
-        {{/if}}
 
         {{#if place.loyaltyCard.enabled}}
-          <h4>Sa carte de fidélité</h4>
+          <h4>Carte de fidélité{{#if customerEmail}} de {{customerEmail}}{{/if}}</h4>
           <div class="fluid ui left labeled center aligned big button" tabindex="2">
             <a class="ui basic label" data-action="loyaltyCardHistory">
               <i class="yellow star icon"></i> {{userPoints}} / {{place.loyaltyCard.size}} points
@@ -43,7 +44,7 @@
             Quand la carte atteint {{place.loyaltyCard.size}} points, votre client reçoit automatiquement un avoir de {{formatMoney place.loyaltyCard.voucherValue}} et le compte de points est remis a zéro.
           </p>
         {{/if}}
-        <h4>Son avoir</h4>
+        <h4>Avoir{{#if customerEmail}} de {{customerEmail}}{{/if}}</h4>
           <div class="ui horizontal list">
           {{#each vouchers}}
             <div class="item" id="useVoucher" data-action="voucherHistory">

@@ -155,6 +155,35 @@ Meteor.methods({
       });
       return owners;
     }
+  },
+  giveOrwnership: function (email, placeId) {
+    check(email, String);
+    check(placeId, String);
+    if (isPlaceOwner(placeId, this.userId)) {
+      var owner = Meteor.users.findOne({'emails.address': email});
+      if (owner) {
+        Places.update({_id: placeId}, {$addToSet: {
+          owners: owner._id
+        }});
+        Roles.addUsersToRoles(owner._id, ['owners']);
+        return true;
+      }
+      return false;
+    }
+  },
+  removeOwnership: function (ownerId, placeId) {
+    check(ownerId, String);
+    check(placeId, String);
+    if (isPlaceOwner(placeId, this.userId)) {
+      Places.update({_id: placeId}, {$pull: {
+        owners: ownerId
+      }});
+      return true;
+    }
+    return false;
+  },
+  removeOwnersRole: function () {
+    Roles.removeUsersFromRoles(this.userId, 'owners');
   }
 });
 

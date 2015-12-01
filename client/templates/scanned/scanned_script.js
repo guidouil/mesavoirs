@@ -8,6 +8,9 @@ Template.scanned.helpers({
   myPlaces: function () {
     return Places.find({}, {sort: {name: 1}}).fetch();
   },
+  myPlacesCount: function () {
+    return Places.find({}, {sort: {name: 1}}).count();
+  },
   customerEmail: function () {
     return Session.get('customerEmail');
   },
@@ -46,6 +49,7 @@ Template.scanned.events({
   'change #place': function (evt) {
     if (evt.currentTarget.value) {
       Session.set('placeId', evt.currentTarget.value);
+      Session.set('placeName', $(evt.currentTarget).data('name'));
     }
   },
   'change #customer': function (evt) {
@@ -159,12 +163,17 @@ Template.scanned.onCreated(function () {
   if (place) {
     if (! Session.get('placeId')) {
       Session.set('placeId', place._id);
+      Session.set('placeName', place.name);
       if (place.customers && place.customers.length === 1 && scanType === 'userId' && !Router.current().params.id) {
         Session.set('customerId', place.customers[0].customerId);
       }
     }
     if (scanType === 'userId' && Router.current().params.id) {
       Session.set('customerId', Router.current().params.id);
+    }
+  } else {
+    if (scanType === 'userId' && Roles.userIsInRole(Meteor.userId(), 'owners')) {
+      Meteor.call('removeOwnersRole');
     }
   }
 });
