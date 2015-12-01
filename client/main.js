@@ -1,3 +1,10 @@
+$('.pusher').on('swipe', function () {
+  console.log('swipe');
+  $('.ui.labeled.icon.sidebar')
+    .sidebar('setting', 'transition', 'overlay')
+    .sidebar('toggle');
+});
+
 UI.registerHelper('isConnected', function () {
   return Meteor.userId();
 });
