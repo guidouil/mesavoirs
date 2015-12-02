@@ -1,5 +1,12 @@
 <template name='contact'>
   <div class="ui main container">
     <h2 class="ui header">Contact</h2>
+    {{#autoForm id="contact" type="insert" collection="Contacts" enctype="multipart/form-data" doc=this}}
+      {{> afQuickField placeholder="schemaLabel" name="name"}}
+      {{> afQuickField placeholder="schemaLabel" name="email"}}
+      {{> afQuickField placeholder="schemaLabel" name="subject"}}
+      {{> afQuickField placeholder="schemaLabel" name="message"}}
+      <button class="fluid ui positive button" type="submit">Envoyer</button>
+    {{/autoForm}}
   </div>
 </template>
