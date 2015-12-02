@@ -139,9 +139,11 @@ Meteor.methods({
         email: customerEmail
       };
       Places.update({_id: placeId}, {$addToSet: { customers: customer }});
+      return true;
     }
+    return false;
   },
-  getPlaceOwners: function (placeId) {
+  getPlaceOwnersAndSellers: function (placeId) {
     check(placeId, String);
     if (isPlaceOwner(placeId, this.userId)) {
       var place = Places.findOne({_id: placeId});
@@ -153,14 +155,29 @@ Meteor.methods({
           email: contactEmail(owner)
         });
       });
-      return owners;
+      var sellers = [];
+      if (place.sellers) {
+        _.each(place.sellers, function (sellerId) {
+          var seller = Meteor.users.findOne({_id: sellerId});
+          sellers.push({
+            userId: sellerId,
+            email: contactEmail(seller)
+          });
+        });
+      }
+      return {'owners': owners, 'sellers': sellers};
     }
+    return false;
   },
   giveOrwnership: function (email, placeId) {
     check(email, String);
     check(placeId, String);
     if (isPlaceOwner(placeId, this.userId)) {
-      var owner = Meteor.users.findOne({'emails.address': email});
+      var owner = Meteor.users.findOne({$or:[
+        { 'emails.address': email },
+        { 'user.services.facebook.email': email },
+        { 'user.services.google.email': email }
+      ]});
       if (owner) {
         Places.update({_id: placeId}, {$addToSet: {
           owners: owner._id
@@ -184,6 +201,39 @@ Meteor.methods({
   },
   removeOwnersRole: function () {
     Roles.removeUsersFromRoles(this.userId, 'owners');
+  },
+  addSeller: function (email, placeId) {
+    check(email, String);
+    check(placeId, String);
+    if (isPlaceOwner(placeId, this.userId)) {
+      var seller = Meteor.users.findOne({$or:[
+        { 'emails.address': email },
+        { 'user.services.facebook.email': email },
+        { 'user.services.google.email': email }
+      ]});
+      if (seller) {
+        Places.update({_id: placeId}, {$addToSet: {
+          sellers: seller._id
+        }});
+        Roles.addUsersToRoles(seller._id, ['sellers']);
+        return true;
+      }
+      return false;
+    }
+  },
+  removeSeller: function (sellerId, placeId) {
+    check(sellerId, String);
+    check(placeId, String);
+    if (isPlaceOwner(placeId, this.userId)) {
+      Places.update({_id: placeId}, {$pull: {
+        sellers: sellerId
+      }});
+      return true;
+    }
+    return false;
+  },
+  removeSellersRole: function () {
+    Roles.removeUsersFromRoles(this.userId, 'sellers');
   }
 });
 

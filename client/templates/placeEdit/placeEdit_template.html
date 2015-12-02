@@ -4,6 +4,7 @@
     {{> image imageId=imageId classNames='small right floated'}}
     {{> imageEdit imageId=imageId}}
     <h2 class="ui header">Editer {{name}}</h2>
+    <h4 class="ui header"><a href="{{pathFor 'owners' placeId=_id}}"><i class="users icon"></i>{{owners.length}} propriétaire{{#if greaterThan owners.length 1}}s{{/if}}{{#if sellers}} et {{sellers.length}} vendeur{{/if}}{{#if greaterThan sellers.length 1}}s{{/if}}</a></h4>
     {{#autoForm id="editPlace" type="update" collection="Places" enctype="multipart/form-data" doc=this}}
       {{> afQuickField placeholder="schemaLabel" name="name"}}
       {{> afQuickField placeholder="schemaLabel" name="description"}}
@@ -24,7 +25,6 @@
         {{> afQuickField defaultValue="5" name="loyaltyCard.voucherValue"}}
       </div>
 
-      <h3 class="ui center aligned header">{{owners.length}} propriétaire{{#if greaterThan owners.length 1}}s{{/if}} <a href="{{pathFor 'owners' placeId=_id}}"><i class="users icon"></i></a></h3>
       <p>
       </p>
       <button class="fluid ui positive button" type="submit">Enregistrer</button>

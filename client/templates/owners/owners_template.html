@@ -4,14 +4,27 @@
     <h2 class="ui header">Propriétaires</h2>
     <div class="ui list">
     {{#each owners}}
-    <div class="item" id="{{userId}}">{{email}}   <i class="red remove icon" id="remove"></i></div>
+    <div class="item" id="{{userId}}">{{email}}   <i class="red remove icon" id="removeOwner"></i></div>
     {{/each}}
     </div>
     <h4 class="ui header">Ajouter un propriétaire</h4>
     <div class="ui action fluid input">
-      <input type="email" id="ownerMail" placeholder="Adresse email">
-      <button class="ui green icon button" id="searchOwner"><i class="search icon"></i></button>
+      <input type="email" id="ownerMail" placeholder="Adresse email du propriétaire">
+      <button class="ui green icon button" id="searchOwner"><i class="plus icon"></i></button>
     </div>
+    <h2 class="ui header">Vendeurs</h2>
+    <div class="ui list">
+    {{#each sellers}}
+    <div class="item" id="{{userId}}">{{email}}   <i class="red remove icon" id="removeSeller"></i></div>
+    {{/each}}
+    </div>
+    <h4 class="ui header">Ajouter un vendeur</h4>
+    <div class="ui action fluid input">
+      <input type="email" id="sellerMail" placeholder="Adresse email du vendeur">
+      <button class="ui green icon button" id="searchSeller"><i class="plus icon"></i></button>
+    </div>
+    <br>
+    <a href="{{pathFor 'placeEdit' placeId=_id}}" class="left floated ui circular icon button"><i class="arrow left icon"></i></a>
   </div>
   {{/if}}
 </template>
