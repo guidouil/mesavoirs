@@ -3,6 +3,10 @@
     {{#if isInRole 'owners'}}
       <div class="ui raised center aligned segment">
         <h3 class="ui header">Bienvenue sur votre allofid</h3>
+        {{#if isMobile}}
+        <button class="ui button fluid teal" data-action="scan">Scanner un code client</button>
+        <br>
+        {{/if}}
         <a class="ui button fluid positive" href="{{pathFor 'scanned' type='userId'}}">Gérez vos clients</a>
         <br>
         <a class="ui button fluid blue" href="{{pathFor 'myPlaces'}}">Gérez vos commerces</a>

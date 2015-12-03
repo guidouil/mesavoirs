@@ -29,5 +29,5 @@ Template.header.events({
   }
 });
 
-Template.header.onRendered(function ( ) {
+Template.header.onRendered(function (){
 });

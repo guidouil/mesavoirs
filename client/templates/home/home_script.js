@@ -19,8 +19,18 @@ Template.home.events({
       Session.set('searchQuery', searchQuery);
       Router.go('search', {'searchQuery': encodeURIComponent(searchQuery)});
     }
+  },
+  'click [data-action=scan]': function () {
+    scan();
   }
 });
 
-Template.home.onRendered(function ( ){
+Template.home.onRendered(function () {
+  var homePhrases = [
+    'Pour ne plus collectionner les cartes de fidelité, ni les petits papiers dans votre porte monnaie.',
+    'Fini le porte monnaie surchargé',
+    'Une seule carte de fidélité pour les gouverner toutes',
+    'Vous ne perdrez plus jamais l\'avoir de la boulangerie de la pause du midi',
+    'simplement et en temps-réel'
+  ];
 });
