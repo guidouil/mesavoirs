@@ -9,8 +9,9 @@ Template.myPlaces.events({
 });
 
 Template.myPlaces.onRendered(function () {
+
 });
 
 Template.myPlaces.onCreated(function () {
-
+  setDefaultCurrentPlace();
 });

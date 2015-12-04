@@ -42,6 +42,9 @@ Template.scanned.helpers({
   },
   vouchers: function () {
     return Vouchers.find({placeId: Session.get('placeId'), userId: Session.get('customerId')}).fetch();
+  },
+  voucherValue: function () {
+    return Session.get('voucher');
   }
 });
 

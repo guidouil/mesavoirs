@@ -1,20 +1,20 @@
 Meteor.publish('Places', function (limit) {
   check(limit, Number);
-  return Places.find({$or: [{enabled: true}, {owners: this.userId}]}, { reactive: true, sort: {createdAt: -1}, limit: limit });
+  return Places.find({$or: [{enabled: true}, {owners: this.userId}, {sellers: this.userId}]}, { reactive: true, sort: {createdAt: -1}, limit: limit });
 });
 
 Meteor.publish('MyPlaces', function () {
-  return Places.find({owners: this.userId}, { reactive: true, sort: {createdAt: -1} });
+  return Places.find({$or: [{owners: this.userId}, {sellers: this.userId}]}, { reactive: true, sort: {createdAt: -1} });
 });
 
 Meteor.publish('Place', function (placeId) {
   check(placeId, String);
-  return Places.find({ _id: placeId, $or: [{enabled: true}, {owners: this.userId}] }, { reactive: true });
+  return Places.find({ _id: placeId, $or: [{enabled: true}, {owners: this.userId}, {sellers: this.userId}] }, { reactive: true });
 });
 
 Meteor.publish('MyPlace', function (placeId) {
   check(placeId, String);
-  return Places.find({ _id: placeId, owners: this.userId }, { reactive: true });
+  return Places.find({ _id: placeId, $or: [{owners: this.userId}, {sellers: this.userId}] }, { reactive: true });
 });
 
 Meteor.publish('SearchPlaces', function (searchQuery, limit) {
@@ -36,7 +36,7 @@ Meteor.publish('Image', function (imageId) {
 Meteor.publish('UserPlaceVouchers', function (placeId, userId) {
   check(placeId, String);
   check(userId, String);
-  if (isPlaceOwner(placeId, this.userId)) {
+  if (isPlaceOwner(placeId, this.userId) || isPlaceSeller(placeId, this.userId)) {
     return Vouchers.find({ placeId: placeId, userId: userId });
   }
 });
@@ -55,7 +55,7 @@ Meteor.publish('UserVouchers', function () {
 Meteor.publish('UserPlaceLoyaltyCard', function (placeId, userId) {
   check(placeId, String);
   check(userId, String);
-  if (isPlaceOwner(placeId, this.userId)) {
+  if (isPlaceOwner(placeId, this.userId) || isPlaceSeller(placeId, this.userId)) {
     return LoyaltyCards.find({ placeId: placeId, userId: userId });
   }
 });
@@ -82,7 +82,7 @@ Meteor.publish('PrivateLoyaltyCard', function (cardId) {
 
 Meteor.publish('placeCounts', function (placeId) {
   check(placeId, String);
-  if (isPlaceOwner(placeId, this.userId)) {
+  if (isPlaceOwner(placeId, this.userId) || isPlaceSeller(placeId, this.userId)) {
     Counts.publish(this, 'voucherCount', Vouchers.find({ placeId: placeId }));
     Counts.publish(this, 'loyaltyCardCount', LoyaltyCards.find({ placeId: placeId }));
   }

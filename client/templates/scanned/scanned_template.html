@@ -2,28 +2,7 @@
   <div class="ui main container">
     {{#if equals scanType 'userId'}}
     {{#if myPlaces}}
-      {{#if isInRole 'owners'}}
-        {{#if equals myPlacesCount 1}}
-          <h4 class="ui header">Commerce : {{myPlaces.[0].name}}</h4>
-        {{else}}
-        <h4>Commerce</h4>
-        <select class="fluid ui dropdown" id="place" tabindex="0">
-          {{#each myPlaces}}
-          <option value="{{_id}}" {{selectedPlace}} data-name="{{name}}">{{name}}</option>
-          {{/each}}
-        </select>
-        {{/if}}
-
-        {{#if place.customers}}
-        <h4>Clients</h4>
-        <select id="customer" name="customer" class="fluid ui dropdown">
-          <option value="">Selectionnez un client</option>
-          {{#each place.customers}}
-            <option value="{{customerId}}" {{selectedCustomer}}>{{email}}</option>
-          {{/each}}
-        </select>
-        {{/if}}
-
+      {{#if isSellerOrOwnerRole}}
         {{#if place.loyaltyCard.enabled}}
           <h4>Carte de fidélité{{#if customerEmail}} de {{customerEmail}}{{/if}}</h4>
           <div class="fluid ui left labeled center aligned big button" tabindex="2">
@@ -62,7 +41,7 @@
           </div>
           <div class="ui fluid left icon action input">
             <i class="euro icon"></i>
-            <input type="number" step="any" placeholder="Montant" tabindex="1" id="voucherValue" size="3">
+            <input type="number" step="any" placeholder="Montant" tabindex="1" id="voucherValue" size="3" value="{{voucherValue}}">
             <button class="ui green button" id="giveVoucher">
               Donner
             </button>

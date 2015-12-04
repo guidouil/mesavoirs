@@ -1,0 +1,46 @@
+<template name='customers'>
+  <div class="ui main container">
+    <div class="ui basic segment">
+      <h3>Clients {{name}}</h3>
+      {{#if customers}}
+        <select id="customer" name="customer" class="fluid ui dropdown">
+          <option value="">Selectionnez un client</option>
+          {{#each customers}}
+            <option value="{{customerId}}" {{selectedCustomer}}>{{email}}</option>
+          {{/each}}
+        </select>
+        <br>
+        <form id="search">
+          <div class="ui large fluid icon input">
+            <input type="text" placeholder="Nom du client ou email" id="searchQuery">
+            <i class="search icon"></i>
+          </div>
+        </form>
+        <div class="ui items">
+          {{#each foundCustomers}}
+          <div class="item">
+            <a class="ui tiny image">
+              <img src="/default-image.png">
+            </a>
+            <div class="content">
+              <a class="header" href="{{pathFor 'scanned' type='userId' id=_id}}">{{profile.name}} {{contactEmail this}}</a>
+              <div class="description">
+                <p>Membre depuis {{fromNow createdAt}}</p>
+              </div>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+      {{else}}
+        <h2 class="ui center aligned icon header">
+          <i class="blue users icon"></i>
+          <div class="content">
+            Aucuns clients...
+            <div class="sub header">Pour l'instant ツ</div>
+          </div>
+        </h2>
+      {{/if}}
+
+    </div>
+  </div>
+</template>

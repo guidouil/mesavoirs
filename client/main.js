@@ -13,6 +13,10 @@ UI.registerHelper('isOwner', function () {
   return _.contains( this.owners, Meteor.userId() );
 });
 
+UI.registerHelper('isSellerOrOwnerRole', function () {
+  return Roles.userIsInRole(Meteor.userId(), ['sellers', 'orwners']);
+});
+
 UI.registerHelper('isMobile', function () {
   return Meteor.isCordova;
 });
@@ -100,3 +104,5 @@ UI.registerHelper('sortArray', function (array, sortKey) {
 UI.registerHelper('reverseArray', function (array) {
   return array.reverse();
 });
+
+UI.registerHelper('contactEmail', contactEmail);

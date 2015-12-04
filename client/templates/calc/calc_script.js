@@ -1,6 +1,6 @@
 Template.calc.helpers({
-  vouncher: function () {
-    return Session.get('vouncher') || 0;
+  voucher: function () {
+    return Session.get('voucher') || 0;
   }
 });
 
@@ -12,18 +12,14 @@ Template.calc.events({
     check(total, Number);
     check(ticketValue, Number);
     check(ticketCount, Number);
-    var vouncher =  ticketValue * ticketCount - total;
-    if (vouncher >= 0) {
-      Session.set('vouncher', vouncher);
+    var voucher =  ticketValue * ticketCount - total;
+    if (voucher >= 0) {
+      Session.set('voucher', voucher);
     }
   }
 });
 
 Template.calc.onRendered(function () {
-  Session.set('vouncher', 0);
+  Session.set('voucher', 0);
   $('#ticketCount').dropdown();
-});
-
-Template.calc.onDestroyed(function () {
-  Session.set('vouncher', 0);
 });

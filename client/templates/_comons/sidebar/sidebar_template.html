@@ -4,28 +4,22 @@
       <i class="home icon"></i>
       Accueil
     </a>
-    {{#if isInRole 'owners'}}
-    <a class="item {{isActiveRoute 'myPlaces'}}" href="{{pathFor 'myPlaces'}}">
-      <i class="line chart icon"></i>
-      Commerces
-    </a>
+    {{#if isSellerOrOwnerRole}}
       {{#if isMobile}}
-      <a class="item {{isActiveRoute 'scanned'}}" data-action="scan">
-        <i class="qrcode icon"></i>
-        Scan
-      </a>
-      {{else}}
-      <a class="item {{isActiveRoute 'scanned'}}"  data-action="fakeScan">
+        <a class="item {{isActiveRoute 'scanned'}}" data-action="scan">
+          <i class="qrcode icon"></i>
+          Scan
+        </a>
+      {{/if}}
+      <a class="item {{isActiveRoute 'customers'}}" href="{{pathFor 'customers'}}">
         <i class="users icon"></i>
         Clients
       </a>
-      {{/if}}
-    {{else}}
-      {{#if isMobile}}
-      <a class="item {{isActiveRoute 'scanned'}}" data-action="scan">
-        <i class="qrcode icon"></i>
-        Scan
-      </a>
+      {{#if isInRole 'owners'}}
+        <a class="item {{isActiveRoute 'myPlaces'}}" href="{{pathFor 'myPlaces'}}">
+          <i class="line chart icon"></i>
+          Commerces
+        </a>
       {{/if}}
     {{/if}}
     <a class="item {{isActiveRoute 'loyaltyCards'}}" href="{{pathFor 'loyaltyCards'}}">
@@ -36,6 +30,14 @@
       <i class="ticket icon"></i>
       Avoirs
     </a>
+    {{#unless isSellerOrOwnerRole}}
+      {{#if isMobile}}
+      <a class="item {{isActiveRoute 'scanned'}}" data-action="scan">
+        <i class="qrcode icon"></i>
+        Scan
+      </a>
+      {{/if}}
+    {{/unless}}
     <a class="item {{isActiveRoute 'calc'}}" href="{{pathFor 'calc'}}">
       <i class="calculator icon"></i>
       Calc.
