@@ -14,7 +14,7 @@ UI.registerHelper('isOwner', function () {
 });
 
 UI.registerHelper('isSellerOrOwnerRole', function () {
-  return Roles.userIsInRole(Meteor.userId(), ['sellers', 'orwners']);
+  return Roles.userIsInRole(Meteor.userId(), ['sellers', 'owners']);
 });
 
 UI.registerHelper('isMobile', function () {
