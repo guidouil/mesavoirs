@@ -12,7 +12,7 @@ Template.placeEdit.events({
       confirmButtonColor: '#DD6B55',
       confirmButtonText: 'Oui',
       cancelButtonText: 'Non',
-      closeOnConfirm: false
+      closeOnConfirm: true
     }, function () {
       // TODO delete image vouchers and loyaltyCards
       Places.remove({_id: placeId});

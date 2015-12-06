@@ -10,12 +10,21 @@ Template.place.helpers({
   },
   loyaltyCardCount: function () {
     return Counts.get('loyaltyCardCount');
+  },
+  currentPlace: function () {
+    var user = Meteor.user();
+    if (user.profile && user.profile.currentPlace) {
+      return user.profile.currentPlace === Router.current().params.placeId;
+    }
   }
 });
 
 Template.place.events({
   'click [data-action=enablePlace]': function (evt) {
     Meteor.call('enablePlace', this._id, evt.currentTarget.checked);
+  },
+  'click [data-action=setCurrentPlace]': function () {
+    Meteor.users.update( { _id: Meteor.userId() }, { $set: { 'profile.currentPlace': this._id }});
   },
   'click [data-action=voucherHistory]': function () {
     var voucher = Vouchers.findOne({userId: Meteor.userId()});
@@ -35,7 +44,7 @@ Template.place.events({
   },
   'click .statistics': function () {
     Session.set('placeId', Router.current().params.placeId);
-    Router.go('/scanned/userId');
+    Router.go('customers');
   }
 });
 

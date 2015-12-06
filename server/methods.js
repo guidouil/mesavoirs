@@ -64,6 +64,22 @@ Meteor.methods({
     }
     return points;
   },
+  removeOnePoint: function (placeId, customerId) {
+    check(placeId, String);
+    check(customerId, String);
+    if (isPlaceOwner(placeId, this.userId) || isPlaceSeller(placeId, this.userId)) {
+      var history = {what: -1, who: this.userId, when: new Date()};
+      var loyaltyCard = LoyaltyCards.findOne({placeId: placeId, userId: customerId});
+      if (loyaltyCard && loyaltyCard.points) {
+        LoyaltyCards.update({_id:loyaltyCard._id}, {
+          $inc:{points: -1},
+          $push:{ histories: history }
+        });
+        return loyaltyCard.points - 1;
+      }
+    }
+    return false;
+  },
   giveVoucher: function (placeId, customerId, value) {
     check(placeId, String);
     check(customerId, String);
@@ -74,11 +90,15 @@ Meteor.methods({
       var history = {what: value, who: this.userId, when: new Date()};
       var voucher = Vouchers.findOne({ placeId: placeId, userId: customerId });
       if (voucher) {
-        Vouchers.update({_id: voucher._id}, {
-          $inc: { value: value },
-          $push: { histories: history }
-        });
-        return voucher.value + value;
+        if (value > 0 || voucher.value >= Math.abs(value)) {
+          Vouchers.update({_id: voucher._id}, {
+            $inc: { value: value },
+            $push: { histories: history }
+          });
+          return voucher.value + value;
+        } else {
+          return {maxValue: voucher.value};
+        }
       } else {
         var voucher = {
           'placeId': placeId,
@@ -94,17 +114,6 @@ Meteor.methods({
       }
     }
     return false;
-  },
-  useVoucher: function (placeId, voucherId, ammount) {
-    check(placeId, String);
-    check(voucherId, String);
-    if (isPlaceOwner(placeId, this.userId) || isPlaceSeller(placeId, this.userId)) {
-      var history = {what: value, who: this.userId, when: new Date()};
-      Vouchers.update({_id: voucherId}, {
-        $inc: { value: ammount},
-        $push: { histories: history }
-      });
-    }
   },
   getCustomerEmail: function (placeId, customerId) {
     check(placeId, String);

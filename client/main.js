@@ -28,13 +28,12 @@ UI.registerHelper('getImage', function (imageUrl) {
 UI.registerHelper('formatMoney', function (value) {
   if (isNumeric(value)) {
     switch (Session.get('language')) {
-    default :
-    case 'fr' :
-      return parseFloat(value).toMoney(2, ',', ' ') + '€';
-      break;
     case 'en' :
       return '€' + parseFloat(value).toMoney(2, '.', ',');
       break;
+    case 'fr' :
+    default :
+      return parseFloat(value).toMoney(2, ',', ' ') + '€';
     }
   }
 });
@@ -95,6 +94,22 @@ UI.registerHelper('greaterThan', function (a, b) {
 
 UI.registerHelper('equals', function (a, b) {
   return a === b;
+});
+
+UI.registerHelper('lte', function (a, b) {
+  return a <= b;
+});
+
+UI.registerHelper('gte', function (a, b) {
+  return a >= b;
+});
+
+UI.registerHelper('gt', function (a, b) {
+  return a > b;
+});
+
+UI.registerHelper('or', function (a, b) {
+  return a || b;
 });
 
 UI.registerHelper('sortArray', function (array, sortKey) {

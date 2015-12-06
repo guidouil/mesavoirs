@@ -5,24 +5,8 @@ Template.scanned.helpers({
   scanId: function () {
     return Router.current().params.id;
   },
-  myPlaces: function () {
-    return Places.find({}, {sort: {name: 1}}).fetch();
-  },
-  myPlacesCount: function () {
-    return Places.find({}, {sort: {name: 1}}).count();
-  },
   customerEmail: function () {
     return Session.get('customerEmail');
-  },
-  selectedPlace: function () {
-    if (this._id && Session.equals('placeId', this._id)) {
-      return 'selected';
-    }
-  },
-  selectedCustomer: function () {
-    if (this._id && Session.equals('customerId', this._id)) {
-      return 'selected';
-    }
   },
   place: function () {
     return Places.findOne({_id: Session.get('placeId')});
@@ -40,8 +24,8 @@ Template.scanned.helpers({
       return loyaltyCard.updatedAt || loyaltyCard.createdAt;
     }
   },
-  vouchers: function () {
-    return Vouchers.find({placeId: Session.get('placeId'), userId: Session.get('customerId')}).fetch();
+  voucher: function () {
+    return Vouchers.findOne({placeId: Session.get('placeId'), userId: Session.get('customerId')});
   },
   voucherValue: function () {
     return Session.get('voucher');
@@ -53,12 +37,6 @@ Template.scanned.events({
     if (evt.currentTarget.value) {
       Session.set('placeId', evt.currentTarget.value);
       Session.set('placeName', $(evt.currentTarget).data('name'));
-    }
-  },
-  'change #customer': function (evt) {
-    if (evt.currentTarget.value) {
-      Session.set('customerId', evt.currentTarget.value);
-      Router.go('/scanned/userId/' + evt.currentTarget.value);
     }
   },
   'click #giveVoucher': function () {
@@ -88,6 +66,9 @@ Template.scanned.events({
           if (_.isNumber(result)){
             swal('Enregistré', 'L\'avoir de votre client est maintenant de ' + result + '€', 'success');
             $('#voucherValue').val('');
+          } else if (result && result.maxValue) {
+            swal('Négatif', 'L\'avoir disponible de votre client est de ' + result.maxValue + '€', 'error');
+            $('#voucherValue').val(result.maxValue);
           }
         });
       }
@@ -107,6 +88,34 @@ Template.scanned.events({
           swal('C\'est fait', 'La carte de fidélité de votre client a maintenant ' + result + pointLabel, 'success');
         }
       });
+    }
+  },
+  'click #removeOnePoint': function () {
+    if (Session.get('placeId') && Session.get('customerId')) {
+      swal({
+        title: 'Etes-vous sur ?',
+        text: 'Normalement, vous ne devez pas enlever de points a un client.',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#DD6B55',
+        confirmButtonText: 'Oui',
+        cancelButtonText: 'Non',
+        closeOnConfirm: true
+      }, function () {
+        Meteor.call('removeOnePoint',  Session.get('placeId'), Session.get('customerId'), function (error, result) {
+          if (error){
+            console.error(error);
+          }
+          if (_.isNumber(result)){
+            var pointLabel = ' point';
+            if (result > 1) {
+              pointLabel = pointLabel + 's';
+            }
+            swal('C\'est fait', 'La carte de fidélité de votre client a maintenant ' + result + pointLabel, 'success');
+          }
+        });
+      });
+
     }
   },
   'click [data-action=voucherHistory]': function () {
@@ -133,7 +142,6 @@ Template.scanned.events({
 });
 
 Template.scanned.onRendered(function () {
-  var instance = this;
   $('select').dropdown();
   Tracker.autorun(function () {
     if (Session.get('placeId') && Session.get('customerId')) {
@@ -162,22 +170,17 @@ Template.scanned.onCreated(function () {
   if (scanType === 'placeId' && Router.current().params.id) {
     Router.go('place', {placeId: Router.current().params.id});
   }
-  var place = Places.findOne();
-  if (place) {
-    if (! Session.get('placeId')) {
+  setDefaultCurrentPlace();
+  var user = Meteor.user();
+  if (user.profile && user.profile.currentPlace) {
+    var place = Places.findOne({_id: user.profile.currentPlace, $or: [{owners: Meteor.userId()}, {sellers: Meteor.userId()}]});
+    if (place) {
       Session.set('placeId', place._id);
       Session.set('placeName', place.name);
-      if (place.customers && place.customers.length === 1 && scanType === 'userId' && !Router.current().params.id) {
-        Session.set('customerId', place.customers[0].customerId);
-      }
     }
-    if (scanType === 'userId' && Router.current().params.id) {
-      Session.set('customerId', Router.current().params.id);
-    }
-  } else {
-    if (scanType === 'userId' && Roles.userIsInRole(Meteor.userId(), 'owners')) {
-      Meteor.call('removeOwnersRole');
-    }
+  }
+  if (scanType === 'userId' && Router.current().params.id) {
+    Session.set('customerId', Router.current().params.id);
   }
 });
 

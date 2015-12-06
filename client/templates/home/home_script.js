@@ -1,5 +1,16 @@
 Template.home.helpers({
-
+  baseline: function () {
+    var baselines = [
+      'Pour ne plus collectionner les cartes, ni les tickets dans votre porte monnaie',
+      'Fini le porte monnaie surchargé inutilement',
+      'Une carte de fidélité pour les gouverner toutes',
+      'Vous ne perdrez plus jamais l\'avoir de la boulangerie',
+      'Simplement depuis votre smartphone et en temps-réel',
+      'Parlez d\'allofid aux commerçants qui sont encore à l\'air du papier',
+      'Vous n\'oublierez plus jamais une carte de fidélité'
+    ];
+    return _.sample(baselines);
+  }
 });
 
 Template.home.events({
@@ -26,11 +37,5 @@ Template.home.events({
 });
 
 Template.home.onRendered(function () {
-  var homePhrases = [
-    'Pour ne plus collectionner les cartes de fidelité, ni les petits papiers dans votre porte monnaie.',
-    'Fini le porte monnaie surchargé',
-    'Une seule carte de fidélité pour les gouverner toutes',
-    'Vous ne perdrez plus jamais l\'avoir de la boulangerie de la pause du midi',
-    'simplement et en temps-réel'
-  ];
+
 });

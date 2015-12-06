@@ -1,43 +1,52 @@
 <template name='scanned'>
   <div class="ui main container">
     {{#if equals scanType 'userId'}}
-    {{#if myPlaces}}
+    {{#if place}}
       {{#if isSellerOrOwnerRole}}
+        <h2 class="ui center aligned icon header">
+          <i class="blue user icon"></i>
+          <div class="content">
+            {{customerEmail}}
+            <div class="sub header">Dans le commerce {{place.name}}</div>
+          </div>
+        </h2>
         {{#if place.loyaltyCard.enabled}}
           <h4>Carte de fidélité{{#if customerEmail}} de {{customerEmail}}{{/if}}</h4>
-          <div class="fluid ui left labeled center aligned big button" tabindex="2">
+          <div class="ui left labeled button" tabindex="2">
             <a class="ui basic label" data-action="loyaltyCardHistory">
               <i class="yellow star icon"></i> {{userPoints}} / {{place.loyaltyCard.size}} points
             </a>
-            <div class="ui olive button" id="addOnePoint">
-               +1 point
+            <div class="ui green button" id="addOnePoint">
+               +1
             </div>
+            {{#if gt userPoints 0}}
+            <div class="ui red button" id="removeOnePoint">
+               -1
+            </div>
+            {{/if}}
           </div>
           {{#if loyaltyCardDate}}
-          <span data-action="loyaltyCardHistory">
+          <p data-action="loyaltyCardHistory">
             <i class="history icon"></i> Mise à jour {{fromNow loyaltyCardDate}}<br>
-          </span>
+          </p>
           {{/if}}
-          <p>
-            Chaque tranche d'achat de {{formatMoney place.loyaltyCard.pointCost}} ajoute 1 point à la carte de fidélité.<br>
-            Quand la carte atteint {{place.loyaltyCard.size}} points, votre client reçoit automatiquement un avoir de {{formatMoney place.loyaltyCard.voucherValue}} et le compte de points est remis a zéro.
+          <p style="text-align: justify;text-justify: inter-word;">
+            Chaque tranche d'achat de {{formatMoney place.loyaltyCard.pointCost}} ajoute 1 point à la carte de fidélité. Quand la carte atteint {{place.loyaltyCard.size}} points, un avoir de {{formatMoney place.loyaltyCard.voucherValue}} est envoyé et le compte de points est remis a zéro.
           </p>
         {{/if}}
         <h4>Avoir{{#if customerEmail}} de {{customerEmail}}{{/if}}</h4>
-          <div class="ui horizontal list">
-          {{#each vouchers}}
+          <div class="ui list">
             <div class="item" id="useVoucher" data-action="voucherHistory">
               <i class="large blue ticket icon"></i>
               <div class="content">
-                <div class="header">{{formatMoney value}}</div>
-                {{#if histories}}
+                <div class="header">{{formatMoney voucher.value}}</div>
+                {{#if voucher.histories}}
                 <div class="extra">
-                  <i class="grey history icon"></i>Mis à jour {{#if updatedAt}}{{fromNow updatedAt}}{{else}}{{fromNow createdAt}}{{/if}}
+                  <i class="grey history icon"></i>Mis à jour {{#if voucher.updatedAt}}{{fromNow voucher.updatedAt}}{{else}}{{fromNow voucher.createdAt}}{{/if}}
                 </div>
                 {{/if}}
               </div>
             </div>
-          {{/each}}
           </div>
           <div class="ui fluid left icon action input">
             <i class="euro icon"></i>
@@ -45,9 +54,11 @@
             <button class="ui green button" id="giveVoucher">
               Donner
             </button>
+            {{#if gt voucher.value 0}}
             <button class="ui red button" id="takeVoucher">
               Prendre
             </button>
+            {{/if}}
           </div>
           {{> histories}}
       {{/if}}

@@ -1,18 +1,26 @@
 <template name='place'>
   <div class="ui container">
-    {{#if isOwner}}
+    {{#if isSellerOrOwnerRole}}
     <div class="ui basic segment">
-      <a href="{{pathFor 'placeEdit' placeId=_id}}" class="teal right floated ui circular icon button"><i class="pencil icon"></i></a>
-      <div class="ui slider checkbox">
-        <input type="checkbox" name="enabled" checked="{{enabled}}" data-action="enablePlace">
-        <label>Commerce {{#unless enabled}}in{{/unless}}actif</label>
-      </div>
+      {{#if isOwner}}
+        <a href="{{pathFor 'placeEdit' placeId=_id}}" class="teal right floated ui circular icon button"><i class="pencil icon"></i></a>
+        <div class="ui slider checkbox">
+          <input type="checkbox" name="enabled" checked="{{enabled}}" data-action="enablePlace">
+          <label>Commerce {{#unless enabled}}in{{/unless}}actif</label>
+        </div>
+        <br>
+        <br>
+      {{/if}}
+      <button class="ui {{#if currentPlace}}green{{/if}} right floated labeled icon button" data-action="setCurrentPlace">
+        <i class="marker icon"></i>
+        J'y {{#if currentPlace}}suis{{else}}vais{{/if}}
+      </button>
     </div>
-    <div class="ui basic segment">
-      <div class="ui center aligned statistics">
+    <div class="ui basic center aligned segment">
+      <div class="ui statistics">
         <div class="statistic">
           <div class="value">
-            {{customers.length}}
+            {{or customers.length 0}}
           </div>
           <div class="label">
             Client{{#if greaterThan customers.length 1}}s{{/if}}
@@ -67,9 +75,8 @@
               <span>Mise à jour {{#if myLoyaltyCard.updatedAt}}{{fromNow myLoyaltyCard.updatedAt}}{{else}}{{fromNow myLoyaltyCard.createdAt}}{{/if}}</span>
             </div>
             <div class="description">
-              <p>
-                Chaque tranche d'achat de {{formatMoney loyaltyCard.pointCost}} ajoute 1 point à la carte de fidélité.<br>
-                Quand votre carte atteint {{loyaltyCard.size}} points, vous recevez automatiquement un avoir de {{formatMoney loyaltyCard.voucherValue}} et le compte de points est remis a zéro.
+              <p style="text-align: justify;text-justify: inter-word;">
+                Chaque tranche d'achat de {{formatMoney loyaltyCard.pointCost}} ajoute 1 point à la carte de fidélité. Quand votre carte atteint {{loyaltyCard.size}} points, vous recevez automatiquement un avoir de {{formatMoney loyaltyCard.voucherValue}} et le compte de points est remis a zéro.
               </p>
             </div>
             {{#if myLoyaltyCard.histories}}

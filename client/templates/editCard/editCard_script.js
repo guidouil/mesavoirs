@@ -5,4 +5,4 @@ Template.editCard.events({
 });
 
 Template.editCard.onRendered(function ( ){
-})
+});

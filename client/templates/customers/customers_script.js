@@ -5,6 +5,12 @@ Template.customers.helpers({
 });
 
 Template.customers.events({
+  'change #customer': function (evt) {
+    if (evt.currentTarget.value) {
+      Session.set('customerId', evt.currentTarget.value);
+      Router.go('/scanned/userId/' + evt.currentTarget.value);
+    }
+  },
   'submit #search': function (evt) {
     evt.preventDefault();
     var searchQuery = $('#searchQuery').val();
@@ -24,6 +30,7 @@ Template.customers.events({
 });
 
 Template.customers.onRendered(function () {
+  $('select').dropdown();
   var user = Meteor.user();
   if (user.profile && user.profile.currentPlace) {
     Router.go('customers', {placeId: user.profile.currentPlace});

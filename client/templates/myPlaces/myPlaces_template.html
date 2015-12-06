@@ -6,6 +6,20 @@
       {{#each myPlaces}}
         <a class="card" href="{{pathFor 'place' placeId=_id}}">
           <div class="image" >
+            {{#if currentPlace}}
+            <a class="ui teal right corner label">
+              <i class="marker icon"></i>
+            </a>
+            {{/if}}
+            {{#if enabled}}
+            <a class="ui green left corner label">
+              <i class="check icon"></i>
+            </a>
+            {{else}}
+            <a class="ui red left corner label">
+              <i class="remove icon"></i>
+            </a>
+            {{/if}}
             {{> image imageId=imageId }}
           </div>
           <div class="content">
