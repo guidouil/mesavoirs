@@ -1,0 +1,20 @@
+<template name='editProfile'>
+  <div class="ui main container">
+    <div class="ui basic segment">
+      {{> image imageId=user.profile.imageId classNames='tiny circular right floated'}}
+      {{> imageEdit imageId=user.profile.imageId}}
+      <h3 class="ui header">Editez votre profil</h3>
+      <form id="editProfile" enctype="multipart/form-data" class="ui form">
+        <div class="field">
+          <label for="name">Nom complet</label>
+          <input type="text" placeholder="Nom complet" name="name" id="name" value="{{user.profile.name}}">
+        </div>
+        <div class="field">
+          <label for="name">Adresse email</label>
+          <input type="email" placeholder="Adresse email" name="email" id="email" value="{{contactEmail user}}">
+        </div>
+        <button class="fluid ui positive button" type="submit">Enregistrer</button>
+      </form>
+    </div>
+  </div>
+</template>

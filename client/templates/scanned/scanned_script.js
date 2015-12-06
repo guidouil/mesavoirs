@@ -8,6 +8,12 @@ Template.scanned.helpers({
   customerEmail: function () {
     return Session.get('customerEmail');
   },
+  customerName: function () {
+    return Session.get('customerName');
+  },
+  customerImageId: function () {
+    return Session.get('customerImageId');
+  },
   place: function () {
     return Places.findOne({_id: Session.get('placeId')});
   },
@@ -147,12 +153,14 @@ Template.scanned.onRendered(function () {
     if (Session.get('placeId') && Session.get('customerId')) {
       Meteor.subscribe('UserPlaceVouchers', Session.get('placeId'), Session.get('customerId'));
       Meteor.subscribe('UserPlaceLoyaltyCard', Session.get('placeId'), Session.get('customerId'));
-      Meteor.call('getCustomerEmail', Session.get('placeId'), Session.get('customerId'), function (error, result) {
+      Meteor.call('getCustomerInfo', Session.get('placeId'), Session.get('customerId'), function (error, result) {
         if (error) {
           console.error(error);
         }
         if (result) {
-          Session.set('customerEmail', result);
+          Session.set('customerEmail', result.email);
+          Session.set('customerName', result.name);
+          Session.set('customerImageId', result.imageId);
         }
       });
     }
@@ -188,4 +196,6 @@ Template.scanned.onDestroyed(function () {
   Session.set('placeId', null);
   Session.set('customerId', null);
   Session.set('customerEmail', null);
+  Session.set('customerName', null);
+  Session.set('customerImageId', null);
 });

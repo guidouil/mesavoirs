@@ -115,13 +115,13 @@ Meteor.methods({
     }
     return false;
   },
-  getCustomerEmail: function (placeId, customerId) {
+  getCustomerInfo: function (placeId, customerId) {
     check(placeId, String);
     check(customerId, String);
     if (isPlaceOwner(placeId, this.userId) || isPlaceSeller(placeId, this.userId)) {
       var customer = Meteor.users.findOne({_id: customerId});
       if (customer) {
-        return contactEmail(customer);
+        return {'email': contactEmail(customer), 'name': customer.profile.name, 'imageId': customer.profile.imageId};
       }
     }
     return false;
@@ -142,10 +142,11 @@ Meteor.methods({
     check(placeId, String);
     check(customerId, String);
     if (isPlaceOwner(placeId, this.userId) || isPlaceSeller(placeId, this.userId)) {
-      var customerEmail = Meteor.call('getCustomerEmail', placeId, customerId);
+      var customerInfo = Meteor.call('getCustomerInfo', placeId, customerId);
       var customer = {
         customerId: customerId,
-        email: customerEmail
+        email: customerInfo.email,
+        name: customerInfo.name
       };
       Places.update({_id: placeId}, {$addToSet: { customers: customer }});
       return true;

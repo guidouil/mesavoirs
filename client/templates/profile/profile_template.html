@@ -1,10 +1,18 @@
 <template name='profile'>
   <div class="ui container">
-    <h3>Mon profil</h3>
     <div class="ui center aligned basic segment">
-      <p>
-        {{email}}
-      </p>
+      <a href="{{pathFor 'editProfile'}}" class="teal right floated ui circular icon button"><i class="pencil icon"></i></a><br>
+      <h2 class="ui center aligned icon header">
+        {{#if user.profile.imageId}}
+          {{> image imageId=user.profile.imageId classNames='tiny circular centered'}}
+        {{else}}
+          <i class="blue user icon"></i>
+        {{/if}}
+        <div class="content">
+          {{user.profile.name}}
+          <div class="sub header">{{contactEmail user}}</div>
+        </div>
+      </h2>
       {{> QrCode text=qrText }}
       <br>
       <button class="ui red button" data-action="logout">
