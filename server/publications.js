@@ -36,7 +36,7 @@ Meteor.publish('Image', function (imageId) {
 Meteor.publish('UserPlaceVouchers', function (placeId, userId) {
   check(placeId, String);
   check(userId, String);
-  if (isPlaceOwner(placeId, this.userId) || isPlaceSeller(placeId, this.userId)) {
+  if (isPlaceOwner(placeId, this.userId) || isPlaceSeller(placeId, this.userId) || userId === this.userId) {
     return Vouchers.find({ placeId: placeId, userId: userId });
   }
 });
@@ -55,7 +55,7 @@ Meteor.publish('UserVouchers', function () {
 Meteor.publish('UserPlaceLoyaltyCard', function (placeId, userId) {
   check(placeId, String);
   check(userId, String);
-  if (isPlaceOwner(placeId, this.userId) || isPlaceSeller(placeId, this.userId)) {
+  if (isPlaceOwner(placeId, this.userId) || isPlaceSeller(placeId, this.userId) || userId === this.userId) {
     return LoyaltyCards.find({ placeId: placeId, userId: userId });
   }
 });
