@@ -11,7 +11,9 @@ Template.myPlaces.helpers({
 });
 
 Template.myPlaces.events({
-
+  'click [data-action=createPlace]': function () {
+    Router.go('createPlace');
+  }
 });
 
 Template.myPlaces.onRendered(function () {
