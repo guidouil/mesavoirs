@@ -12,7 +12,11 @@
     </div>
     {{else}}
     <div class="right item" data-action="profile">
-      <i class="big user icon"></i>
+      {{#if currentUser.profile.imageId}}
+        {{> image imageId=currentUser.profile.imageId classNames='avatar'}}
+      {{else}}
+        <i class="big user icon"></i>
+      {{/if}}
     </div>
     {{/unless}}
   </div>

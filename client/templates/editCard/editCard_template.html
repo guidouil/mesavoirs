@@ -1,6 +1,8 @@
 <template name='editCard'>
   <div class="ui container">
-    {{> image imageId=imageId classNames='small right floated'}}
+    {{#if imageId}}
+      {{> image imageId=imageId classNames='small right floated'}}
+    {{/if}}
     {{> imageEdit imageId=imageId}}
     <h2>Editer votre carte de fidélité {{name}}</h2>
     {{#if isMobile}}

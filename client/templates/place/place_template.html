@@ -50,7 +50,7 @@
         {{name}}
         <div class="sub header">{{description}}</div>
       </h1>
-      {{> image imageId=imageId classNames='ui centered medium image'}}
+      {{> image imageId=imageId classNames='ui centered medium rounded image'}}
       <div class="ui list">
         {{#each addresses}}
           <div class="item">
@@ -60,17 +60,21 @@
               <div class="description">{{zip}} {{city}}</div>
             </div>
           </div>
+          {{#if phone}}
+          <div class="item">
+            <i class="phone icon"></i>
+            <div class="content">
+              <a class="header" href="tel:{{phone}}">{{phone}}</a>
+            </div>
+          </div>
+          {{/if}}
         {{/each}}
       </div>
-    </div>
-    <div class="ui basic segment">
-
       <div class="ui relaxed divided items">
-
       {{#if myLoyaltyCard}}
         <div class="item">
           <div class="content"  data-action="loyaltyCardHistory">
-            <a class="header"><i class="big yellow star icon"></i> Vous avez {{myLoyaltyCard.points}} point{{#if greaterThan myLoyaltyCard.points 1}}s{{/if}} sur {{myLoyaltyCard.size}} de votre carte de fidélité</a>
+            <a class="header"><i class=" yellow star icon"></i> {{myLoyaltyCard.points}} point{{#if greaterThan myLoyaltyCard.points 1}}s{{/if}} sur {{myLoyaltyCard.size}} de votre carte</a>
             <div class="meta">
               <span>Mise à jour {{#if myLoyaltyCard.updatedAt}}{{fromNow myLoyaltyCard.updatedAt}}{{else}}{{fromNow myLoyaltyCard.createdAt}}{{/if}}</span>
             </div>
@@ -87,11 +91,10 @@
           </div>
         </div>
       {{/if}}
-
       {{#if myVoucher}}
         <div class="item" data-action="voucherHistory">
           <div class="content">
-            <a class="header"><i class="big blue ticket icon"></i> Vous avez {{formatMoney myVoucher.value}} d'avoir disponible ici</a>
+            <a class="header"><i class=" blue ticket icon"></i> {{formatMoney myVoucher.value}} d'avoir ici</a>
             <div class="meta">
               <span>Mis à jour {{#if myVoucher.updatedAt}}{{fromNow myVoucher.updatedAt}}{{else}}{{fromNow myVoucher.createdAt}}{{/if}}</span>
             </div>
@@ -103,7 +106,6 @@
           </div>
         </div>
       {{/if}}
-
       </div>
     </div>
   </div>

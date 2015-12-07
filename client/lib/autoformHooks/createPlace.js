@@ -2,7 +2,7 @@ AutoForm.hooks({
   createPlace: {
     onSuccess: function (formType, result) {
       Meteor.call('addOwnersRole');
-      Router.go('myPlaces');
+      Router.go('/place/'+this.docId);
     },
   }
 });

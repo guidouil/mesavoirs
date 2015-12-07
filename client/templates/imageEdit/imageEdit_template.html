@@ -1,7 +1,4 @@
 <template name='imageEdit'>
-  <form id="uploadImage" action="" method="post" enctype="multipart/form-data" class="hidden">
-    <input type="file" name="imageFile" class="hidden" id="imageFile" style="cursor: pointer;">
-  </form>
   {{#if imageId}}
     <button class="ui right floated circular basic red icon button" data-action="deleteImage">
       <i class="large icons">
@@ -10,11 +7,6 @@
       </i>
     </button>
   {{else}}
-    <button class="ui right floated circular basic green icon button" data-action="uploadImage">
-      <i class="large icons">
-        <i class="picture icon"></i>
-        <i class="corner grey add icon"></i>
-      </i>
-    </button>
+    <input type="file" name="imageFile" id="imageFile" style="cursor: pointer;">
   {{/if}}
 </template>

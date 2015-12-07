@@ -1,7 +1,9 @@
 <template name='placeEdit'>
   {{#if isOwner}}
   <div class="ui container">
-    {{> image imageId=imageId classNames='small right floated'}}
+    {{#if imageId}}
+      {{> image imageId=imageId classNames='small rounded right floated'}}
+    {{/if}}
     {{> imageEdit imageId=imageId}}
     <h2 class="ui header">Editer {{name}}</h2>
     <h4 class="ui header"><a href="{{pathFor 'owners' placeId=_id}}"><i class="users icon"></i>{{owners.length}} propriétaire{{#if greaterThan owners.length 1}}s{{/if}}{{#if sellers}} et {{sellers.length}} vendeur{{/if}}{{#if greaterThan sellers.length 1}}s{{/if}}</a></h4>
@@ -12,6 +14,7 @@
       {{> afQuickField placeholder="schemaLabel" name="addresses.0.zip"}}
       {{> afQuickField placeholder="schemaLabel" name="addresses.0.city"}}
       {{> afQuickField placeholder="schemaLabel" name="addresses.0.country"}}
+      {{> afQuickField placeholder="schemaLabel" name="addresses.0.phone"}}
       {{> afQuickField placeholder="schemaLabel" name="loyaltyCard.enabled" checkboxType="slider"}}
       <div class="loyaltyCard">
         {{#if loyaltyCard.pointCost}}
@@ -23,7 +26,6 @@
         {{> afQuickField defaultValue="10" name="loyaltyCard.size"}}
         {{> afQuickField defaultValue="5" name="loyaltyCard.voucherValue"}}
       </div>
-
       <p>
       </p>
       <button class="fluid ui positive button" type="submit">Enregistrer</button>

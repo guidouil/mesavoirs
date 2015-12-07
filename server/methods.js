@@ -264,6 +264,13 @@ Meteor.methods({
         ]}).fetch();
       }
     }
+  },
+  deleteLoyaltyCardsAndVouchers: function (placeId) {
+    check(placeId, String);
+    if (isPlaceOwner(placeId, this.userId)) {
+      LoyaltyCards.remove({placeId: placeId}, {multi: true});
+      Vouchers.remove({placeId: placeId}, {multi: true});
+    }
   }
 });
 

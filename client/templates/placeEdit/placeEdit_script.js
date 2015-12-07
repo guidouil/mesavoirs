@@ -14,7 +14,11 @@ Template.placeEdit.events({
       cancelButtonText: 'Non',
       closeOnConfirm: true
     }, function () {
-      // TODO delete image vouchers and loyaltyCards
+      var place = Places.findOne({_id: placeId});
+      if (place.imageId) {
+        Images.remove({_id: place.imageId});
+      }
+      Meteor.call('deleteLoyaltyCardsAndVouchers', placeId);
       Places.remove({_id: placeId});
       swal('Effacé!', 'Le commerce à été supprimé.', 'success');
       Router.go('/my-places');
@@ -22,5 +26,5 @@ Template.placeEdit.events({
   }
 });
 
-Template.placeEdit.onRendered(function ( ){
+Template.placeEdit.onRendered(function () {
 });

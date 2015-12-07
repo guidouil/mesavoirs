@@ -1,7 +1,9 @@
 <template name='editProfile'>
   <div class="ui main container">
     <div class="ui basic segment">
-      {{> image imageId=user.profile.imageId classNames='tiny circular right floated'}}
+      {{#if user.profile.imageId}}
+        {{> image imageId=user.profile.imageId classNames='tiny rounded right floated'}}
+      {{/if}}
       {{> imageEdit imageId=user.profile.imageId}}
       <h3 class="ui header">Editez votre profil</h3>
       <form id="editProfile" enctype="multipart/form-data" class="ui form">
