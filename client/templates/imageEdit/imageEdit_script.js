@@ -1,6 +1,34 @@
 Template.imageEdit.events({
   'click [data-action=uploadImage]': function () {
-    $('#imageFile').click();
+    if (Meteor.isCordova) {
+      var cameraOptions = {
+        width: 1024,
+        height: 633,
+        quality: 80
+      };
+      MeteorCamera.getPicture(cameraOptions, function (error, data) {
+        if (!error) {
+          Meteor.call('uploadImage', data, function (error, imageId) {
+            if (imageId) {
+              var placeId = Router.current().params.placeId;
+              var cardId = Router.current().params.cardId;
+              if (placeId) {
+                Places.update(placeId, {$set: imageId});
+                Router.go('place', {placeId: placeId});
+              } else if (cardId) {
+                PrivateLoyaltyCards.update(cardId, {$set: imageId});
+                Router.go('card', {cardId: cardId});
+              } else {
+                Meteor.users.update( { _id: Meteor.userId() }, { $set: { 'profile.imageId': fileObj._id }});
+                Router.go('profile');
+              }
+            }
+          });
+        }
+      });
+    } else {
+      $('#imageFile').click();
+    }
   },
   'change #imageFile': function (event, tmpl) {
     var placeId = Router.current().params.placeId;

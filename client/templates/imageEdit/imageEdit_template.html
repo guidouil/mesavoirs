@@ -7,8 +7,14 @@
       </i>
     </button>
   {{else}}
-    <div class="ui fluid input">
-      <input type="file" name="imageFile" id="imageFile" style="cursor: pointer;" placeholder="Photo carrée">
-    </div>
+    <form id="uploadImage" action="" method="post" enctype="multipart/form-data" class="hidden">
+      <input type="file" name="imageFile" class="hidden" id="imageFile">
+    </form>
+    <button class="ui right floated circular basic green icon button" data-action="uploadImage">
+      <i class="large icons">
+        <i class="picture icon"></i>
+        <i class="corner grey add icon"></i>
+      </i>
+    </button>
   {{/if}}
 </template>

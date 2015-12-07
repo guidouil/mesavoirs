@@ -1,4 +1,16 @@
 Meteor.methods({
+  uploadImage: function (base64EncodedImage) {
+    let future = new Future();
+    let onComplete = future.resolver();
+    let fsFile = new FS.File();
+    fsFile.attachData(base64EncodedImage, function(error) {
+      if (error) resolve(error, null);
+      Images.insert(fsFile, function (err, fileObj) {
+        onComplete(null, fileObj._id);
+      });
+    });
+    return future.wait();
+  },
   SearchPlaces: function (searchQuery, limit) {
     check(searchQuery, String);
     check(limit, Number);
