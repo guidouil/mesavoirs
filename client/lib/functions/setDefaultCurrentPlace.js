@@ -6,7 +6,6 @@ setDefaultCurrentPlace = function () {
   }
   // clean forgoten roles
   if (!myPlace && Roles.userIsInRole(Meteor.userId(), ['sellers', 'owners'])) {
-    Meteor.call('removeOwnersRole');
-    Meteor.call('removeSellersRole');
+
   }
 };
