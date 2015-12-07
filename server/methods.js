@@ -1,5 +1,6 @@
 Meteor.methods({
   uploadImage: function (base64EncodedImage) {
+    Future = Npm.require('fibers/future');
     let future = new Future();
     let onComplete = future.resolver();
     let fsFile = new FS.File();
