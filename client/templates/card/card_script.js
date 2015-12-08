@@ -22,6 +22,9 @@ Template.card.onRendered(function () {
     var canvas = document.getElementById('barcode-canvas');
     var options = {};
     options.type = format;
+    options.height = 100;
+    options.maxWidth = 300;
+
     var g = canvas.getContext('2d');
     if (this.data.format === 'EAN_13') {
       this.data.code = this.data.code.slice(0, -1);
