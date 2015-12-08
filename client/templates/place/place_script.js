@@ -45,6 +45,10 @@ Template.place.events({
   'click .statistics': function () {
     Session.set('placeId', Router.current().params.placeId);
     Router.go('customers');
+  },
+  'click .placeMap': function () {
+    Session.set('fullAdress', this.street + ', ' + this.zip + ' ' + this.city);
+    Router.go('map');
   }
 });
 

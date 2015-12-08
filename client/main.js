@@ -13,6 +13,10 @@ UI.registerHelper('isOwner', function () {
   return _.contains( this.owners, Meteor.userId() );
 });
 
+UI.registerHelper('isSellerOrOwner', function () {
+  return _.contains( this.owners, Meteor.userId() ) || _.contains( this.sellers, Meteor.userId() );
+});
+
 UI.registerHelper('isSellerOrOwnerRole', function () {
   return Roles.userIsInRole(Meteor.userId(), ['sellers', 'owners']);
 });

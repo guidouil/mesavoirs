@@ -43,7 +43,6 @@ accounts-twitter
 zimme:active-route
 semantic:ui-dropdown
 service-configuration
-mrt:googlemaps
 accounts-ui
 semantic:ui-list
 cfs:standard-packages
@@ -58,3 +57,4 @@ semantic:ui-tab
 froatsnook:bardcode
 mdg:reload-on-resume
 mdg:camera
+dburles:google-maps
