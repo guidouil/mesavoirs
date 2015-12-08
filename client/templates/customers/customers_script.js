@@ -14,14 +14,12 @@ Template.customers.events({
   'submit #search': function (evt) {
     evt.preventDefault();
     var searchQuery = $('#searchQuery').val();
-    console.log(searchQuery);
     if (searchQuery) {
       Meteor.call('searchCustomers', this._id, searchQuery, function (error, result) {
         if (error) {
           console.log(error);
         }
         if (result) {
-          console.log();
           Session.set('foundCustomers', result);
         }
       });
@@ -32,7 +30,7 @@ Template.customers.events({
 Template.customers.onRendered(function () {
   $('select').dropdown();
   var user = Meteor.user();
-  if (user.profile && user.profile.currentPlace) {
+  if (user.profile && user.profile.currentPlace && !Router.current().params.placeId) {
     Router.go('customers', {placeId: user.profile.currentPlace});
   }
 });

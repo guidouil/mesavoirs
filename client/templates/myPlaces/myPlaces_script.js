@@ -1,6 +1,6 @@
 Template.myPlaces.helpers({
   myPlaces: function () {
-    return Places.find({owners: Meteor.userId()}).fetch();
+    return Places.find({$or: [{owners: Meteor.userId()}, {sellers: Meteor.userId()}]}).fetch();
   },
   currentPlace: function () {
     var user = Meteor.user();

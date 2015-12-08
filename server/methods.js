@@ -134,7 +134,11 @@ Meteor.methods({
     if (isPlaceOwner(placeId, this.userId) || isPlaceSeller(placeId, this.userId)) {
       var customer = Meteor.users.findOne({_id: customerId});
       if (customer) {
-        return {'email': contactEmail(customer), 'name': customer.profile.name, 'imageId': customer.profile.imageId};
+        if (customer.profile) {
+          return {'email': contactEmail(customer), 'name': customer.profile.name, 'imageId': customer.profile.imageId};
+        } else {
+          return {'email': contactEmail(customer), 'name': '', 'imageId': ''};
+        }
       }
     }
     return false;
@@ -155,13 +159,22 @@ Meteor.methods({
     check(placeId, String);
     check(customerId, String);
     if (isPlaceOwner(placeId, this.userId) || isPlaceSeller(placeId, this.userId)) {
+      var place = Places.findOne({_id: placeId});
+      if (place.customers) {
+        var existingCustomer = _.find( place.customers, function (placeCustomer) {
+          return placeCustomer.customerId === customerId;
+        });
+      }
       var customerInfo = Meteor.call('getCustomerInfo', placeId, customerId);
       var customer = {
         customerId: customerId,
         email: customerInfo.email,
         name: customerInfo.name
       };
-      Places.update({_id: placeId}, {$addToSet: { customers: customer }});
+      if (existingCustomer) { // always get fresh customer info
+        Places.update({_id: placeId}, {$pull: { customers: existingCustomer }});
+      }
+      Places.update({_id: placeId}, {$push: { customers: customer }});
       return true;
     }
     return false;

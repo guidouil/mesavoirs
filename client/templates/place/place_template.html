@@ -1,7 +1,7 @@
 <template name='place'>
-  <div class="ui container">
+  <div class="ui main container">
     {{#if isSellerOrOwnerRole}}
-    <div class="ui basic segment">
+    <div class="ui raised segment">
       {{#if isOwner}}
         <a href="{{pathFor 'placeEdit' placeId=_id}}" class="teal right floated ui circular icon button"><i class="pencil icon"></i></a>
         <div class="ui slider checkbox">
@@ -11,14 +11,13 @@
         <br>
         <br>
       {{/if}}
-      <button class="ui {{#if currentPlace}}green{{/if}} right floated labeled icon button" data-action="setCurrentPlace">
+      <button class="ui {{#if currentPlace}}green{{/if}} fluid labeled icon button" data-action="setCurrentPlace">
         <i class="marker icon"></i>
         J'y {{#if currentPlace}}suis{{else}}vais{{/if}}
       </button>
-    </div>
-    <div class="ui basic center aligned segment">
-      <div class="ui statistics">
-        <div class="statistic">
+      <br>
+      <div class="ui three tiny statistics">
+        <div class="ui statistic">
           <div class="value">
             {{or customers.length 0}}
           </div>
@@ -26,7 +25,7 @@
             Client{{#if greaterThan customers.length 1}}s{{/if}}
           </div>
         </div>
-        <div class="statistic">
+        <div class="ui statistic">
           <div class="value">
             {{voucherCount}}
           </div>
@@ -34,7 +33,7 @@
             Avoir{{#if greaterThan voucherCount 1}}s{{/if}}
           </div>
         </div>
-        <div class="statistic">
+        <div class="ui statistic">
           <div class="value">
             {{loyaltyCardCount}}
           </div>
@@ -76,18 +75,13 @@
           <div class="content"  data-action="loyaltyCardHistory">
             <a class="header"><i class=" yellow star icon"></i> {{myLoyaltyCard.points}} point{{#if greaterThan myLoyaltyCard.points 1}}s{{/if}} sur {{myLoyaltyCard.size}} de votre carte</a>
             <div class="meta">
-              <span>Mise à jour {{#if myLoyaltyCard.updatedAt}}{{fromNow myLoyaltyCard.updatedAt}}{{else}}{{fromNow myLoyaltyCard.createdAt}}{{/if}}</span>
+              &nbsp;<i class="grey history icon"></i> Mise à jour {{#if myLoyaltyCard.updatedAt}}{{fromNow myLoyaltyCard.updatedAt}}{{else}}{{fromNow myLoyaltyCard.createdAt}}{{/if}}
             </div>
             <div class="description">
               <p style="text-align: justify;text-justify: inter-word;">
                 Chaque tranche d'achat de {{formatMoney loyaltyCard.pointCost}} ajoute 1 point à la carte de fidélité. Quand votre carte atteint {{loyaltyCard.size}} points, vous recevez automatiquement un avoir de {{formatMoney loyaltyCard.voucherValue}} et le compte de points est remis a zéro.
               </p>
             </div>
-            {{#if myLoyaltyCard.histories}}
-            <div class="extra">
-              <i class="grey history icon"></i>Voir historique
-            </div>
-            {{/if}}
           </div>
         </div>
       {{/if}}
@@ -96,13 +90,8 @@
           <div class="content">
             <a class="header"><i class=" blue ticket icon"></i> {{formatMoney myVoucher.value}} d'avoir ici</a>
             <div class="meta">
-              <span>Mis à jour {{#if myVoucher.updatedAt}}{{fromNow myVoucher.updatedAt}}{{else}}{{fromNow myVoucher.createdAt}}{{/if}}</span>
+              &nbsp;<i class="grey history icon"></i> Mis à jour {{#if myVoucher.updatedAt}}{{fromNow myVoucher.updatedAt}}{{else}}{{fromNow myVoucher.createdAt}}{{/if}}
             </div>
-            {{#if myVoucher.histories}}
-            <div class="extra">
-              <i class="grey history icon"></i>Voir historique
-            </div>
-            {{/if}}
           </div>
         </div>
       {{/if}}

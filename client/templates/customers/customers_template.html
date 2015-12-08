@@ -4,9 +4,9 @@
       <h3>Clients {{name}}</h3>
       {{#if customers}}
         <select id="customer" name="customer" class="fluid ui dropdown">
-          <option value="">Selectionnez un client</option>
-          {{#each customers}}
-            <option value="{{customerId}}" {{selectedCustomer}}>{{email}}</option>
+          <option value="">Sélectionnez un client</option>
+          {{#each sortArray customers 'email'}}
+            <option value="{{customerId}}" {{selectedCustomer}}>{{name}} {{email}}</option>
           {{/each}}
         </select>
         <br>
@@ -16,17 +16,13 @@
             <i class="search icon"></i>
           </div>
         </form>
-        <div class="ui items">
+        <div class="ui middle aligned animated list">
           {{#each foundCustomers}}
           <div class="item">
-            <a class="ui tiny image">
-              <img src="/default-image.png">
-            </a>
+            {{> image imageId=profile.imageId classNames='avatar'}}
             <div class="content">
               <a class="header" href="{{pathFor 'scanned' type='userId' id=_id}}">{{profile.name}} {{contactEmail this}}</a>
-              <div class="description">
-                <p>Membre depuis {{fromNow createdAt}}</p>
-              </div>
+              <div class="description">Compte créé {{fromNow createdAt}}</div>
             </div>
           </div>
           {{/each}}
