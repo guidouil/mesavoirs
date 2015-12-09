@@ -20,12 +20,12 @@ Template.search.events({
 Template.search.onRendered(function () {
   Tracker.autorun(function () {
     if (Session.get('searchQuery')) {
-      Meteor.call('SearchPlaces', Session.get('searchQuery'), parseInt(Session.get('searchLimit')), function(error, results){
-        if(error){
-          console.log("error", error);
+      Meteor.call('SearchPlaces', Session.get('searchQuery'), parseInt(Session.get('searchLimit')), function (error, results) {
+        if (error) {
+          console.error(error);
         }
-        if(results){
-           Session.set('searchResults', results);
+        if (results ){
+          Session.set('searchResults', results);
         }
       });
     }
@@ -40,7 +40,7 @@ Template.search.onCreated = function () {
 };
 
 Template.search.onDestroyed(function () {
-  Session.set('searchQuery', '');
-  Session.set('searchResults', '');
-  Session.set('searchLimit', '');
+  // Session.set('searchQuery', '');
+  // Session.set('searchResults', '');
+  // Session.set('searchLimit', '');
 });

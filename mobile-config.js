@@ -5,7 +5,7 @@ App.info({
   author: 'guillaume@allocoupon.com',
   email: 'allo@allofid.com',
   website: 'http://allofid.com',
-  version: '0.1.2'
+  version: '0.1.4'
 });
 
 App.icons({
@@ -52,8 +52,13 @@ App.setPreference('StatusBarBackgroundColor', '#ffffff', 'ios');
 App.setPreference('Orientation', 'default');
 App.setPreference('Orientation', 'all', 'ios');
 
-App.accessRule('http://*.openfoodfacts.org/*');
-App.accessRule('http://*.meteor.com/*');
+App.accessRule('*.allofid.com/*');
+App.accessRule('*.mesavoirs.fr/*');
+App.accessRule('*.openfoodfacts.org/*');
+App.accessRule('*.meteor.com/*');
+App.accessRule('*.google.com/*');
+App.accessRule('*.googleapis.com/*');
+App.accessRule('*.gstatic.com/*');
 
 // upload bug
 App.accessRule('blob:*');

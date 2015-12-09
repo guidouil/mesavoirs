@@ -38,7 +38,7 @@
           </p>
           {{/if}}
           <p style="text-align: justify;text-justify: inter-word;">
-            Chaque tranche d'achat de {{formatMoney place.loyaltyCard.pointCost}} ajoute 1 point à la carte de fidélité. Quand la carte atteint {{place.loyaltyCard.size}} points, un avoir de {{formatMoney place.loyaltyCard.voucherValue}} est envoyé et le compte de points est remis a zéro.
+            Chaque tranche d'achat de {{{formatMoney place.loyaltyCard.pointCost}}} ajoute 1 point à la carte de fidélité. Quand la carte atteint {{place.loyaltyCard.size}} points, un avoir de {{{formatMoney place.loyaltyCard.voucherValue}}} est envoyé et le compte de points est remis a zéro.
           </p>
         {{/if}}
         <h4>Avoir{{#if customerEmail}} de {{customerEmail}}{{/if}}</h4>
@@ -46,7 +46,7 @@
             <div class="item" id="useVoucher" data-action="voucherHistory">
               <i class="large blue ticket icon"></i>
               <div class="content">
-                <div class="header">{{formatMoney voucher.value}}</div>
+                <div class="header">{{{formatMoney voucher.value}}}</div>
                 {{#if voucher.histories}}
                 <div class="extra">
                   <i class="grey history icon"></i>Mis à jour {{#if voucher.updatedAt}}{{fromNow voucher.updatedAt}}{{else}}{{fromNow voucher.createdAt}}{{/if}}

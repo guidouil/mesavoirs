@@ -79,7 +79,7 @@
             </div>
             <div class="description">
               <p style="text-align: justify;text-justify: inter-word;">
-                Chaque tranche d'achat de {{formatMoney loyaltyCard.pointCost}} ajoute 1 point à la carte de fidélité. Quand votre carte atteint {{loyaltyCard.size}} points, vous recevez automatiquement un avoir de {{formatMoney loyaltyCard.voucherValue}} et le compte de points est remis a zéro.
+                Chaque tranche d'achat de {{{formatMoney loyaltyCard.pointCost}}} ajoute 1 point à la carte de fidélité. Quand votre carte atteint {{loyaltyCard.size}} points, vous recevez automatiquement un avoir de {{{formatMoney loyaltyCard.voucherValue}}} et le compte de points est remis a zéro.
               </p>
             </div>
           </div>
@@ -88,7 +88,7 @@
       {{#if myVoucher}}
         <div class="item" data-action="voucherHistory">
           <div class="content">
-            <a class="header"><i class=" blue ticket icon"></i> {{formatMoney myVoucher.value}} d'avoir ici</a>
+            <a class="header"><i class=" blue ticket icon"></i> {{{formatMoney myVoucher.value}}} d'avoir ici</a>
             <div class="meta">
               &nbsp;<i class="grey history icon"></i> Mis à jour {{#if myVoucher.updatedAt}}{{fromNow myVoucher.updatedAt}}{{else}}{{fromNow myVoucher.createdAt}}{{/if}}
             </div>
