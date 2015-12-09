@@ -14,8 +14,7 @@
           <div class="content">
             <a class="header" href="{{pathFor 'place' placeId=placeId}}">{{name}}</a>
             <div class="description">
-              {{points}} / {{size}} point{{#if greaterThan size 1}}s{{/if}}<br>
-              Mise à jour {{#if updatedAt}}{{fromNow updatedAt}}{{else}}{{fromNow createdAt}}{{/if}}
+              {{points}} / {{size}} point{{#if greaterThan size 1}}s{{/if}} <small>Mise à jour {{#if updatedAt}}{{fromNow updatedAt}}{{else}}{{fromNow createdAt}}{{/if}}</small>
             </div>
           </div>
         </div>
@@ -40,8 +39,7 @@
           <div class="content">
             <a class="header" href="{{pathFor 'card' cardId=_id}}">{{name}}</a>
             <div class="description">
-              {{code}} ({{format}})<br>
-              Mise à jour {{#if updatedAt}}{{fromNow updatedAt}}{{else}}{{fromNow createdAt}}{{/if}}
+              {{reFormat format}} <small>Mise à jour {{#if updatedAt}}{{fromNow updatedAt}}{{else}}{{fromNow createdAt}}{{/if}}</small>
             </div>
           </div>
         </div>

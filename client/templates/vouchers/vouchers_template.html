@@ -7,8 +7,7 @@
         <i class="large blue ticket icon"></i>
         <div class="content">
           <a class="header" href="{{pathFor 'place' placeId=placeId}}">{{name}}</a>
-          <div class="description">{{{formatMoney value}}}</div>
-          Mis à jour {{#if updatedAt}}{{fromNow updatedAt}}{{else}}{{fromNow createdAt}}{{/if}}
+          <div class="description">{{{formatMoney value}}} <small>Mis à jour {{#if updatedAt}}{{fromNow updatedAt}}{{else}}{{fromNow createdAt}}{{/if}}</small></div>
         </div>
       </div>
       {{else}}
