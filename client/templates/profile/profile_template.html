@@ -1,7 +1,10 @@
 <template name='profile'>
   <div class="ui container">
     <div class="ui center aligned basic segment">
-      <a href="{{pathFor 'editProfile'}}" class="teal right floated ui circular icon button"><i class="pencil icon"></i></a><br>
+      {{#if isInRole 'allo'}}
+      <a href="{{pathFor 'allo'}}" class="orange left floated ui circular icon button"><i class="large spy icon"></i></a>
+      {{/if}}
+      <a href="{{pathFor 'editProfile'}}" class="teal right floated ui circular icon button"><i class="large pencil icon"></i></a><br>
       <h2 class="ui center aligned icon header">
         {{#if user.profile.imageId}}
           {{> image imageId=user.profile.imageId classNames='tiny rounded centered'}}

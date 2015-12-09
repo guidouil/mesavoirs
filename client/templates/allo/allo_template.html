@@ -1,0 +1,9 @@
+<template name='allo'>
+  {{#if isInRole 'allo'}}
+    <div class="ui main container">
+      <div class="ui raised center aligned segment">
+        <a class="ui button fluid teal" href="{{pathFor 'cardsBrands'}}">Gérez les marques de cartes</a>
+      </div>
+    </div>
+  {{/if}}
+</template>

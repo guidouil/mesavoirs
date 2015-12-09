@@ -1,0 +1,27 @@
+<template name='cardBrand'>
+  {{#if isInRole 'allo'}}
+    <div class="ui main container">
+      <div class="ui basic segment">
+        {{#if imageId}}
+          {{> image imageId=imageId classNames='small right floated'}}
+        {{/if}}
+        {{#if _id}}
+        {{> imageEdit imageId=imageId}}
+        {{/if}}
+        <h3 class="ui header">
+          {{#if _id}}
+            Editer la marque de carte {{name}}
+          {{else}}
+            Ajouter une marque de carte
+          {{/if}}
+        </h3>
+        {{#autoForm id="editCardBrand" type=type collection="CardsBrands" enctype="multipart/form-data" doc=this}}
+          {{> afQuickField placeholder="schemaLabel" name="name" }}
+          {{> afQuickField placeholder="schemaLabel" name="baseline" }}
+          <button class="fluid ui positive button" type="submit">Enregistrer</button>
+          <a class="fluid ui button" href="{{pathFor 'cardsBrands'}}">Annuler</a>
+        {{/autoForm}}
+      </div>
+    </div>
+  {{/if}}
+</template>

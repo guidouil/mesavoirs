@@ -1,0 +1,21 @@
+<template name='cardsBrands'>
+  {{#if isInRole 'allo'}}
+    <div class="ui main container">
+      <div class="ui basic segment">
+        <a href="{{pathFor 'cardBrand'}}" class="green right floated ui circular icon button"><i class=" plus icon"></i></a>
+        <h3 class="ui header">Marques des cartes personnelles</h3>
+        <div class="ui middle aligned animated list">
+          {{#each cardsBrands}}
+          <div class="item">
+            {{> image imageId=imageId classNames='avatar'}}
+            <div class="content">
+              <a class="header" href="{{pathFor 'cardBrand' cardBrandId=_id}}">{{name}} <small>{{baseline}}</small></a>
+              <div class="description"><small>Mise à jour {{#if updatedAt}}{{fromNow updatedAt}}{{else}}{{fromNow createdAt}}{{/if}}</small></div>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  {{/if}}
+</template>

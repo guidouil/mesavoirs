@@ -87,3 +87,12 @@ Meteor.publish('placeCounts', function (placeId) {
     Counts.publish(this, 'loyaltyCardCount', LoyaltyCards.find({ placeId: placeId }));
   }
 });
+
+Meteor.publish('CardsBrands', function () {
+  return CardsBrands.find({});
+});
+
+Meteor.publish('CardBrand', function (cardBrandId) {
+  check(cardBrandId, String);
+  return CardsBrands.find({ _id: cardBrandId }, { reactive: true });
+});

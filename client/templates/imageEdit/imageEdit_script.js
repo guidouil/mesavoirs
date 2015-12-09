@@ -15,12 +15,16 @@ Template.imageEdit.events({
             if (imageId) {
               var placeId = Router.current().params.placeId;
               var cardId = Router.current().params.cardId;
+              var cardBrandId = Router.current().params.cardBrandId;
               if (placeId) {
                 Places.update(placeId, {$set: {imageId: imageId}});
                 Router.go('place', {placeId: placeId});
               } else if (cardId) {
                 PrivateLoyaltyCards.update(cardId, {$set: {imageId: imageId}});
                 Router.go('card', {cardId: cardId});
+              } else if (cardBrandId) {
+                CardsBrands.update(cardBrandId, {$set: {imageId: imageId}});
+                Router.go('cardsBrands');
               } else {
                 Meteor.users.update( { _id: Meteor.userId() }, { $set: { 'profile.imageId': imageId }});
                 Router.go('profile');
@@ -36,6 +40,7 @@ Template.imageEdit.events({
   'change #imageFile': function (event, tmpl) {
     var placeId = Router.current().params.placeId;
     var cardId = Router.current().params.cardId;
+    var cardBrandId = Router.current().params.cardBrandId;
     FS.Utility.eachFile(event, function (file) {
       Images.insert(file, function (err, fileObj) {
         if (err){
@@ -51,6 +56,8 @@ Template.imageEdit.events({
           } else if (cardId) {
             PrivateLoyaltyCards.update(cardId, {$set: imageId});
             Router.go('card', {cardId: cardId});
+          } else if (cardBrandId) {
+            CardsBrands.update(cardBrandId, {$set: imageId});
           } else {
             Meteor.users.update( { _id: Meteor.userId() }, { $set: { 'profile.imageId': fileObj._id }});
             Router.go('profile');
@@ -63,10 +70,13 @@ Template.imageEdit.events({
     Images.remove({_id: tmpl.data.imageId});
     var placeId = Router.current().params.placeId;
     var cardId = Router.current().params.cardId;
+    var cardBrandId = Router.current().params.cardBrandId;
     if (placeId) {
       Places.update({_id: placeId}, {$unset: {imageId: ''}});
     } else if (cardId) {
       PrivateLoyaltyCards.update({_id: cardId}, {$unset: {imageId: ''}});
+    } else if (cardBrandId) {
+      CardsBrands.update({_id: cardBrandId}, {$unset: {imageId: ''}});
     } else {
       Meteor.users.update( { _id: Meteor.userId() }, { $unset: { 'profile.imageId': '' }});
     }
