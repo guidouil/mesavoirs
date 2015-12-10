@@ -89,7 +89,7 @@ Meteor.publish('placeCounts', function (placeId) {
 });
 
 Meteor.publish('CardsBrands', function () {
-  return CardsBrands.find({});
+  return CardsBrands.find({}, {sort: {name: 1}});
 });
 
 Meteor.publish('CardBrand', function (cardBrandId) {

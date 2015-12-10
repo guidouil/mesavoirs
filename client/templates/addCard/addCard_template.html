@@ -9,7 +9,8 @@
       {{> afQuickField placeholder="schemaLabel" name="code" value=cardCode}}
       {{> afQuickField placeholder="schemaLabel" name="format" value=cardFormat}}
       {{> afQuickField placeholder="schemaLabel" name="points"}}
-      {{> afQuickField placeholder="schemaLabel" name="notes"}}
+      {{> afQuickField placeholder="schemaLabel" name="notes" id="cardNotes"}}
+      {{> afQuickField  name="imageId" class="hidden" id="imageId"}}
       <button class="fluid ui positive button" type="submit">Enregistrer</button>
       <a class="fluid ui button" href="{{pathFor 'loyaltyCards'}}">Annuler</a>
     {{/autoForm}}

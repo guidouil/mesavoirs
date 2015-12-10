@@ -1,6 +1,6 @@
 Template.cardsBrands.helpers({
   cardsBrands: function () {
-    return CardsBrands.find({}, {$sort:{ name: 1}}).fetch();
+    return CardsBrands.find({}, {sort:{ name: 1}}).fetch();
   }
 });
 
