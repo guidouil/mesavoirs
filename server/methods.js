@@ -70,6 +70,7 @@ Meteor.methods({
           'points': points,
           'size': place.loyaltyCard.size,
           'creatorId': this.userId,
+          'imageId': place.imageId,
           'histories': [history]
         };
         LoyaltyCards.insert(newLoyaltyCard);
@@ -120,6 +121,7 @@ Meteor.methods({
           'creatorId': this.userId,
           'value': value,
           'available': true,
+          'imageId': place.imageId,
           'histories': [history]
         };
         Vouchers.insert(voucher);
@@ -147,12 +149,23 @@ Meteor.methods({
     check(placeId, String);
     if (isPlaceOwner(placeId, this.userId)) {
       var place = Places.findOne({_id: placeId});
-      if (place.loyaltyCard.size > 0) {
+      if (place.loyaltyCard.enabled && place.loyaltyCard.size > 0) {
         LoyaltyCards.update({placeId: placeId}, {$set:{
-          name: place.name,
-          size: place.loyaltyCard.size
-        }});
+          'name': place.name,
+          'imageId': place.imageId,
+          'size': place.loyaltyCard.size
+        }}, {multi: true});
       }
+    }
+  },
+  updateVouchers: function (placeId) {
+    check(placeId, String);
+    if (isPlaceOwner(placeId, this.userId)) {
+      var place = Places.findOne({_id: placeId});
+      Vouchers.update({placeId: placeId}, {$set:{
+        'name': place.name,
+        'imageId': place.imageId,
+      }}, {multi: true});
     }
   },
   addPlaceCustomer: function (placeId, customerId) {

@@ -10,7 +10,11 @@
       <div class="ui relaxed divided list">
         {{#each loyaltyCards}}
         <div class="item">
-          <i class="large yellow star icon"></i>
+          {{#if imageId}}
+            {{> image imageId=imageId classNames='mini rounded'}}
+          {{else}}
+            <i class="large yellow star icon"></i>
+          {{/if}}
           <div class="content">
             <a class="header" href="{{pathFor 'place' placeId=placeId}}">{{name}}</a>
             <div class="description">
@@ -35,7 +39,11 @@
       <div class="ui relaxed divided list">
         {{#each privateLoyaltyCards}}
         <div class="item">
-          <i class="large yellow star icon"></i>
+          {{#if imageId}}
+            {{> image imageId=imageId classNames='mini rounded'}}
+          {{else}}
+            <i class="large yellow star icon"></i>
+          {{/if}}
           <div class="content">
             <a class="header" href="{{pathFor 'card' cardId=_id}}">{{name}}</a>
             <div class="description">
