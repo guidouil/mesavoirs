@@ -168,6 +168,17 @@ Meteor.methods({
       }}, {multi: true});
     }
   },
+  updatePrivateLoyaltyCards: function (cardBrandId) {
+    check(cardBrandId, String);
+    var cardBrand = cardsBrands.findOne({_id: cardBrandId});
+    if (cardBrand) {
+      PrivateLoyaltyCards.update({cardBrandId: cardBrand._id}, {$set:{
+        'name': cardBrand.name,
+        'note': cardBrand.baseline,
+        'imageId': cardBrand.imageId
+      }});
+    }
+  },
   addPlaceCustomer: function (placeId, customerId) {
     check(placeId, String);
     check(customerId, String);

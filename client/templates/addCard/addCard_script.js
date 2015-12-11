@@ -19,6 +19,7 @@ Template.addCard.events({
     if (doc.imageId) {
       template.find('#imageId').value = doc.imageId;
     }
+    template.find('#cardBrandId').value = doc._id;
   }
 });
 

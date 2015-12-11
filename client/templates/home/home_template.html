@@ -7,7 +7,7 @@
         <button class="ui button fluid positive" data-action="scan">Scanner un code client</button>
         <br>
         {{/if}}
-        <a class="ui button fluid teal" href="{{pathFor 'customers'}}">Gérez vos clients</a>
+        <a class="ui button fluid teal" href="{{pathFor 'customers' placeId=currentUser.profile.currentPlace}}">Gérez vos clients</a>
         <br>
         <a class="ui button fluid blue" href="{{pathFor 'myPlaces'}}">Gérez vos commerces</a>
         <br>
