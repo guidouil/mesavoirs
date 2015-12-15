@@ -1,0 +1,31 @@
+<template name='editPromotion'>
+  {{#if isInRole 'owners'}}
+    <div class="ui main container">
+      <div class="ui basic segment">
+        {{#if imageId}}
+          {{> image imageId=imageId classNames='small right floated'}}
+        {{/if}}
+        {{#if _id}}
+        {{> imageEdit imageId=imageId}}
+        {{/if}}
+        <h3 class="ui header">
+          {{#if _id}}
+            Editer la promotion {{name}}
+          {{else}}
+            Ajouter une promotion
+          {{/if}}
+        </h3>
+        {{#autoForm id="editPromotion" type=type collection="Promotions" enctype="multipart/form-data" doc=this}}
+          {{> afQuickField placeholder="schemaLabel" name="name" }}
+          {{> afQuickField placeholder="schemaLabel" name="description" }}
+          {{> afQuickField placeholder="schemaLabel" name="voucherValue" }}
+          {{> afQuickField placeholder="schemaLabel" name="start" }}
+          {{> afQuickField placeholder="schemaLabel" name="stop" }}
+          {{> afQuickField name="placeId" value=currentUser.profile.currentPlace}}
+          <button class="fluid ui positive button" type="submit">Enregistrer</button>
+          <a class="fluid ui button" href="{{pathFor 'cardsBrands'}}">Annuler</a>
+        {{/autoForm}}
+      </div>
+    </div>
+  {{/if}}
+</template>

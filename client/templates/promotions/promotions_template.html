@@ -1,0 +1,19 @@
+<template name='promotions'>
+  <div class="ui main container">
+    <div class="ui basic segment">
+      <a href="{{pathFor 'editPromotion'}}" class="green right floated ui circular icon button"><i class=" plus icon"></i></a>
+      <h3 class="UI header">Mes promotions</h3>
+      <div class="ui middle aligned animated list">
+        {{#each promotions}}
+        <div class="item">
+          {{> image imageId=imageId classNames='mini rounded'}}
+          <div class="content">
+            <a class="header" href="{{pathFor 'promotion' promotionId=_id}}">{{name}} <small>{{description}}</small></a>
+            <div class="description"><small>Début {{fromNow start}}, fin {{fromNow stop}}</small></div>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</template>

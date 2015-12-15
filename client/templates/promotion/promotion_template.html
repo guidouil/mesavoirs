@@ -1,0 +1,14 @@
+<template name='promotion'>
+  <div class="ui main container">
+    <div class="ui basic section">
+      {{> image imageId=imageId classNames='ui centered medium rounded image'}}
+      <h3 class="ui header">{{name}}</h3>
+      <p>
+        {{description}}<br>
+        Rapporte : {{{formatMoney voucherValue}}}<br>
+        Début : {{fromNow start}}<br>
+        Fin : {{fromNow stop}}<br>
+      </p>
+    </div>
+  </div>
+</template>

@@ -13,6 +13,14 @@ UI.registerHelper('isOwner', function () {
   return _.contains( this.owners, Meteor.userId() );
 });
 
+UI.registerHelper('isPlaceOwner', function (placeId) {
+  var place = Places.findOne({_id: placeId});
+  if (place) {
+    return _.contains( place.owners, Meteor.userId() );
+  }
+});
+
+
 UI.registerHelper('isSellerOrOwner', function () {
   return _.contains( this.owners, Meteor.userId() ) || _.contains( this.sellers, Meteor.userId() );
 });

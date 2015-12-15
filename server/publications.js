@@ -96,3 +96,12 @@ Meteor.publish('CardBrand', function (cardBrandId) {
   check(cardBrandId, String);
   return CardsBrands.find({ _id: cardBrandId }, { reactive: true });
 });
+
+Meteor.publish('Promotions', function () {
+  return Promotions.find({}, {sort: {start: -1, end: -1}});
+});
+
+Meteor.publish('Promotion', function (promotionId) {
+  check(promotionId, String);
+  return Promotions.find({ _id: promotionId }, { reactive: true });
+});
