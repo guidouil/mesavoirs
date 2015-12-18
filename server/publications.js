@@ -97,8 +97,11 @@ Meteor.publish('CardBrand', function (cardBrandId) {
   return CardsBrands.find({ _id: cardBrandId }, { reactive: true });
 });
 
-Meteor.publish('Promotions', function () {
-  return Promotions.find({}, {sort: {start: -1, end: -1}});
+Meteor.publish('Promotions', function (placeId) {
+  check(placeId, String);
+  if (isPlaceOwner(placeId, this.userId) || isPlaceSeller(placeId, this.userId)) {
+    return Promotions.find({placeId: placeId}, {sort: {start: -1, end: -1}});
+  }
 });
 
 Meteor.publish('Promotion', function (promotionId) {

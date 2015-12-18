@@ -2,6 +2,9 @@
   <div class="ui main container">
     <div class="ui basic section">
       {{> image imageId=imageId classNames='ui centered medium rounded image'}}
+      {{#if isPlaceOwner placeId}}
+      <a href="{{pathFor 'editPromotion' promotionId=_id}}" class="teal right floated ui circular icon button"><i class="pencil icon"></i></a>
+      {{/if}}
       <h3 class="ui header">{{name}}</h3>
       <p>
         {{description}}<br>
