@@ -1,6 +1,9 @@
 Template.customers.helpers({
   foundCustomers: function () {
     return Session.get('foundCustomers');
+  },
+  place: function () {
+    return Places.findOne({_id: Router.current().params.placeId});
   }
 });
 
@@ -36,5 +39,6 @@ Template.customers.onRendered(function () {
 });
 
 Template.customers.onCreated(function () {
-  setDefaultCurrentPlace();
+  var template = this;
+  template.subscribe('Place', Router.current().params.placeId);
 });

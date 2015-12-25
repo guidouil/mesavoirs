@@ -1,6 +1,7 @@
 <template name='customers'>
   <div class="ui main container">
     <div class="ui basic segment">
+      {{#with place}}
       <h3>Clients {{name}}</h3>
       {{#if customers}}
         <select id="customer" name="customer" class="fluid ui dropdown">
@@ -37,7 +38,7 @@
           </div>
         </h2>
       {{/if}}
-
+      {{/with}}
     </div>
   </div>
 </template>

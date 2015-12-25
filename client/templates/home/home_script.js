@@ -36,6 +36,8 @@ Template.home.events({
   }
 });
 
-Template.home.onRendered(function () {
-
+Template.home.onCreated(function () {
+  var template = this;
+  template.subscribe('MyPlaces');
+  setDefaultCurrentPlace();
 });

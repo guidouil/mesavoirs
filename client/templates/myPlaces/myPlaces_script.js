@@ -16,10 +16,8 @@ Template.myPlaces.events({
   }
 });
 
-Template.myPlaces.onRendered(function () {
-
-});
-
 Template.myPlaces.onCreated(function () {
+  var template = this;
+  template.subscribe('MyPlaces');
   setDefaultCurrentPlace();
 });

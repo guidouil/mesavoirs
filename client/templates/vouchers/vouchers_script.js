@@ -9,3 +9,8 @@ Template.vouchers.events({
 
 Template.vouchers.onRendered(function () {
 });
+
+Template.vouchers.onCreated(function () {
+  var template = this;
+  template.subscribe('UserVouchers');
+});

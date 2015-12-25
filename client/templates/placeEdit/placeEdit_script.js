@@ -1,4 +1,7 @@
 Template.placeEdit.helpers({
+  place: function () {
+    return Places.findOne({_id: Router.current().params.placeId});
+  }
 });
 
 Template.placeEdit.events({
@@ -27,4 +30,9 @@ Template.placeEdit.events({
 });
 
 Template.placeEdit.onRendered(function () {
+});
+
+Template.placeEdit.onCreated(function () {
+  var template = this;
+  template.subscribe('MyPlace', Router.current().params.placeId);
 });

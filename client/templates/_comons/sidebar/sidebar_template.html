@@ -11,7 +11,7 @@
           Scan
         </a>
       {{/if}}
-      <a class="item {{isActiveRoute 'customers'}}" href="{{pathFor 'customers'}}">
+      <a class="item {{isActiveRoute 'customers'}}" href="{{pathFor 'customers' placeId=currentUser.profile.currentPlace}}">
         <i class="users icon"></i>
         Clients
       </a>

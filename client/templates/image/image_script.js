@@ -12,7 +12,8 @@ Template.image.helpers({
 });
 
 Template.image.onCreated(function () {
-  if (this.data.imageId) {
-    Meteor.subscribe('Image', this.data.imageId);
+  var template = this;
+  if (template.data.imageId) {
+    template.subscribe('Image', template.data.imageId);
   }
 });

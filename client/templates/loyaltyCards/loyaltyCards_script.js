@@ -37,3 +37,9 @@ Template.loyaltyCards.onRendered(function () {
   }
   $('#loyaltyTabs .item').tab();
 });
+
+Template.loyaltyCards.onCreated(function () {
+  var template = this;
+  template.subscribe('UserLoyaltyCards');
+  template.subscribe('PrivateLoyaltyCards');
+});

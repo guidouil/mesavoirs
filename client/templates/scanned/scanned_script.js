@@ -168,6 +168,8 @@ Template.scanned.onRendered(function () {
 });
 
 Template.scanned.onCreated(function () {
+  var template = this;
+  template.subscribe('MyPlaces');
   if (Session.equals('scanCard', true)) {
     Session.set('cardCode', Router.current().params.id);
     Session.set('cardFormat', Router.current().params.type);

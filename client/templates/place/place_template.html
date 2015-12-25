@@ -1,5 +1,6 @@
 <template name='place'>
   <div class="ui main container">
+    {{#with place}}
     {{#if isSellerOrOwner}}
     <div class="ui raised segment">
       {{#if isOwner}}
@@ -97,6 +98,7 @@
       {{/if}}
       </div>
     </div>
+    {{/with}}
   </div>
   {{> histories}}
 </template>

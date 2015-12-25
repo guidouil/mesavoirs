@@ -16,6 +16,13 @@ Template.place.helpers({
     if (user.profile && user.profile.currentPlace) {
       return user.profile.currentPlace === Router.current().params.placeId;
     }
+  },
+  place: function () {
+    var place = Places.findOne({_id: Router.current().params.placeId});
+    if (place) {
+      Session.set('placeName', place.name);
+      return place;
+    }
   }
 });
 
@@ -57,5 +64,9 @@ Template.place.onRendered(function () {
 });
 
 Template.place.onCreated(function () {
-  Session.set('placeName', this.data.name);
+  var template = this;
+  template.subscribe('Place', Router.current().params.placeId);
+  template.subscribe('placeCounts', Router.current().params.placeId);
+  template.subscribe('UserPlaceVouchers', Router.current().params.placeId, Meteor.userId());
+  template.subscribe('UserPlaceLoyaltyCard', Router.current().params.placeId, Meteor.userId());
 });
