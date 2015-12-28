@@ -1,5 +1,6 @@
 <template name='cardBrand'>
   {{#if isInRole 'allo'}}
+  {{#with cardBrand}}
     <div class="ui main container">
       <div class="ui basic segment">
         {{#if imageId}}
@@ -23,5 +24,6 @@
         {{/autoForm}}
       </div>
     </div>
+  {{/with}}
   {{/if}}
 </template>

@@ -1,4 +1,5 @@
 <template name='editCard'>
+  {{#with card}}
   <div class="ui container">
     {{#if imageId}}
       {{> image imageId=imageId classNames='small right floated'}}
@@ -18,4 +19,5 @@
       <a class="fluid ui button" href="{{pathFor 'loyaltyCards'}}">Annuler</a>
     {{/autoForm}}
   </div>
+  {{/with}}
 </template>

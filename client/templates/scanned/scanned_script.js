@@ -15,7 +15,9 @@ Template.scanned.helpers({
     return Session.get('customerImageId');
   },
   place: function () {
-    return Places.findOne({_id: Session.get('placeId')});
+    if (Session.get('placeId')) {
+      return Places.findOne({_id: Session.get('placeId')});
+    }
   },
   userPoints: function () {
     var loyaltyCard = LoyaltyCards.findOne({placeId: Session.get('placeId'), userId: Session.get('customerId')});
@@ -183,9 +185,10 @@ Template.scanned.onCreated(function () {
   setDefaultCurrentPlace();
   var user = Meteor.user();
   if (user.profile && user.profile.currentPlace) {
+    Session.set('placeId', user.profile.currentPlace);
+    template.subscribe('MyPlace', user.profile.currentPlace);
     var place = Places.findOne({_id: user.profile.currentPlace, $or: [{owners: Meteor.userId()}, {sellers: Meteor.userId()}]});
     if (place) {
-      Session.set('placeId', place._id);
       Session.set('placeName', place.name);
     }
   }

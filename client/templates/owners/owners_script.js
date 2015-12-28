@@ -4,6 +4,9 @@ Template.owners.helpers({
   },
   sellers: function () {
     return Session.get('sellers');
+  },
+  place: function () {
+    return Places.findOne({_id: Router.current().params.placeId});
   }
 });
 
@@ -69,7 +72,9 @@ Template.owners.onRendered(function () {
 });
 
 Template.owners.onCreated(function () {
-  Meteor.call('getPlaceOwnersAndSellers', this.data._id, function (err, result) {
+  var template = this;
+  this.subscribe('MyPlace', Router.current().params.placeId);
+  Meteor.call('getPlaceOwnersAndSellers', Router.current().params.placeId, function (err, result) {
     if (result.owners) {
       Session.set('owners', result.owners);
     }

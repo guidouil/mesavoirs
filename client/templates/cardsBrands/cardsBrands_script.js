@@ -7,5 +7,7 @@ Template.cardsBrands.helpers({
 Template.cardsBrands.events({
 });
 
-Template.cardsBrands.onRendered(function ( ){
+Template.cardsBrands.onCreated(function () {
+  var template = this;
+  template.subscribe('CardsBrands');
 });

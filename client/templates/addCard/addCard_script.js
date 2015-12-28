@@ -23,5 +23,7 @@ Template.addCard.events({
   }
 });
 
-Template.addCard.onRendered(function ( ){
+Template.addCard.onCreated(function () {
+  var template = this;
+  template.subscribe('CardsBrands');
 });
