@@ -20,6 +20,21 @@ Template.addCard.events({
       template.find('#imageId').value = doc.imageId;
     }
     template.find('#cardBrandId').value = doc._id;
+    Session.set('cardBrand', doc);
+  }
+});
+
+Template.addCard.onRendered(function () {
+  if (Session.get('cardBrand')) {
+    var doc = Session.get('cardBrand');
+    $('#cardName').val(doc.name);
+    if (doc.baseline) {
+      $('#cardNotes').val(doc.baseline);
+    }
+    if (doc.imageId) {
+      $('#imageId').val(doc.imageId);
+    }
+    $('#cardBrandId').val(doc._id);
   }
 });
 

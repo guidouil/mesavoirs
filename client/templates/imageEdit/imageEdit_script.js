@@ -52,12 +52,16 @@ Template.imageEdit.events({
           $(event.currentTarget).replaceWith($(event.currentTarget).clone()); // empty file form
           if (placeId) {
             Places.update(placeId, {$set: imageId});
+            Meteor.call('updateLoyaltyCards', placeId);
+            Meteor.call('updateVouchers', placeId);
             Router.go('place', {placeId: placeId});
           } else if (cardId) {
             PrivateLoyaltyCards.update(cardId, {$set: imageId});
             Router.go('card', {cardId: cardId});
           } else if (cardBrandId) {
             CardsBrands.update(cardBrandId, {$set: imageId});
+            Meteor.call('updatePrivateLoyaltyCards', cardBrandId);
+            Router.go('cardsBrands');
           } else {
             Meteor.users.update( { _id: Meteor.userId() }, { $set: { 'profile.imageId': fileObj._id }});
             Router.go('profile');

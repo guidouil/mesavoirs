@@ -170,7 +170,7 @@ Meteor.methods({
   },
   updatePrivateLoyaltyCards: function (cardBrandId) {
     check(cardBrandId, String);
-    var cardBrand = cardsBrands.findOne({_id: cardBrandId});
+    var cardBrand = CardsBrands.findOne({_id: cardBrandId});
     if (cardBrand) {
       PrivateLoyaltyCards.update({cardBrandId: cardBrand._id}, {$set:{
         'name': cardBrand.name,

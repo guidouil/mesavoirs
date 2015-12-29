@@ -12,9 +12,26 @@ Template.cardBrand.helpers({
 });
 
 Template.cardBrand.events({
+  'click .deleteCardBrand': function () {
+    swal({
+      title: 'Etes-vous sur ?',
+      text: 'Effacer un marque est définitif.',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#DD6B55',
+      confirmButtonText: 'Oui',
+      cancelButtonText: 'Non',
+      closeOnConfirm: true
+    }, function () {
+      CardsBrands.remove({_id: Router.current().params.cardBrandId});
+      Router.go('cardsBrands');
+    });
+  }
 });
 
 Template.cardBrand.onCreated(function () {
   var template = this;
-  template.subscribe('CardBrand', Router.current().params.cardBrandId);
+  if (Router.current().params.cardBrandId) {
+    template.subscribe('CardBrand', Router.current().params.cardBrandId);
+  }
 });
