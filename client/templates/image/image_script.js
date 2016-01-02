@@ -5,7 +5,6 @@ Template.image.helpers({
       if (image && image.isUploaded()) {
         return Meteor.absoluteUrl() + 'cfs/files/images/' + this.imageId;
       }
-
     }
     return Meteor.absoluteUrl() + 'default-image.png';
   }

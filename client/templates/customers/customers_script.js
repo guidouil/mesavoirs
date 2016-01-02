@@ -31,7 +31,7 @@ Template.customers.events({
 });
 
 Template.customers.onRendered(function () {
-  $('select').dropdown();
+  // $('select').dropdown();
   var user = Meteor.user();
   if (user.profile && user.profile.currentPlace && !Router.current().params.placeId) {
     Router.go('customers', {placeId: user.profile.currentPlace});

@@ -1,6 +1,10 @@
 Template.imageEdit.events({
   'click [data-action=uploadImage]': function () {
     if (Meteor.isCordova) {
+      var placeId = Router.current().params.placeId;
+      var cardId = Router.current().params.cardId;
+      var cardBrandId = Router.current().params.cardBrandId;
+
       var cameraOptions = {
         width: 600,
         height: 600,
@@ -8,29 +12,23 @@ Template.imageEdit.events({
       };
       MeteorCamera.getPicture(cameraOptions, function (error, data) {
         if (!error) {
-          Meteor.call('uploadImage', data, function (error, imageId) {
-            if (error) {
-              alert('err: '+error);
+          Session.set('imageTemp', data);
+          if (Session.get('imageTemp') !== '') {
+            $(event.currentTarget).replaceWith($(event.currentTarget).clone()); // empty file form
+            if (placeId) {
+              Session.set('imgType', 'place');
+              Session.set('theId', placeId);
+            } else if (cardId) {
+              Session.set('imgType', 'card');
+              Session.set('theId', cardId);
+            } else if (cardBrandId) {
+              Session.set('imgType', 'cardBrand');
+              Session.set('theId', cardBrandId);
+            } else {
+              Session.set('imgType', 'profile');
             }
-            if (imageId) {
-              var placeId = Router.current().params.placeId;
-              var cardId = Router.current().params.cardId;
-              var cardBrandId = Router.current().params.cardBrandId;
-              if (placeId) {
-                Places.update(placeId, {$set: {imageId: imageId}});
-                Router.go('place', {placeId: placeId});
-              } else if (cardId) {
-                PrivateLoyaltyCards.update(cardId, {$set: {imageId: imageId}});
-                Router.go('card', {cardId: cardId});
-              } else if (cardBrandId) {
-                CardsBrands.update(cardBrandId, {$set: {imageId: imageId}});
-                Router.go('cardsBrands');
-              } else {
-                Meteor.users.update( { _id: Meteor.userId() }, { $set: { 'profile.imageId': imageId }});
-                Router.go('profile');
-              }
-            }
-          });
+            Router.go('cropper');
+          }
         }
       });
     } else {
@@ -41,34 +39,29 @@ Template.imageEdit.events({
     var placeId = Router.current().params.placeId;
     var cardId = Router.current().params.cardId;
     var cardBrandId = Router.current().params.cardBrandId;
-    FS.Utility.eachFile(event, function (file) {
-      Images.insert(file, function (err, fileObj) {
-        if (err){
-          console.error(err);
+
+    var file = tmpl.find('#imageFile').files[0];
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      Session.set('imageTemp', e.target.result);
+      if (Session.get('imageTemp') !== '') {
+        $(event.currentTarget).replaceWith($(event.currentTarget).clone()); // empty file form
+        if (placeId) {
+          Session.set('imgType', 'place');
+          Session.set('theId', placeId);
+        } else if (cardId) {
+          Session.set('imgType', 'card');
+          Session.set('theId', cardId);
+        } else if (cardBrandId) {
+          Session.set('imgType', 'cardBrand');
+          Session.set('theId', cardBrandId);
         } else {
-          var imageId = {
-            imageId: fileObj._id
-          };
-          $(event.currentTarget).replaceWith($(event.currentTarget).clone()); // empty file form
-          if (placeId) {
-            Places.update(placeId, {$set: imageId});
-            Meteor.call('updateLoyaltyCards', placeId);
-            Meteor.call('updateVouchers', placeId);
-            Router.go('place', {placeId: placeId});
-          } else if (cardId) {
-            PrivateLoyaltyCards.update(cardId, {$set: imageId});
-            Router.go('card', {cardId: cardId});
-          } else if (cardBrandId) {
-            CardsBrands.update(cardBrandId, {$set: imageId});
-            Meteor.call('updatePrivateLoyaltyCards', cardBrandId);
-            Router.go('cardsBrands');
-          } else {
-            Meteor.users.update( { _id: Meteor.userId() }, { $set: { 'profile.imageId': fileObj._id }});
-            Router.go('profile');
-          }
+          Session.set('imgType', 'profile');
         }
-      });
-    });
+        Router.go('cropper');
+      }
+    };
+    reader.readAsDataURL(file);
   },
   'click [data-action=deleteImage]': function (event, tmpl) {
     Images.remove({_id: tmpl.data.imageId});

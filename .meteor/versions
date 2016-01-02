@@ -8,7 +8,10 @@ accounts-ui@1.1.6
 accounts-ui-unstyled@1.1.8
 alanning:roles@1.2.14
 aldeed:autoform@5.8.1
-aldeed:collection2@2.7.1
+aldeed:collection2@2.8.0
+aldeed:collection2-core@1.0.0
+aldeed:schema-deny@1.0.1
+aldeed:schema-index@1.0.1
 aldeed:simple-schema@1.5.3
 anti:fake@0.4.1
 autoupdate@1.2.4
@@ -86,6 +89,7 @@ iron:location@1.0.11
 iron:middleware-stack@1.0.11
 iron:router@1.0.12
 iron:url@1.0.11
+jonblum:jquery-cropper@2.2.3
 jquery@1.11.4
 khrone:img-qrcode@0.1.1
 lai:collection-extensions@0.2.1_1
