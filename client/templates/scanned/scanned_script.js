@@ -198,9 +198,9 @@ Template.scanned.onCreated(function () {
 });
 
 Template.scanned.onDestroyed(function () {
-  Session.set('placeId', null);
-  Session.set('customerId', null);
-  Session.set('customerEmail', null);
-  Session.set('customerName', null);
-  Session.set('customerImageId', null);
+  Session.set('placeId', false);
+  Session.set('customerId', false);
+  Session.set('customerEmail', false);
+  Session.set('customerName', false);
+  Session.set('customerImageId', false);
 });

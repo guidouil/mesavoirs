@@ -7,29 +7,23 @@ Template.imageEdit.events({
 
       var cameraOptions = {
         width: 600,
-        height: 600,
-        quality: 80
+        height: 600
       };
       MeteorCamera.getPicture(cameraOptions, function (error, data) {
-        if (!error) {
-          Session.set('imageTemp', data);
-          if (Session.get('imageTemp') !== '') {
-            $(event.currentTarget).replaceWith($(event.currentTarget).clone()); // empty file form
-            if (placeId) {
-              Session.set('imgType', 'place');
-              Session.set('theId', placeId);
-            } else if (cardId) {
-              Session.set('imgType', 'card');
-              Session.set('theId', cardId);
-            } else if (cardBrandId) {
-              Session.set('imgType', 'cardBrand');
-              Session.set('theId', cardBrandId);
-            } else {
-              Session.set('imgType', 'profile');
-            }
-            Router.go('cropper');
-          }
+        Session.set('imageTemp', data);
+        if (placeId) {
+          Session.set('imgType', 'place');
+          Session.set('theId', placeId);
+        } else if (cardId) {
+          Session.set('imgType', 'card');
+          Session.set('theId', cardId);
+        } else if (cardBrandId) {
+          Session.set('imgType', 'cardBrand');
+          Session.set('theId', cardBrandId);
+        } else {
+          Session.set('imgType', 'profile');
         }
+        Router.go('cropper');
       });
     } else {
       $('#imageFile').click();
