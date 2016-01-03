@@ -9,10 +9,10 @@ Template.cropper.events({
     $('#cropping').cropper('rotate', 90);
   },
   'click #save': function () {
-    var canvas = $('#cropping').cropper('getCroppedCanvas');
-    var croppedImgData = canvas.toDataURL();
+    var canvas = $('#cropping').cropper('getCroppedCanvas', {width: 600, height: 600});
+    var croppedImgData = canvas.toDataURL('image/jpeg', 0.8);
     Images.insert(croppedImgData, function (err, fileObj) {
-      if (err){
+      if (err) {
         console.error(err);
       } else {
         var imageId = fileObj._id;
@@ -45,8 +45,11 @@ Template.cropper.events({
 
 Template.cropper.onRendered(function () {
   $('#cropping').attr('src', Session.get('imageTemp'));
+  var originalData = {width: 600};
   $('#cropping').cropper({
     aspectRatio: 1,
-    maxWidth: 420
+    maxWidth: 600,
+    maxHeight: 600,
+    data: originalData
   });
 });

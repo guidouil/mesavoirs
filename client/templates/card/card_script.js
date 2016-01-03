@@ -23,14 +23,14 @@ Template.card.onRendered(function () {
           'UPC_A': 'UPC-A',
           'ITF': 'ITF'
         };
-        var format = codeFormats[card.format] || card.format;
+        var format = codeFormats[card.format] || card.format; // for uknown formats
         var options = {};
         options.type = format;
         options.height = 100;
         options.maxWidth = 300;
         var g = canvas.getContext('2d');
-        if (card.format === 'EAN_13') {
-          card.code = card.code.slice(0, -1); // removing EAN_13 correction bit
+        if (card.format === 'EAN_8' || card.format === 'EAN_13' || card.format === 'UPC_A') {
+          card.code = card.code.slice(0, -1); // removing EAN or UPC validation bit
         }
         drawBarcode(g, card.code, options);
       }
