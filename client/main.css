@@ -16,6 +16,9 @@ html.ios, html.ios body{
 }
 
 .alloblue {
-  color: #00A4DD;
-  background-color: #00A4DD;
+  background-color: #00A4DD !important;
+}
+
+#nprogress .bar {
+  background: #21ba45;
 }
