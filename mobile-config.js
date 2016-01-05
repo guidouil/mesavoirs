@@ -5,7 +5,7 @@ App.info({
   author: 'guillaume@allocoupon.com',
   email: 'allo@allofid.com',
   website: 'http://allofid.com',
-  version: '0.3.1'
+  version: '0.3.3'
 });
 
 App.icons({

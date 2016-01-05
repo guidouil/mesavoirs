@@ -22,3 +22,6 @@ html.ios, html.ios body{
 #nprogress .bar {
   background: #21ba45;
 }
+#nprogress .spinner {
+  display: none !important;
+}

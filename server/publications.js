@@ -92,6 +92,12 @@ Meteor.publish('CardsBrands', function () {
   return CardsBrands.find({}, {sort: {name: 1}});
 });
 
+Meteor.publish('Contacts', function () {
+  if (Roles.userIsInRole(this.userId, ['allo'])) {
+    return Contacts.find({}, {sort: {name: 1}});
+  }
+});
+
 Meteor.publish('CardBrand', function (cardBrandId) {
   check(cardBrandId, String);
   return CardsBrands.find({ _id: cardBrandId }, { reactive: true });

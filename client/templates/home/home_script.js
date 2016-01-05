@@ -33,6 +33,9 @@ Template.home.events({
   },
   'click [data-action=scan]': function () {
     scan();
+  },
+  'click #intro': function () {
+    introJs().start();
   }
 });
 

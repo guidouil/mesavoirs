@@ -1,6 +1,8 @@
 Template.contact.helpers({
   email: function () {
-    return contactEmail(Meteor.user());
+    if (Meteor.userId()) {
+      return contactEmail(Meteor.user());
+    }
   }
 });
 

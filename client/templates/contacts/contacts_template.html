@@ -1,0 +1,20 @@
+<template name='contacts'>
+  {{#if isInRole 'allo'}}
+    <div class="ui main container">
+      <div class="ui basic segment">
+        <h3 class="ui header">Messagerie allofid</h3>
+        <div class="ui middle aligned animated list">
+          {{#each contacts}}
+          <div class="item">
+            <div class="content">
+              <button class="red right floated ui circular icon button" id="deleteContact"><i class=" trash icon"></i></button>
+              {{message}}
+              <div class="description">{{subject}} de {{name}} | {{email}} ({{fromNow createdAt}})</div>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  {{/if}}
+</template>
