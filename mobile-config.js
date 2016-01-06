@@ -1,11 +1,11 @@
 App.info({
   id: 'loya.ly.app',
-  name: 'loyali',
+  name: 'Loyali',
   description: 'Gérez vos cartes de fidélité et vos avoirs',
   author: 'gui@loya.li',
   email: 'gui@loya.li',
   website: 'http://loya.li',
-  version: '0.0.1'
+  version: '1.0.0'
 });
 
 App.icons({
