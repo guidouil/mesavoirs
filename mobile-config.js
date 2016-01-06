@@ -1,11 +1,11 @@
 App.info({
-  id: 'com.allofid.app',
-  name: 'allofid',
+  id: 'loya.ly.app',
+  name: 'loyali',
   description: 'Gérez vos cartes de fidélité et vos avoirs',
-  author: 'guillaume@allocoupon.com',
-  email: 'allo@allofid.com',
-  website: 'http://allofid.com',
-  version: '0.3.4'
+  author: 'gui@loya.li',
+  email: 'gui@loya.li',
+  website: 'http://loya.li',
+  version: '0.0.1'
 });
 
 App.icons({
