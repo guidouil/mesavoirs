@@ -1,17 +1,17 @@
 <template name='header'>
-  <div class="ui top fixed menu borderless blue inverted alloblue">
+  <div class="ui top fixed menu borderless blue inverted">
     <div class="left item" data-action="sidebar">
-      <i class="big sidebar icon" data-intro="Cliquez ici pour voir le menu et toutes les fonctionalités d'allofid" data-step="1"></i>
+      <i class="big sidebar icon" data-intro="Cliquez ici pour voir le menu et toutes les fonctionalités de loyali" data-step="1"></i>
     </div>
     <div class="center header item" data-action="goHome">
-      <h1 data-intro="Où que vous soyez, vous pouvez cliquer sur allofid pour revenir à l'accueil" data-step="2" data-position="bottom-middle-aligned">allofid</h1>
+      <h1 data-intro="Où que vous soyez, vous pouvez cliquer sur loyali pour revenir à l'accueil" data-step="2" data-position="bottom-middle-aligned">loyali</h1>
     </div>
     {{#unless isConnected}}
-    <div class="right item" data-action="signIn" data-intro="Cliquez là pour afficher votre profil et vous faire scanner par les commerçants qui utilisent allofid" data-step="3" data-position="bottom-right-aligned">
+    <div class="right item" data-action="signIn" data-intro="Cliquez là pour afficher votre profil et vous faire scanner par les commerçants qui utilisent loyali" data-step="3" data-position="bottom-right-aligned">
       <i class="big user icon"></i>
     </div>
     {{else}}
-    <div class="right item" data-action="profile" data-intro="Cliquez là pour afficher votre profil et vous faire scanner par les commerçants qui utilisent allofid" data-step="3" data-position="bottom-right-aligned">
+    <div class="right item" data-action="profile" data-intro="Cliquez là pour afficher votre profil et vous faire scanner par les commerçants qui utilisent loyali" data-step="3" data-position="bottom-right-aligned">
       {{#if currentUser.profile.imageId}}
         {{> image imageId=currentUser.profile.imageId classNames='avatar'}}
       {{else}}

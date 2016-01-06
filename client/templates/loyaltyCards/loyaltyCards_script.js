@@ -33,7 +33,7 @@ Template.loyaltyCards.events({
 
 Template.loyaltyCards.onRendered(function () {
   if (! Session.get('loyaltyTab')) {
-    Session.set('loyaltyTab', 'allofid');
+    Session.set('loyaltyTab', 'loyali');
   }
   $('#loyaltyTabs .item').tab();
 });

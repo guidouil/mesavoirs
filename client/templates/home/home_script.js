@@ -6,7 +6,7 @@ Template.home.helpers({
       'Une carte de fidélité pour les gouverner toutes',
       'Vous ne perdrez plus jamais l\'avoir de la boulangerie',
       'Simplement depuis votre smartphone et en temps-réel',
-      'Parlez d\'allofid aux commerçants qui sont encore à l\'air du papier',
+      'Parlez de loyali aux commerçants qui sont encore à l\'air du papier',
       'Vous n\'oublierez plus jamais une carte de fidélité'
     ];
     return _.sample(baselines);
