@@ -56,7 +56,7 @@
       /* Show tour control buttons? */
       showButtons: true,
       /* Show tour bullets? */
-      showBullets: true,
+      showBullets: false,
       /* Show tour progress? */
       showProgress: false,
       /* Scroll to highlighted element? */
@@ -66,7 +66,7 @@
       /* Precedence of positions, when auto is enabled */
       positionPrecedence: ["bottom", "top", "right", "left"],
       /* Disable an interaction with element? */
-      disableInteraction: false,
+      disableInteraction: true,
       /* Default hint position */
       hintPosition: 'top-middle',
       /* Hint button label */
