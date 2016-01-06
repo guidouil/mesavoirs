@@ -10,11 +10,11 @@ App.info({
 
 App.icons({
   // iOS
-  'iphone': 'resources/icons/icon-60x60.png',
-  'iphone_2x': 'resources/icons/icon-120x120.png',
-  'iphone_3x': 'resources/icons/icon-180x180.png',
-  'ipad': 'resources/icons/icon-72x72-i.png',
-  'ipad_2x': 'resources/icons/icon-152x152.png',
+  'iphone': 'resources/icons/icon-60x60.png', // 60x60
+  'iphone_2x': 'resources/icons/icon-120x120.png', // 120x120
+  'iphone_3x': 'resources/icons/icon-180x180.png', // 180x180
+  'ipad': 'resources/icons/icon-76x76.png', // 76x76
+  'ipad_2x': 'resources/icons/icon-152x152.png', // 152x152
 
   // Android
   'android_ldpi': 'resources/icons/icon-36x36.png',
@@ -36,21 +36,21 @@ App.launchScreens({
   'ipad_landscape_2x': 'resources/splash/Default-Landscape@2x.png', // 2048x1536
 
   // Android
-  'android_ldpi_portrait': 'resources/splash/splash-200x320.png',
-  'android_ldpi_landscape': 'resources/splash/splash-320x200.png',
-  'android_mdpi_portrait': 'resources/splash/splash-320x480.png',
-  'android_mdpi_landscape': 'resources/splash/splash-480x320.png',
-  'android_hdpi_portrait': 'resources/splash/splash-480x800.png',
-  'android_hdpi_landscape': 'resources/splash/splash-800x480.png',
-  'android_xhdpi_portrait': 'resources/splash/splash-720x1280.png',
-  'android_xhdpi_landscape': 'resources/splash/splash-1280x720.png'
+  'android_ldpi_portrait': 'resources/splash/splash-320x320.png',
+  'android_ldpi_landscape': 'resources/splash/splash-320x320.png',
+  'android_mdpi_portrait': 'resources/splash/splash-480x480.png',
+  'android_mdpi_landscape': 'resources/splash/splash-480x480.png',
+  'android_hdpi_portrait': 'resources/splash/splash-800x800.png',
+  'android_hdpi_landscape': 'resources/splash/splash-800x800.png',
+  'android_xhdpi_portrait': 'resources/splash/splash-1280x1280.png',
+  'android_xhdpi_landscape': 'resources/splash/splash-1280x1280.png'
 });
 
 App.setPreference('StatusBarOverlaysWebView', 'false');
 App.setPreference('StatusBarBackgroundColor', '#000000', 'android');
 App.setPreference('StatusBarBackgroundColor', '#ffffff', 'ios');
 App.setPreference('Orientation', 'default');
-App.setPreference('Orientation', 'all', 'ios');
+App.setPreference('Orientation', 'portrait', 'ios');
 
 App.accessRule('*.allofid.com/*');
 App.accessRule('*.mesavoirs.fr/*');
