@@ -60,7 +60,6 @@ Template.place.events({
 });
 
 Template.place.onRendered(function () {
-
 });
 
 Template.place.onCreated(function () {
