@@ -114,3 +114,8 @@ Meteor.publish('Promotion', function (promotionId) {
   check(promotionId, String);
   return Promotions.find({ _id: promotionId }, { reactive: true });
 });
+
+
+Meteor.publish('Growls', function () {
+  return Growls.find({ to: this.userId });
+});

@@ -36,8 +36,8 @@ App.launchScreens({
   'ipad_landscape_2x': 'resources/splash/Default-Landscape@2x.png', // 2048x1536
 
   // Android
-  'android_ldpi_portrait': 'resources/splash/splash-200x320.png',
-  'android_ldpi_landscape': 'resources/splash/splash-320x200.png',
+  'android_ldpi_portrait': 'resources/splash/splash-240x320.png',
+  'android_ldpi_landscape': 'resources/splash/splash-320x240.png',
   'android_mdpi_portrait': 'resources/splash/splash-320x480.png',
   'android_mdpi_landscape': 'resources/splash/splash-480x320.png',
   'android_hdpi_portrait': 'resources/splash/splash-480x800.png',
@@ -49,10 +49,10 @@ App.launchScreens({
 App.setPreference('StatusBarOverlaysWebView', 'false');
 App.setPreference('StatusBarBackgroundColor', '#000000', 'android');
 App.setPreference('StatusBarBackgroundColor', '#ffffff', 'ios');
-App.setPreference('Orientation', 'default');
+App.setPreference('Orientation', 'portrait');
 App.setPreference('Orientation', 'portrait', 'ios');
 
-App.accessRule('*.allofid.com/*');
+App.accessRule('*.loya.li/*');
 App.accessRule('*.mesavoirs.fr/*');
 App.accessRule('*.openfoodfacts.org/*');
 App.accessRule('*.meteor.com/*');
