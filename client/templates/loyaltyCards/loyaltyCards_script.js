@@ -33,7 +33,7 @@ Template.loyaltyCards.events({
     Router.go('place', {placeId: this.placeId});
   },
   'click .privateLoyaltyCard': function () {
-    Router.go('card', {card: this._id});
+    Router.go('card', {cardId: this._id});
   }
 });
 
