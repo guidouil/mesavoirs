@@ -167,6 +167,11 @@ Template.scanned.onRendered(function () {
       });
     }
   });
+  setTimeout(function () {
+    $('#loyaltyCardHelp').popup({
+      inline: true
+    });
+  }, 500);
 });
 
 Template.scanned.onCreated(function () {

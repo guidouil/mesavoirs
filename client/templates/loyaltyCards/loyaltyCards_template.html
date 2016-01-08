@@ -9,7 +9,7 @@
     <div class="ui bottom attached tab basic segment {{activeLoyaltyTab 'Loyali'}}" data-tab="Loyali">
       <div class="ui relaxed divided list">
         {{#each loyaltyCards}}
-        <div class="item">
+        <div class="item loyaltyCard">
           {{#if imageId}}
             {{> image imageId=imageId classNames='mini rounded'}}
           {{else}}
@@ -38,7 +38,7 @@
     <div class="ui bottom attached tab basic segment {{activeLoyaltyTab 'private'}}" data-tab="private">
       <div class="ui relaxed divided list">
         {{#each privateLoyaltyCards}}
-        <div class="item">
+        <div class="item privateLoyaltyCard">
           {{#if imageId}}
             {{> image imageId=imageId classNames='mini rounded'}}
           {{else}}

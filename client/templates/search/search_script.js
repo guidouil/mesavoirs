@@ -33,7 +33,7 @@ Template.search.onRendered(function () {
 });
 
 Template.search.onCreated = function () {
-  Session.set('searchLimit', 10);
+  Session.set('searchLimit', 12);
   if (Router.current().params.searchQuery) {
     Session.set('searchQuery', Router.current().params.searchQuery);
   }

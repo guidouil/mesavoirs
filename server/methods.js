@@ -42,8 +42,10 @@ Meteor.methods({
     check(placeId, String);
     check(customerId, String);
     if (isPlaceOwner(placeId, this.userId) || isPlaceSeller(placeId, this.userId)) {
-      Meteor.call('addPlaceCustomer', placeId, customerId);
       var place = Places.findOne({_id: placeId});
+      if (place.customers && _.contains( place.customers, customerId )) {
+        Meteor.call('addPlaceCustomer', placeId, customerId);
+      }
       var history = {what: 1, who: this.userId, when: new Date()};
       var loyaltyCard = LoyaltyCards.findOne({placeId: placeId, userId: customerId});
       var points = 0;
@@ -75,6 +77,13 @@ Meteor.methods({
         };
         LoyaltyCards.insert(newLoyaltyCard);
       }
+      Growls.insert({
+        placeId: place._id,
+        from: this.userId,
+        to: customerId,
+        type: 'success',
+        message: '+1 point sur votre carte chez ' + place.name
+      });
     }
     return points;
   },
@@ -90,6 +99,13 @@ Meteor.methods({
           $push:{ histories: history }
         });
         return loyaltyCard.points - 1;
+        Growls.insert({
+          placeId: place._id,
+          from: this.userId,
+          to: customerId,
+          type: 'warning',
+          message: '-1 point sur votre carte chez ' + place.name
+        });
       }
     }
     return false;
@@ -103,11 +119,25 @@ Meteor.methods({
       var place = Places.findOne({_id: placeId});
       var history = {what: value, who: this.userId, when: new Date()};
       var voucher = Vouchers.findOne({ placeId: placeId, userId: customerId });
+      var formatedValue = function () {
+        if (value > 0) {
+          return '+' + parseFloat(value).toMoney(2, ',', ' ') + ' € ajouté';
+        } else {
+          return parseFloat(value).toMoney(2, ',', ' ') + ' € retiré';
+        };
+      }
       if (voucher) {
         if (value > 0 || voucher.value >= Math.abs(value)) {
           Vouchers.update({_id: voucher._id}, {
             $inc: { value: value },
             $push: { histories: history }
+          });
+          Growls.insert({
+            placeId: place._id,
+            from: this.userId,
+            to: customerId,
+            type: 'info',
+            message: formatedValue() + ' à votre avoir chez ' + place.name
           });
           return voucher.value + value;
         } else {
@@ -125,6 +155,13 @@ Meteor.methods({
           'histories': [history]
         };
         Vouchers.insert(voucher);
+        Growls.insert({
+          placeId: place._id,
+          from: this.userId,
+          to: customerId,
+          type: 'info',
+          message: formatedValue() + ' à votre avoir chez ' + place.name
+        });
         return value;
       }
     }

@@ -5,6 +5,9 @@ Template.vouchers.helpers({
 });
 
 Template.vouchers.events({
+  'click .voucher': function () {
+    Router.go('place', {placeId: this.placeId});
+  }
 });
 
 Template.vouchers.onRendered(function () {

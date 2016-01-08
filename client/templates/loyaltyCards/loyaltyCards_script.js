@@ -28,6 +28,12 @@ Template.loyaltyCards.helpers({
 Template.loyaltyCards.events({
   'click .loyaltyTabHead': function (evt) {
     Session.set('loyaltyTab', $(evt.currentTarget).data('tab'));
+  },
+  'click .loyaltyCard': function () {
+    Router.go('place', {placeId: this.placeId});
+  },
+  'click .privateLoyaltyCard': function () {
+    Router.go('card', {card: this._id});
   }
 });
 

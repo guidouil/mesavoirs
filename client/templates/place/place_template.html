@@ -73,16 +73,18 @@
       <div class="ui relaxed divided items">
       {{#if myLoyaltyCard}}
         <div class="item">
-          <div class="content"  data-action="loyaltyCardHistory">
-            <a class="header"><i class=" yellow star icon"></i> {{myLoyaltyCard.points}} point{{#if greaterThan myLoyaltyCard.points 1}}s{{/if}} sur {{myLoyaltyCard.size}} de votre carte</a>
-            <div class="meta">
+          <div class="content">
+            <button class="teal right floated ui circular icon button" id="loyaltyCardHelp" data-position="top right"><i class="help icon"></i></button>
+            <div class="ui special popup">
+              Chaque tranche d'achat de {{{formatMoney loyaltyCard.pointCost}}} ajoute 1 point à la carte de fidélité.
+              <br><br>
+              Quand votre carte atteint {{loyaltyCard.size}} points, vous recevez automatiquement un avoir de {{{formatMoney loyaltyCard.voucherValue}}} et le compte de points est remis a zéro.
+            </div>
+            <a class="header" data-action="loyaltyCardHistory"><i class=" yellow star icon"></i> {{myLoyaltyCard.points}} / {{myLoyaltyCard.size}} points sur votre carte</a>
+            <div class="meta" data-action="loyaltyCardHistory">
               &nbsp;<i class="grey history icon"></i> Mise à jour {{#if myLoyaltyCard.updatedAt}}{{fromNow myLoyaltyCard.updatedAt}}{{else}}{{fromNow myLoyaltyCard.createdAt}}{{/if}}
             </div>
-            <div class="description">
-              <p style="text-align: justify;text-justify: inter-word;">
-                Chaque tranche d'achat de {{{formatMoney loyaltyCard.pointCost}}} ajoute 1 point à la carte de fidélité. Quand votre carte atteint {{loyaltyCard.size}} points, vous recevez automatiquement un avoir de {{{formatMoney loyaltyCard.voucherValue}}} et le compte de points est remis a zéro.
-              </p>
-            </div>
+
           </div>
         </div>
       {{/if}}

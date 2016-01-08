@@ -6,7 +6,7 @@ Template.growls.events({
 
 Template.growls.onCreated(function () {
   var template = this;
-  this.subscribe('Growls');
+  template.subscribe('Growls');
 });
 
 Template.growls.onRendered(function () {
@@ -15,7 +15,7 @@ Template.growls.onRendered(function () {
     'debug': false,
     'newestOnTop': false,
     'progressBar': false,
-    'positionClass': 'toast-bottom-right',
+    'positionClass': 'toast-bottom-full-width',
     'preventDuplicates': false,
     'onclick': null,
     'showDuration': '300',
