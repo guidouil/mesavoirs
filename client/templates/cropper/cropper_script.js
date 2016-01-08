@@ -10,7 +10,7 @@ Template.cropper.events({
   },
   'click #save': function () {
     var canvas = $('#cropping').cropper('getCroppedCanvas', {width: 600, height: 600});
-    var croppedImgData = canvas.toDataURL('image/jpeg', 0.8);
+    var croppedImgData = canvas.toDataURL('image/png');
     Images.insert(croppedImgData, function (err, fileObj) {
       if (err) {
         console.error(err);

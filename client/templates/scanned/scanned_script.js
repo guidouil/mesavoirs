@@ -150,7 +150,6 @@ Template.scanned.events({
 });
 
 Template.scanned.onRendered(function () {
-  $('select').dropdown();
   Tracker.autorun(function () {
     if (Session.get('placeId') && Session.get('customerId')) {
       Meteor.subscribe('UserPlaceVouchers', Session.get('placeId'), Session.get('customerId'));

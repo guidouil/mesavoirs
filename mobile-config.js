@@ -5,7 +5,7 @@ App.info({
   author: 'gui@loya.li',
   email: 'gui@loya.li',
   website: 'http://loya.li',
-  version: '1.0.2'
+  version: '1.0.3'
 });
 
 App.icons({

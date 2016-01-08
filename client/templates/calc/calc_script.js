@@ -21,5 +21,4 @@ Template.calc.events({
 
 Template.calc.onRendered(function () {
   Session.set('voucher', 0);
-  $('#ticketCount').dropdown();
 });

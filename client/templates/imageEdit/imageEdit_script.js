@@ -58,10 +58,14 @@ Template.imageEdit.events({
     reader.readAsDataURL(file);
   },
   'click [data-action=deleteImage]': function (event, tmpl) {
-    Images.remove({_id: tmpl.data.imageId});
     var placeId = Router.current().params.placeId;
     var cardId = Router.current().params.cardId;
     var cardBrandId = Router.current().params.cardBrandId;
+    if (! cardId) {
+      Images.remove({_id: tmpl.data.imageId});
+    } else {
+      // TODO remove unlinked images
+    }
     if (placeId) {
       Places.update({_id: placeId}, {$unset: {imageId: ''}});
     } else if (cardId) {

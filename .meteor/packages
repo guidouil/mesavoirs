@@ -41,7 +41,6 @@ accounts-facebook
 accounts-google
 accounts-twitter
 zimme:active-route
-semantic:ui-dropdown
 service-configuration
 accounts-ui
 semantic:ui-list
