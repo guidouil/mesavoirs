@@ -19,5 +19,13 @@ Template.myPlaces.events({
 Template.myPlaces.onCreated(function () {
   var template = this;
   template.subscribe('MyPlaces');
-  setDefaultCurrentPlace();
+});
+
+Template.myPlaces.onRendered(function () {
+  var template = this;
+  Tracker.autorun(function () {
+    if (template.subscriptionsReady()) {
+      setDefaultCurrentPlace();
+    }
+  });
 });

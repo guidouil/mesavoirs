@@ -82,7 +82,8 @@ Meteor.methods({
         from: this.userId,
         to: customerId,
         type: 'success',
-        message: '+1 point sur votre carte chez ' + place.name
+        title: place.name,
+        message: '+1 point sur votre carte fidélité'
       });
     }
     return points;
@@ -104,7 +105,8 @@ Meteor.methods({
           from: this.userId,
           to: customerId,
           type: 'warning',
-          message: '-1 point sur votre carte chez ' + place.name
+          title: place.name,
+          message: '-1 point sur votre carte fidélité'
         });
       }
     }
@@ -137,7 +139,8 @@ Meteor.methods({
             from: this.userId,
             to: customerId,
             type: 'info',
-            message: formatedValue() + ' à votre avoir chez ' + place.name
+            title: place.name,
+            message: formatedValue() + ' à votre avoir'
           });
           return voucher.value + value;
         } else {
@@ -160,7 +163,8 @@ Meteor.methods({
           from: this.userId,
           to: customerId,
           type: 'info',
-          message: formatedValue() + ' à votre avoir chez ' + place.name
+          title: place.name,
+          message: formatedValue() + ' à votre avoir'
         });
         return value;
       }

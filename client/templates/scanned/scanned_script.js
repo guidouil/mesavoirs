@@ -171,7 +171,7 @@ Template.scanned.onRendered(function () {
     $('#loyaltyCardHelp').popup({
       inline: true
     });
-  }, 500);
+  }, 1000);
 });
 
 Template.scanned.onCreated(function () {
