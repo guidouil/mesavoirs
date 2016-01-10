@@ -366,12 +366,19 @@ Meteor.methods({
   deleteMe: function () {
     var userId = this.userId;
     if (userId) {
-      Places.update({}, {$pull:{
-        'customers.customerId': userId
-      }}, {multi: true});
-      Vouchers.remove({userId: userId}, {multi: true});
-      LoyaltyCards.remove({userId: userId}, {multi: true});
-      PrivateLoyaltyCards.remove({userId: userId}, {multi: true});
+      var user = Meteor.users.findOne({_id: userId});
+      if (! user.profile) {
+        user.profile = {};
+      }
+      var customer = {
+        customerId: userId,
+        email: user.emails[0].address,
+        name: user.profile.name
+      };
+      Places.update({}, {$pull: {customers: customer}}, {multi: true});
+      Vouchers.remove({userId: userId});
+      LoyaltyCards.remove({userId: userId});
+      PrivateLoyaltyCards.remove({userId: userId});
       Meteor.users.remove({_id: userId});
       return true;
     } else {
