@@ -18,9 +18,17 @@
       </h2>
       {{> QrCode text=qrText }}
       <br>
-      <button class="ui red button" data-action="logout">
+      <a class="ui fluid button" href="{{pathFor 'atChangePwd'}}">
+        Changer de mot de passe
+      </a>
+      <br>
+      <button class="ui fluid red button" data-action="logout">
         Se déconnecter
       </button>
+      <!-- <br>
+      <button class="ui fluid red button" data-action="deleteMe">
+        Supprimer son compte
+      </button> -->
     </div>
   </div>
 </template>

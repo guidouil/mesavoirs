@@ -362,5 +362,20 @@ Meteor.methods({
       LoyaltyCards.remove({placeId: placeId}, {multi: true});
       Vouchers.remove({placeId: placeId}, {multi: true});
     }
+  },
+  deleteMe: function () {
+    var userId = this.userId;
+    if (userId) {
+      Places.update({}, {$pull:{
+        'customers.customerId': userId
+      }}, {multi: true});
+      Vouchers.remove({userId: userId}, {multi: true});
+      LoyaltyCards.remove({userId: userId}, {multi: true});
+      PrivateLoyaltyCards.remove({userId: userId}, {multi: true});
+      Meteor.users.remove({_id: userId});
+      return true;
+    } else {
+      return false;
+    }
   }
 });
