@@ -35,7 +35,7 @@ Template.card.onRendered(function () {
         drawBarcode(g, card.code, options);
       }
     }
-  }, 1000);
+  }, 700);
 });
 
 Template.card.onCreated(function () {

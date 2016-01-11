@@ -2,10 +2,10 @@ App.info({
   id: 'loya.ly.app',
   name: 'Loyali',
   description: 'Gérez vos cartes de fidélité et vos avoirs',
-  author: 'gui@loya.li',
-  email: 'gui@loya.li',
+  author: 'guillaume.darbonne@gmail.com',
+  email: 'guillaume.darbonne@gmail.com',
   website: 'http://loya.li',
-  version: '1.0.4'
+  version: '1.0.5'
 });
 
 App.icons({

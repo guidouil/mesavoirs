@@ -5,6 +5,15 @@ Template.editCard.helpers({
 });
 
 Template.editCard.events({
+  'autocompleteselect input': function (event, template, doc) {
+    if (doc.baseline) {
+      template.find('#cardNotes').value = doc.baseline;
+    }
+    if (doc.imageId) {
+      template.find('#imageId').value = doc.imageId;
+    }
+    template.find('#cardBrandId').value = doc._id;
+  },
   'click .deleteCard': function () {
     swal({
       title: 'Etes-vous sur ?',
