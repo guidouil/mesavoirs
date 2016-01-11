@@ -93,7 +93,7 @@ Meteor.publish('CardsBrands', function () {
 });
 
 Meteor.publish('Contacts', function () {
-  if (Roles.userIsInRole(this.userId, ['allo'])) {
+  if (Roles.userIsInRole(this.userId, ['bo'])) {
     return Contacts.find({}, {sort: {name: 1}});
   }
 });

@@ -38,12 +38,18 @@
       <br>
       <a href="{{pathFor 'createPlace'}}" class="ui fluid button">Ajouter un commerce</a>
     {{ else }}
-    <div class="ui stacked center aligned segment">
-      <h3>Commerçants, utilisez Loyali.</h3>
+    <br>
+    <div class="ui raised center aligned segment">
+      <h2 class="ui icon header">
+        <img class="ui tiny image" src="{{loyaliLogo}}" alt="Loyali" />
+        <div class="content">
+          Utilisez Loyali pour votre commerce
+          <div class="sub header">C'est gratuit pour toujours et garanti sans pub.</div>
+        </div>
+      </h2>
       <p>
-        C'est gratuit pour toujours.
+        <button class="ui button positive" data-action="createPlace">Inscrivez votre commerce</button>
       </p>
-      <button class="ui button" data-action="createPlace">Inscrivez votre commerce</button>
     </div>
     {{ /if }}
   </div>

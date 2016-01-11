@@ -19,6 +19,7 @@ Template.myPlaces.events({
 Template.myPlaces.onCreated(function () {
   var template = this;
   template.subscribe('MyPlaces');
+  Meteor.call('isStillOwnerOrSeller');
 });
 
 Template.myPlaces.onRendered(function () {

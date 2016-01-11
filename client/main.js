@@ -1,8 +1,5 @@
-$('.pusher').on('swipe', function () {
-  console.log('swipe');
-  $('.ui.labeled.icon.sidebar')
-    .sidebar('setting', 'transition', 'overlay')
-    .sidebar('toggle');
+Template.registerHelper('loyaliLogo', function () {
+  return Meteor.absoluteUrl() + 'loyali_150.png';
 });
 
 UI.registerHelper('isConnected', function () {
@@ -19,7 +16,6 @@ UI.registerHelper('isPlaceOwner', function (placeId) {
     return _.contains( place.owners, Meteor.userId() );
   }
 });
-
 
 UI.registerHelper('isSellerOrOwner', function () {
   return _.contains( this.owners, Meteor.userId() ) || _.contains( this.sellers, Meteor.userId() );

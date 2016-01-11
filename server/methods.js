@@ -300,8 +300,19 @@ Meteor.methods({
     }
     return false;
   },
-  removeOwnersRole: function () {
-    Roles.removeUsersFromRoles(this.userId, 'owners');
+  isStillOwnerOrSeller: function () {
+    if (Roles.userIsInRole(this.userId, 'owners')) {
+      var ownedCount = Places.find({owners: this.userId}).count();
+      if (ownedCount === 0) {
+        Roles.removeUsersFromRoles(this.userId, 'owners');
+      }
+    }
+    if (Roles.userIsInRole(this.userId, 'sellers')) {
+      var sellingCount = Places.find({sellers: this.userId}).count();
+      if (sellingCount === 0) {
+        Roles.removeUsersFromRoles(this.userId, 'sellers');
+      }
+    }
   },
   addSeller: function (email, placeId) {
     check(email, String);
@@ -359,8 +370,8 @@ Meteor.methods({
   deleteLoyaltyCardsAndVouchers: function (placeId) {
     check(placeId, String);
     if (isPlaceOwner(placeId, this.userId)) {
-      LoyaltyCards.remove({placeId: placeId}, {multi: true});
-      Vouchers.remove({placeId: placeId}, {multi: true});
+      LoyaltyCards.remove({placeId: placeId});
+      Vouchers.remove({placeId: placeId});
     }
   },
   deleteMe: function () {
@@ -387,6 +398,12 @@ Meteor.methods({
       return true;
     } else {
       return false;
+    }
+  },
+  removeProfilesCurrentPlace: function (placeId) {
+    check(placeId, String);
+    if (isPlaceOwner(placeId, this.userId)) {
+      Meteor.users.update({'profile.currentPlace': placeId}, {$unset: {'profile.currentPlace': ''}});
     }
   }
 });

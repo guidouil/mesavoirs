@@ -12,6 +12,7 @@ Template.header.events({
   },
   'click [data-action=goHome]': function () {
     Router.go('home');
+    $('html, body').animate({scrollTop: 0}, 'fast');
   },
   'click [data-action=addProduct]': function () {
     Meteor.call('insertFakeProduct');
@@ -30,4 +31,5 @@ Template.header.events({
 });
 
 Template.header.onRendered(function (){
+
 });

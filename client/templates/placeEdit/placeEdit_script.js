@@ -1,6 +1,6 @@
 Template.placeEdit.helpers({
   place: function () {
-    return Places.findOne({_id: Router.current().params.placeId});
+    return Places.findOne({_id: Router.current().params.placeId, owners: Meteor.userId()});
   }
 });
 
@@ -9,22 +9,36 @@ Template.placeEdit.events({
     var placeId = this._id;
     swal({
       title: 'Etes-vous sur ?',
-      text: 'Effacer un commerce est définitif.',
+      text: 'Effacer un commerce est définitif, toutes les données seront effacées.',
       type: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#DD6B55',
       confirmButtonText: 'Oui',
       cancelButtonText: 'Non',
-      closeOnConfirm: true
+      closeOnConfirm: false
     }, function () {
-      var place = Places.findOne({_id: placeId});
-      if (place.imageId) {
-        Images.remove({_id: place.imageId});
-      }
-      Meteor.call('deleteLoyaltyCardsAndVouchers', placeId);
-      Places.remove({_id: placeId});
-      swal('Effacé!', 'Le commerce à été supprimé.', 'success');
-      Router.go('/my-places');
+      swal({
+        title: 'Etes-vous vraiment sur ?',
+        text: 'Effacer un commerce est définitif, toutes les cartes de fidélité et les avoirs de vos clients seront aussi effacés.',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#DD6B55',
+        confirmButtonText: 'J\'ai dis oui',
+        cancelButtonText: 'Non',
+        closeOnConfirm: false
+      }, function () {
+        var place = Places.findOne({_id: placeId});
+        if (place.imageId) {
+          Images.remove({_id: place.imageId});
+        }
+        Meteor.call('deleteLoyaltyCardsAndVouchers', placeId, function () {
+          Meteor.call('removeProfilesCurrentPlace', placeId, function () {
+            Places.remove({_id: placeId});
+            swal('Effacé!', 'Le commerce à été supprimé.', 'success');
+            Router.go('/my-places');
+          });
+        });
+      });
     });
   }
 });

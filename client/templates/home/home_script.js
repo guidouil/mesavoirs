@@ -1,13 +1,12 @@
 Template.home.helpers({
   baseline: function () {
     var baselines = [
-      'Pour ne plus collectionner les cartes, ni les tickets dans votre porte monnaie',
-      'Fini le porte monnaie surchargé inutilement',
-      'Une carte de fidélité pour les gouverner toutes',
-      'Vous ne perdrez plus jamais l\'avoir de la boulangerie',
-      'Simplement depuis votre smartphone et en temps-réel',
-      'Parlez de Loyali aux commerçants qui sont encore à l\'air du papier',
-      'Vous n\'oublierez plus jamais une carte de fidélité'
+      'Fini le porte monnaie surchargé inutilement.',
+      'Simplement depuis votre smartphone et en temps-réel.',
+      'Vous ne perdrez plus jamais l\'avoir de la boulangerie.',
+      'Parlez de Loyali aux commerçants qui sont encore à l\'air du papier.',
+      'Vous n\'oublierez plus jamais une carte de fidélité.',
+      'Pour ne plus collectionner les cartes, ni les tickets dans votre porte monnaie.'
     ];
     return _.sample(baselines);
   }
@@ -43,4 +42,10 @@ Template.home.onCreated(function () {
   var template = this;
   template.subscribe('MyPlaces');
   setDefaultCurrentPlace();
+});
+
+Template.home.onRendered(function () {
+  setTimeout(function () {
+    $('html, body').animate({scrollTop: 0}, 'fast');
+  }, 400);
 });
