@@ -19,6 +19,40 @@ Template.editProfile.events({
       check(email, String);
       Meteor.users.update( { _id: Meteor.userId() }, { $set: { 'emails.0.address': email }});
     }
+  },
+  'click [data-action=deleteMe]': function () {
+    swal({
+      title: 'Etes-vous sur ?',
+      text: 'Effacer votre compte est définitif.',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#21BA45',
+      confirmButtonText: 'Oui',
+      cancelButtonText: 'Non',
+      closeOnConfirm: false
+    }, function () {
+      swal({
+        title: 'Etes-vous vraiment sur ?',
+        text: 'Effacer votre compte est VRAIMENT définitif.',
+        type: 'error',
+        showCancelButton: true,
+        confirmButtonColor: '#21BA45',
+        confirmButtonText: 'J\'ai dis oui',
+        cancelButtonText: 'Non',
+        closeOnConfirm: true
+      }, function () {
+        Meteor.call('deleteMe', function (error, result) {
+          if (error) {
+            console.log('error', error);
+          }
+          if (result) {
+            Meteor.logout();
+            swal('Effacé!', 'Le compte à été supprimé.', 'success');
+            Router.go('home');
+          }
+        });
+      });
+    });
   }
 });
 

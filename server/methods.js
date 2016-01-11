@@ -366,16 +366,20 @@ Meteor.methods({
   deleteMe: function () {
     var userId = this.userId;
     if (userId) {
-      var user = Meteor.users.findOne({_id: userId});
-      if (! user.profile) {
-        user.profile = {};
+      var places = Places.find({'customers.customerId': userId}).fetch();
+      if (places && places.length > 0) {
+        _.each(places, function (place) {
+          var cleanedCustomers = [];
+          _.each(place.customers, function (customer) {
+            if (customer.customerId !== userId) {
+              cleanedCustomers.push(customer);
+            }
+          });
+          Places.update({_id: place._id}, {$set:{
+            customers: cleanedCustomers
+          }});
+        })
       }
-      var customer = {
-        customerId: userId,
-        email: user.emails[0].address,
-        name: user.profile.name
-      };
-      Places.update({}, {$pull: {customers: customer}}, {multi: true});
       Vouchers.remove({userId: userId});
       LoyaltyCards.remove({userId: userId});
       PrivateLoyaltyCards.remove({userId: userId});
