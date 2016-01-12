@@ -1,30 +1,25 @@
 Template.imageEdit.events({
   'click [data-action=uploadImage]': function () {
     if (Meteor.isCordova) {
-      var placeId = Router.current().params.placeId;
-      var cardId = Router.current().params.cardId;
-      var cardBrandId = Router.current().params.cardBrandId;
-
       var cameraOptions = {
         width: 600,
-        height: 600
+        height: 600,
+        quality: 75,
+        sourceType: Camera.PictureSourceType.PHOTOLIBRARY
       };
-      MeteorCamera.getPicture(cameraOptions, function (error, data) {
-        Session.set('imageTemp', data);
-        if (placeId) {
-          Session.set('imgType', 'place');
-          Session.set('theId', placeId);
-        } else if (cardId) {
-          Session.set('imgType', 'card');
-          Session.set('theId', cardId);
-        } else if (cardBrandId) {
-          Session.set('imgType', 'cardBrand');
-          Session.set('theId', cardBrandId);
-        } else {
-          Session.set('imgType', 'profile');
-        }
-        Router.go('cropper');
-      });
+      mobileCropLoader(cameraOptions);
+    } else {
+      $('#imageFile').click();
+    }
+  },
+  'click [data-action=takePicture]': function () {
+    if (Meteor.isCordova) {
+      var cameraOptions = {
+        width: 600,
+        height: 600,
+        quality: 75
+      };
+      mobileCropLoader(cameraOptions);
     } else {
       $('#imageFile').click();
     }
@@ -77,3 +72,28 @@ Template.imageEdit.events({
     }
   }
 });
+
+var mobileCropLoader = function (cameraOptions) {
+  var placeId = Router.current().params.placeId;
+  var cardId = Router.current().params.cardId;
+  var cardBrandId = Router.current().params.cardBrandId;
+
+  MeteorCamera.getPicture(cameraOptions, function (error, data) {
+    if (data) {
+      Session.set('imageTemp', data);
+      if (placeId) {
+        Session.set('imgType', 'place');
+        Session.set('theId', placeId);
+      } else if (cardId) {
+        Session.set('imgType', 'card');
+        Session.set('theId', cardId);
+      } else if (cardBrandId) {
+        Session.set('imgType', 'cardBrand');
+        Session.set('theId', cardBrandId);
+      } else {
+        Session.set('imgType', 'profile');
+      }
+      Router.go('cropper');
+    }
+  });
+};
