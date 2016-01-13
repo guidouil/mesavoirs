@@ -9,7 +9,7 @@ scan = function () {
             return;
           }
         }
-        Router.go('scanned', {type: result.format, id: result.text});
+        Router.go('scanned', {type: result.format, id: encodeURI(result.text)});
       }
     },
     function (error) {

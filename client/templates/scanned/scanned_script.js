@@ -179,7 +179,7 @@ Template.scanned.onCreated(function () {
   if (Session.equals('scanCard', true)) {
     Session.set('cardCode', Router.current().params.id);
     Session.set('cardFormat', Router.current().params.type);
-    Session.set('scanCard', false);
+    Session.delete('scanCard');
     Router.go('addCard');
   }
   var scanType = Router.current().params.type;
@@ -202,9 +202,9 @@ Template.scanned.onCreated(function () {
 });
 
 Template.scanned.onDestroyed(function () {
-  Session.set('placeId', false);
-  Session.set('customerId', false);
-  Session.set('customerEmail', false);
-  Session.set('customerName', false);
-  Session.set('customerImageId', false);
+  Session.delete('placeId');
+  Session.delete('customerId');
+  Session.delete('customerEmail');
+  Session.delete('customerName');
+  Session.delete('customerImageId');
 });

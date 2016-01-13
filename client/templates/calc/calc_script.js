@@ -1,24 +1,60 @@
 Template.calc.helpers({
-  voucher: function () {
-    return Session.get('voucher') || 0;
+  calcResult: function () {
+    return Session.get('calcResult');
   }
 });
 
 Template.calc.events({
-  'focusinput, blur input, click button, change select': function (evt, tmpl) {
-    var total = parseFloat(tmpl.find('#total').value);
-    var ticketValue = parseFloat(tmpl.find('#ticketValue').value);
-    var ticketCount = parseInt(tmpl.find('#ticketCount').value);
-    check(total, Number);
-    check(ticketValue, Number);
-    check(ticketCount, Number);
-    var voucher =  ticketValue * ticketCount - total;
-    if (voucher >= 0) {
-      Session.set('voucher', voucher);
+  'click .numberKey': function (evt) {
+    if (! Session.get('calcResult')) {
+      if ($(evt.currentTarget).data('value') > 0) {
+        Session.set('calcResult', $(evt.currentTarget).data('value'));
+      } else if ($(evt.currentTarget).data('value') === '.') {
+        Session.set('calcResult', '0' + $(evt.currentTarget).data('value'));
+      }
+    } else {
+      Session.set('calcResult', Session.get('calcResult').toString() + $(evt.currentTarget).data('value').toString());
     }
+  },
+  'click .operatorKey': function (evt) {
+    if (! Session.get('calcPile')) {
+      Session.set('operatorPile', $(evt.currentTarget).data('operator'));
+      Session.set('calcPile', Session.get('calcResult'));
+      Session.set('calcResult', '');
+    }
+  },
+  'click #equal': function () {
+    if (Session.get('operatorPile') && Session.get('calcPile')) {
+      switch (Session.get('operatorPile')) {
+      case '+':
+        Session.set('calcResult', Number(Session.get('calcPile')) + Number(Session.get('calcResult')));
+        break;
+      case '-':
+        Session.set('calcResult', Number(Session.get('calcPile')) - Number(Session.get('calcResult')));
+        break;
+      case '*':
+        Session.set('calcResult', Number(Session.get('calcPile')) * Number(Session.get('calcResult')));
+        break;
+      case '/':
+        Session.set('calcResult', Number(Session.get('calcPile')) / Number(Session.get('calcResult')));
+        break;
+      }
+      Session.delete('operatorPile');
+      Session.delete('calcPile');
+    }
+  },
+  'click #cancel': function () {
+    Session.set('calcResult', 0);
+  },
+  'click #toVoucher': function () {
+    Session.set('voucher', Session.get('calcResult'));
+    history.go(-1);
   }
 });
 
-Template.calc.onRendered(function () {
-  Session.set('voucher', 0);
+Template.calc.onCreated(function () {
+  Session.set('calcResult', 0);
+  Session.delete('voucher');
+  Session.delete('operatorPile');
+  Session.delete('calcPile');
 });

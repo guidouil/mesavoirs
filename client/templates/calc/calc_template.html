@@ -1,40 +1,40 @@
 <template name='calc'>
   <div class="ui main container">
-    <div class="ui segment basic">
-      <h3 class="ui header">Calculer le montant d'un avoir</h3>
-      <div class="ui form">
-        <div class="three fields">
-          <div class="field">
-            <label for="total">Total a payer</label>
-            <div class="ui right labeled left icon large input">
-              <i class="calculator icon"></i>
-              <input type="number" step="any" placeholder="Total a payer" id="total">
-              <div class="ui label"><i class="euro icon"></i></div>
-            </div>
-          </div>
-          <div class="field">
-            <label for="ticketValue">Valeur du ticket</label>
-            <div class="ui right labeled left icon large input">
-              <i class="ticket icon"></i>
-              <input type="number" step="any" placeholder="Valeur du ticket" id="ticketValue">
-              <div class="ui label"><i class="euro icon"></i></div>
-            </div>
-          </div>
-          <div class="field">
-            <label for="ticketCount">Nombre de tickets</label>
-            <select class="ui dropdown" id="ticketCount" name="ticketCount">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-            </select>
-          </div>
+    <div class="ui basic segment">
+      <div class="ui grid">
+        <div class="four wide column"><button type="button" id="cancel" class="ui fluid negative button big">C</button></div>
+        <div class="twelve wide column"><h1 class="ui right aligned header">{{calcResult}}</h1></div>
+        <div class="four column row">
+          <div class="column"><button type="button" id="seven" class="ui fluid button big basic numberKey" data-value="7">7</button></div>
+          <div class="column"><button type="button" id="heigh" class="ui fluid button big basic numberKey" data-value="8">8</button></div>
+          <div class="column"><button type="button" id="one" class="ui fluid button big basic numberKey" data-value="9">9</button></div>
+          <div class="column"><button type="button" id="one" class="ui fluid button big operatorKey" data-operator="/">÷</button></div>
+        </div>
+        <div class="four column row">
+          <div class="column"><button type="button" id="one" class="ui fluid button big basic numberKey" data-value="4">4</button></div>
+          <div class="column"><button type="button" id="one" class="ui fluid button big basic numberKey" data-value="5">5</button></div>
+          <div class="column"><button type="button" id="one" class="ui fluid button big basic numberKey" data-value="6">6</button></div>
+          <div class="column"><button type="button" id="one" class="ui fluid button big operatorKey" data-operator="*">x</button></div>
+        </div>
+        <div class="four column row">
+          <div class="column"><button type="button" id="one" class="ui fluid button big basic numberKey" data-value="1">1</button></div>
+          <div class="column"><button type="button" id="two" class="ui fluid button big basic numberKey" data-value="2">2</button></div>
+          <div class="column"><button type="button" id="three" class="ui fluid button big basic numberKey" data-value="3">3</button></div>
+          <div class="column"><button type="button" id="one" class="ui fluid button big operatorKey" data-operator="-">-</button></div>
+        </div>
+        <div class="four column row">
+          <div class="column"><button type="button" id="one" class="ui fluid button big basic numberKey" data-value="0">0</button></div>
+          <div class="column"><button type="button" id="one" class="ui fluid button big basic numberKey" data-value="00">00</button></div>
+          <div class="column"><button type="button" id="one" class="ui fluid button big basic numberKey" data-value=".">.</button></div>
+          <div class="column"><button type="button" id="one" class="ui fluid blue button big operatorKey" data-operator="+">+</button></div>
         </div>
       </div>
-      <h2 class="ui right aligned header">Avoir : {{{formatMoney voucher}}}</h2>
-      <button class="fluid ui button">recalculer</button>
+      <br>
+      <button type="button" id="equal" class="ui black fluid button big">=</button>
+      {{#if isSellerOrOwnerRole}}
+      <br>
+      <button type="button" id="toVoucher" class="ui positive fluid button big">Vers avoir</button>
+      {{/if}}
     </div>
   </div>
 </template>
