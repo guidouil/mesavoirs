@@ -102,7 +102,7 @@ Template.scanned.events({
     if (Session.get('placeId') && Session.get('customerId')) {
       swal({
         title: 'Etes-vous sur ?',
-        text: 'Normalement, vous ne devez pas enlever de points a un client.',
+        text: 'Normalement, vous ne devez pas enlever de points à un client.',
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#DD6B55',
