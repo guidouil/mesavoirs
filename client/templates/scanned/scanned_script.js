@@ -3,7 +3,7 @@ Template.scanned.helpers({
     return Router.current().params.type;
   },
   scanId: function () {
-    return Router.current().params.id;
+    return decodeURIComponent(Router.current().params.id);
   },
   customerEmail: function () {
     return Session.get('customerEmail');
