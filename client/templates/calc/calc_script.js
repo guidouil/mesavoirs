@@ -5,46 +5,21 @@ Template.calc.helpers({
 });
 
 Template.calc.events({
-  'click .numberKey': function (evt) {
-    if (! Session.get('calcResult')) {
-      if ($(evt.currentTarget).data('value') > 0) {
-        Session.set('calcResult', $(evt.currentTarget).data('value'));
-      } else if ($(evt.currentTarget).data('value') === '.') {
-        Session.set('calcResult', '0' + $(evt.currentTarget).data('value'));
-      }
-    } else {
-      Session.set('calcResult', Session.get('calcResult').toString() + $(evt.currentTarget).data('value').toString());
+  'click .calcKey': function (evt, tmpl) {
+    tmpl.find('#calcScreen').value += String($(evt.currentTarget).data('value'));
+    Session.set('calcResult', tmpl.find('#calcScreen').value);
+  },
+  'click #equal': function (evt, tmpl) {
+    var calcScreen = tmpl.find('#calcScreen').value;
+    var re = /\d/;
+    if (re.test(calcScreen.charAt(0)) && re.test(calcScreen.charAt(calcScreen.length - 1))) {
+      tmpl.find('#calcScreen').value = eval(calcScreen);
+      Session.set('calcResult', tmpl.find('#calcScreen').value);
     }
   },
-  'click .operatorKey': function (evt) {
-    if (! Session.get('calcPile')) {
-      Session.set('operatorPile', $(evt.currentTarget).data('operator'));
-      Session.set('calcPile', Session.get('calcResult'));
-      Session.set('calcResult', '');
-    }
-  },
-  'click #equal': function () {
-    if (Session.get('operatorPile') && Session.get('calcPile')) {
-      switch (Session.get('operatorPile')) {
-      case '+':
-        Session.set('calcResult', Number(Session.get('calcPile')) + Number(Session.get('calcResult')));
-        break;
-      case '-':
-        Session.set('calcResult', Number(Session.get('calcPile')) - Number(Session.get('calcResult')));
-        break;
-      case '*':
-        Session.set('calcResult', Number(Session.get('calcPile')) * Number(Session.get('calcResult')));
-        break;
-      case '/':
-        Session.set('calcResult', Number(Session.get('calcPile')) / Number(Session.get('calcResult')));
-        break;
-      }
-      Session.delete('operatorPile');
-      Session.delete('calcPile');
-    }
-  },
-  'click #cancel': function () {
-    Session.set('calcResult', 0);
+  'click #cancel': function (evt, tmpl) {
+    Session.delete('calcResult');
+    tmpl.find('#calcScreen').value = '';
   },
   'click #toVoucher': function () {
     Session.set('voucher', Session.get('calcResult'));
@@ -53,8 +28,6 @@ Template.calc.events({
 });
 
 Template.calc.onCreated(function () {
-  Session.set('calcResult', 0);
+  Session.delete('calcResult');
   Session.delete('voucher');
-  Session.delete('operatorPile');
-  Session.delete('calcPile');
 });

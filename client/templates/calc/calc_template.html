@@ -3,30 +3,33 @@
     <div class="ui basic segment">
       <div class="ui grid">
         <div class="four wide column"><button type="button" id="cancel" class="ui fluid negative button big">C</button></div>
-        <div class="twelve wide column"><h1 class="ui right aligned header">{{calcResult}}</h1></div>
-        <div class="four column row">
-          <div class="column"><button type="button" id="seven" class="ui fluid button big basic numberKey" data-value="7">7</button></div>
-          <div class="column"><button type="button" id="heigh" class="ui fluid button big basic numberKey" data-value="8">8</button></div>
-          <div class="column"><button type="button" id="one" class="ui fluid button big basic numberKey" data-value="9">9</button></div>
-          <div class="column"><button type="button" id="one" class="ui fluid button big operatorKey" data-operator="/">÷</button></div>
+        <div class="twelve wide column">
+          <h1 class="ui right aligned header">{{calcResult}}</h1>
+          <input type="hidden" id="calcScreen" value="">
         </div>
         <div class="four column row">
-          <div class="column"><button type="button" id="one" class="ui fluid button big basic numberKey" data-value="4">4</button></div>
-          <div class="column"><button type="button" id="one" class="ui fluid button big basic numberKey" data-value="5">5</button></div>
-          <div class="column"><button type="button" id="one" class="ui fluid button big basic numberKey" data-value="6">6</button></div>
-          <div class="column"><button type="button" id="one" class="ui fluid button big operatorKey" data-operator="*">x</button></div>
+          <div class="column"><button type="button" id="seven" class="ui fluid button big calcKey" data-value="7">7</button></div>
+          <div class="column"><button type="button" id="heigh" class="ui fluid button big calcKey" data-value="8">8</button></div>
+          <div class="column"><button type="button" id="one" class="ui fluid button big calcKey" data-value="9">9</button></div>
+          <div class="column"><button type="button" id="one" class="ui fluid button big basic black calcKey" data-value="/">÷</button></div>
         </div>
         <div class="four column row">
-          <div class="column"><button type="button" id="one" class="ui fluid button big basic numberKey" data-value="1">1</button></div>
-          <div class="column"><button type="button" id="two" class="ui fluid button big basic numberKey" data-value="2">2</button></div>
-          <div class="column"><button type="button" id="three" class="ui fluid button big basic numberKey" data-value="3">3</button></div>
-          <div class="column"><button type="button" id="one" class="ui fluid button big operatorKey" data-operator="-">-</button></div>
+          <div class="column"><button type="button" id="one" class="ui fluid button big calcKey" data-value="4">4</button></div>
+          <div class="column"><button type="button" id="one" class="ui fluid button big calcKey" data-value="5">5</button></div>
+          <div class="column"><button type="button" id="one" class="ui fluid button big calcKey" data-value="6">6</button></div>
+          <div class="column"><button type="button" id="one" class="ui fluid button big basic black calcKey" data-value="*"><i class="remove icon"></i></button></div>
         </div>
         <div class="four column row">
-          <div class="column"><button type="button" id="one" class="ui fluid button big basic numberKey" data-value="0">0</button></div>
-          <div class="column"><button type="button" id="one" class="ui fluid button big basic numberKey" data-value="00">00</button></div>
-          <div class="column"><button type="button" id="one" class="ui fluid button big basic numberKey" data-value=".">.</button></div>
-          <div class="column"><button type="button" id="one" class="ui fluid blue button big operatorKey" data-operator="+">+</button></div>
+          <div class="column"><button type="button" id="one" class="ui fluid button big calcKey" data-value="1">1</button></div>
+          <div class="column"><button type="button" id="two" class="ui fluid button big calcKey" data-value="2">2</button></div>
+          <div class="column"><button type="button" id="three" class="ui fluid button big calcKey" data-value="3">3</button></div>
+          <div class="column"><button type="button" id="one" class="ui fluid button big basic black calcKey" data-value="-"><i class="minus icon"></i></button></div>
+        </div>
+        <div class="four column row">
+          <div class="column"><button type="button" id="one" class="ui fluid button big calcKey" data-value="0">0</button></div>
+          <div class="column"><button type="button" id="one" class="ui fluid button big calcKey" data-value="00">00</button></div>
+          <div class="column"><button type="button" id="one" class="ui fluid button big calcKey" data-value=".">.</button></div>
+          <div class="column"><button type="button" id="one" class="ui fluid button big basic blue calcKey" data-value="+"><i class="plus icon"></i></button></div>
         </div>
       </div>
       <br>
