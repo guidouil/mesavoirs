@@ -101,7 +101,6 @@ localstorage@1.0.5
 logging@1.0.8
 mdg:camera@1.2.0
 mdg:geolocation@1.1.0
-mdg:reload-on-resume@1.0.4
 mdg:validation-error@0.2.0
 meteor@1.1.10
 meteor-base@1.0.1

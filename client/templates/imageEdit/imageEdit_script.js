@@ -4,7 +4,6 @@ Template.imageEdit.events({
       var cameraOptions = {
         width: 600,
         height: 600,
-        quality: 75,
         sourceType: Camera.PictureSourceType.PHOTOLIBRARY
       };
       mobileCropLoader(cameraOptions);
