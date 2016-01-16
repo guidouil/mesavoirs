@@ -1,5 +1,5 @@
 <template name='home'>
-  <div class="ui main container">
+
     {{#if isSellerOrOwnerRole}}
       <div class="ui raised center aligned segment">
         <h3 class="ui header">Bienvenue sur votre Loyali</h3>
@@ -37,20 +37,25 @@
     </div>
 
     {{#unless isInRole 'owners'}}
-    <div class="ui raised center aligned segment">
-      <h2 class="ui icon header">
-        <img class="ui tiny image" src="{{loyaliLogo}}" alt="Loyali" data-intro="Ce ticket est un raccourci vers vos avoirs" data-step="5" data-position="bottom-middle-aligned" data-action="vouchers" />
+    <div class="ui raised segment">
+      <h2 class="ui icon header center aligned">
+        <img class="ui tiny image" src="{{loyaliLogo}}" alt="icone Loyali" data-action="vouchers" />
         <div class="content">
           Utilisez Loyali pour votre commerce
-          <div class="sub header">C'est gratuit pour toujours  et garanti sans pub.</div>
+          <div class="sub header">C'est gratuit pour toujours et garanti sans pub.</div>
         </div>
       </h2>
+      <button class="teal right floated ui circular icon button" id="createPlaceHelp" data-position="top right"><i class="help icon"></i></button>
+      <div class="ui special popup">
+        C'est très simple d'ajouter votre commerce. C'est gratuit et ça ne prend que quelques minutes.<br>
+        <br>
+        Vous avez besoin d'aide ? Apellez Guillaume au <a href="tel:+33632424849">06 32 42 48 49</a>
+      </div>
       <p>
         <button class="ui button positive" data-action="createPlace">Inscrivez votre commerce</button>
       </p>
     </div>
     {{/unless}}
     <button class="ui button fluid" id="intro">Besoin d'aide ?</button>
-  </div>
-  {{> footer}}
+
 </template>

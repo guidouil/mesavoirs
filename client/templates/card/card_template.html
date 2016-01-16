@@ -1,6 +1,6 @@
 <template name='card'>
   {{#with card}}
-  <div class="ui container">
+
     <div class="ui center aligned basic segment">
       <h1 class="ui header">
         {{name}}
@@ -21,6 +21,6 @@
       <a href="{{pathFor 'loyaltyCards'}}" class="left floated ui circular icon button"><i class="arrow left icon"></i></a>
       <a href="{{pathFor 'editCard' cardId=_id}}" class="teal right floated ui circular icon button"><i class="pencil icon"></i></a>
     </div>
-  </div>
+
   {{/with}}
 </template>

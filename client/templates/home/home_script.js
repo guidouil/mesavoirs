@@ -48,4 +48,9 @@ Template.home.onRendered(function () {
   setTimeout(function () {
     $('html, body').animate({scrollTop: 0}, 'fast');
   }, 400);
+  setTimeout(function () {
+    $('#createPlaceHelp').popup({
+      inline: true
+    });
+  }, 1000);
 });

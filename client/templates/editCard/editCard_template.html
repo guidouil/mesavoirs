@@ -1,6 +1,6 @@
 <template name='editCard'>
   {{#with card}}
-  <div class="ui container">
+
     {{#if imageId}}
       {{> image imageId=imageId classNames='small right floated'}}
     {{/if}}
@@ -23,6 +23,6 @@
     {{/autoForm}}
     <br>
     <button class="fluid ui negative button deleteCard" >Supprimer</button>
-  </div>
+
   {{/with}}
 </template>

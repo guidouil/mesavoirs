@@ -1,8 +1,8 @@
 <template name='place'>
-  <div class="ui main container">
+
     {{#with place}}
     {{#if isSellerOrOwner}}
-    <div class="ui raised segment">
+    <div class="ui basic segment">
       {{#if isOwner}}
         <a href="{{pathFor 'placeEdit' placeId=_id}}" class="teal right floated ui circular icon button"><i class="pencil icon"></i></a>
         <div class="ui slider checkbox">
@@ -12,10 +12,21 @@
         <br>
         <br>
       {{/if}}
-      <button class="ui {{#if currentPlace}}green{{/if}} fluid labeled icon button" data-action="setCurrentPlace">
-        <i class="marker icon"></i>
-        J'y {{#if currentPlace}}suis{{else}}vais{{/if}}
-      </button>
+      <br>
+      <div class="ui grid">
+        <div class="height wide column">
+          <button class="ui {{#if currentPlace}}green{{/if}} labeled icon button" data-action="setCurrentPlace">
+            <i class="marker icon"></i>
+            J'y {{#if currentPlace}}suis{{else}}vais{{/if}}
+          </button>
+        </div>
+        <div class="height wide column">
+          <a class="ui blue labeled icon button disabled" href="{{pathFor 'promotions' placeId=_id}}">
+            <i class="star icon"></i>
+            Mes promos
+          </a>
+        </div>
+      </div>
       <br>
       <div class="ui three tiny statistics">
         <div class="ui statistic">
@@ -44,6 +55,7 @@
         </div>
       </div>
     </div>
+    <hr>
     {{/if}}
     <div class="ui basic segment">
       <h1 class="ui center aligned header">
@@ -101,6 +113,6 @@
       </div>
     </div>
     {{/with}}
-  </div>
+
   {{> histories}}
 </template>

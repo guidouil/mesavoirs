@@ -29,4 +29,9 @@ Template.myPlaces.onRendered(function () {
       setDefaultCurrentPlace();
     }
   });
+  setTimeout(function () {
+    $('#myPlacesHelp').popup({
+      inline: true
+    });
+  }, 1000);
 });

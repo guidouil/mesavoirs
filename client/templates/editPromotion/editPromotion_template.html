@@ -1,6 +1,6 @@
 <template name='editPromotion'>
   {{#if isInRole 'owners'}}
-    <div class="ui main container">
+
       <div class="ui basic segment">
         {{#if imageId}}
           {{> image imageId=imageId classNames='small right floated'}}
@@ -26,6 +26,6 @@
           <a class="fluid ui button" href="{{pathFor 'cardsBrands'}}">Annuler</a>
         {{/autoForm}}
       </div>
-    </div>
+
   {{/if}}
 </template>

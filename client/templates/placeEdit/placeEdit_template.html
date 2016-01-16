@@ -1,7 +1,7 @@
 <template name='placeEdit'>
   {{#with place}}
   {{#if isOwner}}
-  <div class="ui container">
+
     {{#if imageId}}
       {{> image imageId=imageId classNames='small rounded right floated'}}
     {{/if}}
@@ -36,7 +36,7 @@
     <br>
     <hr>
     <button class="negative ui fluid button" data-action="deletePlace">Supprimer</button>
-  </div>
+
   {{/if}}
   {{/with}}
 </template>

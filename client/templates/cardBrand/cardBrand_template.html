@@ -1,6 +1,6 @@
 <template name='cardBrand'>
   {{#if isInRole 'bo'}}
-    <div class="ui main container">
+
       <div class="ui basic segment">
         {{#if cardBrand.imageId}}
           {{> image imageId=cardBrand.imageId classNames='small right floated'}}
@@ -27,6 +27,6 @@
           <button class="fluid ui negative button deleteCardBrand" >Supprimer</button>
         {{/if}}
       </div>
-    </div>
+
   {{/if}}
 </template>

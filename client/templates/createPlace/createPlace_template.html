@@ -1,5 +1,5 @@
 <template name='createPlace'>
-  <div class="ui container">
+
     <h2>Inscrivez votre commerce</h2>
     {{#autoForm id="createPlace" type="insert" collection="Places" enctype="multipart/form-data" doc=this}}
       {{> afQuickField placeholder="schemaLabel" name="name"}}
@@ -10,5 +10,5 @@
       {{> afQuickField placeholder="schemaLabel" name="addresses.0.country"}}
       <button class="fluid ui positive button" type="submit">Enregistrer</button>
     {{/autoForm}}
-  </div>
+
 </template>

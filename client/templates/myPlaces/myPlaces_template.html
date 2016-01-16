@@ -1,5 +1,9 @@
 <template name='myPlaces'>
-  <div class="ui container">
+
+    <button class="teal right floated ui circular icon button" id="myPlacesHelp" data-position="top right"><i class="help icon"></i></button>
+    <div class="ui special popup">
+      Vous avez besoin d'aide ? Apellez Guillaume au <a href="tel:+33632424849">06 32 42 48 49</a>
+    </div>
     {{ #if myPlaces }}
       <h3>Mes commerces</h3>
       <div class="ui four doubling link cards">
@@ -52,5 +56,5 @@
       </p>
     </div>
     {{ /if }}
-  </div>
+
 </template>

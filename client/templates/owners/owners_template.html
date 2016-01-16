@@ -1,7 +1,7 @@
 <template name='owners'>
   {{#with place}}
   {{#if isOwner}}
-  <div class="ui main container">
+
     <h2 class="ui header">Propriétaires</h2>
     <div class="ui list">
     {{#each owners}}
@@ -26,7 +26,7 @@
     </div>
     <br>
     <a href="{{pathFor 'placeEdit' placeId=_id}}" class="left floated ui circular icon button"><i class="arrow left icon"></i></a>
-  </div>
+
   {{/if}}
   {{/with}}
 </template>
