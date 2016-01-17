@@ -1,8 +1,11 @@
 <template name='header'>
   <div class="ui top fixed menu borderless blue inverted">
     <div class="left menu">
-      <div class="item" data-action="sidebar">
-        <i class="big sidebar icon" data-intro="Cliquez ici pour voir le menu et toutes les fonctionalités de Loyali" data-step="1"></i>
+      <div class="item">
+        {{#if isNotHome}}
+          <i class="big left chevron icon" data-action="goBack"></i>
+        {{/if}}
+        <i class="big sidebar icon" data-intro="Cliquez ici pour voir le menu et toutes les fonctionalités de Loyali" data-step="1" data-action="sidebar"></i>
       </div>
     </div>
     <div class="center header item" data-action="goHome">

@@ -1,5 +1,7 @@
 Template.header.helpers({
-
+  isNotHome: function () {
+    return Router.current().route.getName() !== 'home';
+  }
 });
 
 Template.header.events({
@@ -13,6 +15,9 @@ Template.header.events({
   'click [data-action=goHome]': function () {
     Router.go('home');
     $('html, body').animate({scrollTop: 0}, 'fast');
+  },
+  'click [data-action=goBack]': function () {
+    window.history.back();
   },
   'click [data-action=addProduct]': function () {
     Meteor.call('insertFakeProduct');
