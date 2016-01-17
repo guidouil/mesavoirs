@@ -22,8 +22,12 @@
           {{> afQuickField placeholder="schemaLabel" name="start" }}
           {{> afQuickField placeholder="schemaLabel" name="stop" }}
           {{> afQuickField name="placeId" value=currentUser.profile.currentPlace}}
-          <button class="fluid ui positive button" type="submit">Enregistrer</button>
-          <a class="fluid ui button" href="{{pathFor 'cardsBrands'}}">Annuler</a>
+          <div class="ui grid">
+            <div class="two column row">
+              <div class="column"><a class="fluid ui button" href="{{pathFor 'promotions'}}">Annuler</a></div>
+              <div class="column"><button class="fluid ui positive button" type="submit">Enregistrer</button></div>
+            </div>
+          </div>
         {{/autoForm}}
       </div>
 

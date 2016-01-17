@@ -15,12 +15,14 @@
           <label for="name">Adresse email</label>
           <input type="email" placeholder="Adresse email" name="email" id="email" value="{{contactEmail user}}">
         </div>
-        <button class="fluid ui positive button" type="submit">Enregistrer</button>
-        <br>
-        <a class="fluid ui button" href="{{pathFor 'profile'}}">Annuler</a>
-        <br>
+        <div class="ui grid">
+          <div class="two column row">
+            <div class="column"><a class="fluid ui button" href="{{pathFor 'profile'}}">Annuler</a></div>
+            <div class="column"><button class="fluid ui positive button" type="submit">Enregistrer</button></div>
+          </div>
+        </div>
         <hr>
-        <button class="ui fluid red button" data-action="deleteMe">
+        <button type="button" class="ui fluid red button" data-action="deleteMe">
           Supprimer ce compte
         </button>
       </form>

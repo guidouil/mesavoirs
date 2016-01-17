@@ -18,13 +18,16 @@
         {{#autoForm id="editCardBrand" type=type collection="CardsBrands" enctype="multipart/form-data" doc=cardBrand}}
           {{> afQuickField placeholder="schemaLabel" name="name" }}
           {{> afQuickField placeholder="schemaLabel" name="baseline" }}
-          <button class="fluid ui positive button" type="submit">Enregistrer</button>
-          <br>
-          <a class="fluid ui button" href="{{pathFor 'cardsBrands'}}">Annuler</a>
+          <div class="ui grid">
+            <div class="two column row">
+              <div class="column"><a class="fluid ui button" href="{{pathFor 'cardsBrands'}}">Annuler</a></div>
+              <div class="column"><button class="fluid ui positive button" type="submit">Enregistrer</button></div>
+            </div>
+          </div>
         {{/autoForm}}
         {{#if cardBrand._id}}
           <br>
-          <button class="fluid ui negative button deleteCardBrand" >Supprimer</button>
+          <button type="button" class="fluid ui negative button deleteCardBrand">Supprimer</button>
         {{/if}}
       </div>
 

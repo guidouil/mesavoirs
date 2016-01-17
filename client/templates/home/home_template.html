@@ -4,14 +4,14 @@
       <div class="ui raised center aligned segment">
         <h3 class="ui header">Bienvenue sur votre Loyali</h3>
         {{#if isMobile}}
-        <button class="ui button fluid positive" data-action="scan">Scanner un code client</button>
+        <button class="ui labeled icon button fluid positive" data-action="scan"><i class="qrcode icon"></i>Scanner un code client</button>
         <br>
         {{/if}}
-        <a class="ui button fluid teal" href="{{pathFor 'customers' placeId=currentUser.profile.currentPlace}}">Gérez vos clients</a>
+        <a class="ui labeled icon button fluid teal" href="{{pathFor 'customers' placeId=currentUser.profile.currentPlace}}"><i class="users icon"></i>Gérez vos clients</a>
         <br>
-        <a class="ui button fluid blue" href="{{pathFor 'myPlaces'}}">Gérez vos commerces</a>
+        <a class="ui labeled icon button fluid blue" href="{{pathFor 'myPlaces'}}"><i class="setting icon"></i>Gérez vos commerces</a>
         <br>
-        <a class="ui button fluid" href="{{pathFor 'contact'}}">Contacter Loyali</a>
+        <a class="ui labeled icon button fluid" href="{{pathFor 'contact'}}"><i class="mail icon"></i>Contacter Loyali</a>
       </div>
     {{/if}}
     {{#unless isMobile}}

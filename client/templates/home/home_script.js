@@ -4,7 +4,7 @@ Template.home.helpers({
       'Fini le porte monnaie surchargé inutilement.',
       'Simplement depuis votre smartphone et en temps-réel.',
       'Vous ne perdrez plus jamais l\'avoir de la boulangerie.',
-      'Parlez de Loyali aux commerçants qui sont encore à l\'air du papier.',
+      'Parlez de Loyali aux commerçants qui sont encore à l\'ère du papier.',
       'Vous n\'oublierez plus jamais une carte de fidélité.',
       'Pour ne plus collectionner les cartes, ni les tickets dans votre porte monnaie.'
     ];

@@ -19,6 +19,7 @@ Template.editProfile.events({
       check(email, String);
       Meteor.users.update( { _id: Meteor.userId() }, { $set: { 'emails.0.address': email }});
     }
+    Router.go('profile');
   },
   'click [data-action=deleteMe]': function () {
     swal({

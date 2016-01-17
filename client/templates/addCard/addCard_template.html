@@ -12,9 +12,12 @@
       {{> afQuickField placeholder="schemaLabel" name="notes" id="cardNotes"}}
       {{> afQuickField  name="imageId" class="hidden" id="imageId"}}
       {{> afQuickField  name="cardBrandId" class="hidden" id="cardBrandId"}}
-      <button class="fluid ui positive button" type="submit">Enregistrer</button>
-      <br>
-      <a class="fluid ui button" href="{{pathFor 'loyaltyCards'}}">Annuler</a>
+      <div class="ui grid">
+        <div class="two column row">
+          <div class="column"><a class="fluid ui button" href="{{pathFor 'loyaltyCards'}}">Annuler</a></div>
+          <div class="column"><button class="fluid ui positive button" type="submit">Enregistrer</button></div>
+        </div>
+      </div>
     {{/autoForm}}
 
 </template>
