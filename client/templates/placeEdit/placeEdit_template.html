@@ -27,14 +27,14 @@
         {{> afQuickField defaultValue="10" name="loyaltyCard.size"}}
         {{> afQuickField defaultValue="5" name="loyaltyCard.voucherValue"}}
       </div>
-    {{/autoForm}}
-    <br>
-    <div class="ui grid">
-      <div class="two column row">
-        <div class="column"><a class="fluid ui button" href="{{pathFor 'place' placeId=_id}}">Annuler</a></div>
-        <div class="column"><button class="fluid ui positive button" type="submit">Enregistrer</button></div>
+      <br>
+      <div class="ui grid">
+        <div class="two column row">
+          <div class="column"><a class="fluid ui button" href="{{pathFor 'place' placeId=_id}}">Annuler</a></div>
+          <div class="column"><button class="fluid ui positive button" type="submit">Enregistrer</button></div>
+        </div>
       </div>
-    </div>
+    {{/autoForm}}
     <br>
     <hr>
     <button class="negative ui fluid button" data-action="deletePlace">Supprimer</button>
