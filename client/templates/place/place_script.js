@@ -53,6 +53,10 @@ Template.place.events({
     Session.set('placeId', Router.current().params.placeId);
     Router.go('customers', {placeId: Router.current().params.placeId});
   },
+  'click #toggleMyPlaceHeader': function () {
+    $('#myPlaceHeader').slideToggle().toggleClass('up').toggleClass('down');
+    $('#toggleMyPlaceHeader').toggleClass('up').toggleClass('down');
+  },
   'click .placeMap': function () {
     Session.set('fullAdress', this.street + ', ' + this.zip + ' ' + this.city);
     Router.go('map');
