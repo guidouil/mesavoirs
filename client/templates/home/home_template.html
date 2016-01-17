@@ -4,7 +4,7 @@
       <div class="ui raised center aligned segment">
         <h3 class="ui header">Bienvenue sur votre Loyali</h3>
         {{#if isMobile}}
-        <button class="ui labeled icon button fluid positive" data-action="scan"><i class="qrcode icon"></i>Scanner un code client</button>
+        <button type="button" class="ui labeled icon button fluid positive" data-action="scan"><i class="qrcode icon"></i>Scanner un code client</button>
         <br>
         {{/if}}
         <a class="ui labeled icon button fluid teal" href="{{pathFor 'customers' placeId=currentUser.profile.currentPlace}}"><i class="users icon"></i>Gérez vos clients</a>
@@ -45,17 +45,17 @@
           <div class="sub header">C'est gratuit pour toujours et garanti sans pub.</div>
         </div>
       </h2>
-      <button class="teal right floated ui circular icon button" id="createPlaceHelp" data-position="top right"><i class="help icon"></i></button>
+      <button type="button" class="teal right floated ui circular icon button" id="createPlaceHelp" data-position="top right"><i class="help icon"></i></button>
       <div class="ui special popup">
         C'est très simple d'ajouter votre commerce. C'est gratuit et ça ne prend que quelques minutes.<br>
         <br>
         Vous avez besoin d'aide ? Apellez Guillaume au <a href="tel:+33632424849">06 32 42 48 49</a>
       </div>
       <p>
-        <button class="ui button positive" data-action="createPlace">Inscrivez votre commerce</button>
+        <button type="button" class="ui button positive" data-action="createPlace">Inscrivez votre commerce</button>
       </p>
     </div>
     {{/unless}}
-    <button class="ui button fluid" id="intro">Besoin d'aide ?</button>
+    <button type="button" class="ui button fluid" id="intro">Besoin d'aide ?</button>
 
 </template>

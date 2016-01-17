@@ -15,7 +15,7 @@
       <br>
       <div class="ui grid">
         <div class="height wide column">
-          <button class="ui {{#if currentPlace}}green{{/if}} labeled icon button" data-action="setCurrentPlace">
+          <button type="button" class="ui {{#if currentPlace}}green{{/if}} labeled icon button" data-action="setCurrentPlace">
             <i class="marker icon"></i>
             J'y {{#if currentPlace}}suis{{else}}vais{{/if}}
           </button>
@@ -86,7 +86,7 @@
       {{#if myLoyaltyCard}}
         <div class="item">
           <div class="content">
-            <button class="teal right floated ui circular icon button" id="loyaltyCardHelp" data-position="top right"><i class="help icon"></i></button>
+            <button type="button" class="teal right floated ui circular icon button" id="loyaltyCardHelp" data-position="top right"><i class="help icon"></i></button>
             <div class="ui special popup">
               Chaque tranche d'achat de {{{formatMoney loyaltyCard.pointCost}}} ajoute 1 point à la carte de fidélité.
               <br><br>

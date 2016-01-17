@@ -7,7 +7,7 @@
           {{#each contacts}}
           <div class="item">
             <div class="content">
-              <button class="red right floated ui circular icon button" id="deleteContact"><i class=" trash icon"></i></button>
+              <button type="button" class="red right floated ui circular icon button" id="deleteContact"><i class=" trash icon"></i></button>
               {{message}}
               <div class="description">{{subject}} de {{name}} | {{email}} ({{fromNow createdAt}})</div>
             </div>

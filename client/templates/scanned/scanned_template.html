@@ -19,7 +19,7 @@
         </h2>
         {{#if place.loyaltyCard.enabled}}
           <h4>Carte de fidélité{{#if customerEmail}} de {{customerEmail}}{{/if}}</h4>
-          <button class="teal right floated ui circular icon button" id="loyaltyCardHelp" data-position="top right"><i class="help icon"></i></button>
+          <button type="button" class="teal right floated ui circular icon button" id="loyaltyCardHelp" data-position="top right"><i class="help icon"></i></button>
           <div class="ui special popup">
             Chaque tranche d'achat de {{{formatMoney place.loyaltyCard.pointCost}}} ajoute 1 point à la carte de fidélité.
             <br><br>
@@ -63,11 +63,11 @@
           <div class="ui fluid left icon action input">
             <i class="euro icon"></i>
             <input type="number" step="any" placeholder="Montant" tabindex="1" id="voucherValue" size="3" value="{{voucherValue}}">
-            <button class="ui green button" id="giveVoucher">
+            <button type="button" class="ui green button" id="giveVoucher">
               Donner
             </button>
             {{#if gt voucher.value 0}}
-            <button class="ui red button" id="takeVoucher">
+            <button type="button" class="ui red button" id="takeVoucher">
               Prendre
             </button>
             {{/if}}

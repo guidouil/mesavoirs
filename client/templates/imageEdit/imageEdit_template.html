@@ -1,6 +1,6 @@
 <template name='imageEdit'>
   {{#if imageId}}
-    <button class="ui right floated red icon button" data-action="deleteImage">
+    <button type="button" class="ui right floated red icon button" data-action="deleteImage">
       <i class="large icons">
         <i class="picture icon"></i>
         <i class="corner grey remove icon"></i>
@@ -11,14 +11,14 @@
       <input type="file" name="imageFile" class="hidden" id="imageFile">
     </form>
     {{#if isMobile}}
-    <button class="ui right floated green icon button" data-action="takePicture">
+    <button type="button" class="ui right floated green icon button" data-action="takePicture">
       <i class="large icons">
         <i class="photo icon"></i>
         <i class="corner grey add icon"></i>
       </i>
     </button>
     {{/if}}
-    <button class="ui right floated green icon button" data-action="uploadImage">
+    <button type="button" class="ui right floated green icon button" data-action="uploadImage">
       <i class="large icons">
         <i class="picture icon"></i>
         <i class="corner grey add icon"></i>
