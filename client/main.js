@@ -102,4 +102,11 @@ UI.registerHelper('reverseArray', function (array) {
   return array.reverse();
 });
 
+UI.registerHelper('trimProtocol', function (url) {
+  if (url && url.search('') !== -1) {
+    url = url.split('//');
+    return url[1];
+  }
+});
+
 UI.registerHelper('contactEmail', contactEmail);

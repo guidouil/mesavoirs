@@ -81,7 +81,23 @@
             </div>
           </div>
           {{/if}}
+          {{#if email}}
+          <div class="item">
+            <i class="mail icon"></i>
+            <div class="content">
+              <a class="header" href="mailto:{{email}}">{{email}}</a>
+            </div>
+          </div>
+          {{/if}}
         {{/each}}
+        {{#if website}}
+        <div class="item">
+          <i class="world icon"></i>
+          <div class="content">
+            <a class="header" href="{{website}}" target="_blank">{{trimProtocol website}}</a>
+          </div>
+        </div>
+        {{/if}}
       </div>
       <div class="ui relaxed divided items">
       {{#if myLoyaltyCard}}
