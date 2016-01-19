@@ -8,7 +8,7 @@ Template.search.helpers({
 });
 
 Template.search.events({
-  'input #searchQuery, submit #search': function (evt) {
+  'input #searchQuery, submit #search, click #searchIcon': function (evt) {
     evt.preventDefault();
     var searchQuery = $('#searchQuery').val();
     if (searchQuery) {

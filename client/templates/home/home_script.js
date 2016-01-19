@@ -22,7 +22,7 @@ Template.home.events({
   'click [data-action=loyaltyCards]': function () {
     Router.go('loyaltyCards');
   },
-  'submit #search': function (evt) {
+  'submit #search, click #searchIcon': function (evt) {
     evt.preventDefault();
     var searchQuery = $('#searchQuery').val();
     if (searchQuery) {
