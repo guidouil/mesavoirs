@@ -47,7 +47,7 @@ Template.home.onCreated(function () {
 Template.home.onRendered(function () {
   setTimeout(function () {
     $('html, body').animate({scrollTop: 0}, 'fast');
-  }, 400);
+  }, 500);
   setTimeout(function () {
     $('#createPlaceHelp').popup({
       inline: true

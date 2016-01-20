@@ -42,7 +42,7 @@
         <img class="ui tiny image" src="{{loyaliLogo}}" alt="icone Loyali" data-action="vouchers" />
         <div class="content">
           Utilisez Loyali pour votre commerce
-          <div class="sub header">C'est gratuit pour toujours et garanti sans pub.</div>
+          <div class="sub header">C'est gratuit pour toujours. Garanti sans pub, ni notification.</div>
         </div>
       </h2>
       <button type="button" class="teal right floated ui circular icon button" id="createPlaceHelp" data-position="top right"><i class="help icon"></i></button>
@@ -56,6 +56,8 @@
       </p>
     </div>
     {{/unless}}
+    <a type="button" class="ui button fluid" href="{{pathFor 'about'}}">A propos</a>
+    <br>
     <button type="button" class="ui button fluid" id="intro">Besoin d'aide ?</button>
-
+    <br>
 </template>
