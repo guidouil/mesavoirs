@@ -67,6 +67,7 @@ fabienb4:autoform-semantic-ui@0.9.3
 facebook@1.2.2
 fastclick@1.0.7
 froatsnook:bardcode@1.2.0
+gadicohen:reactive-window@1.0.6
 geojson-utils@1.0.4
 google@1.1.7
 ground:db@0.3.14
@@ -117,7 +118,8 @@ mongo-id@1.0.1
 mongo-livedata@1.0.9
 mpowaga:autoform-autocomplete@0.0.2
 mrt:copy-template@0.9.0
-mrt:nprogress@0.1.0
+mrt:isolate-value@2.0.2
+mrt:nprogress@0.2.0
 msavin:jetsetter@1.5.2
 npm-bcrypt@0.7.8_2
 npm-mongo@1.4.39_1

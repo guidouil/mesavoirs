@@ -37,6 +37,10 @@
         Scan
       </a>
       {{/if}}
+      <a class="item {{isActiveRoute 'createPlace'}}" href="{{pathFor 'createPlace'}}">
+        <i class="line chart icon"></i>
+        Commerces
+      </a>
     {{/unless}}
     <a class="item {{isActiveRoute 'calc'}}" href="{{pathFor 'calc'}}">
       <i class="calculator icon"></i>
