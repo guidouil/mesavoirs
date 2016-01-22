@@ -27,7 +27,7 @@
     </form>
     <div class="ui basic center aligned segment">
       <h2 class="ui icon header">
-        <i class="yellow star icon" data-action="loyaltyCards" data-intro="Cette étoile est un raccourci vers vos cartes de fidélité" data-step="4" data-position="bottom-middle-aligned"></i>
+        <img class="ui tiny image" src="{{loyaliLogo}}" alt="icône Loyali" data-action="loyaltyCards" data-intro="Cette icône Loyali est un raccourci vers vos cartes de fidélité" data-step="4" data-position="bottom-middle-aligned" />
         <div class="content">
           Gérez vos cartes de fidélité et vos avoirs
           <div class="sub header">{{baseline}}</div>
@@ -39,7 +39,7 @@
     {{#unless isConnected}}
     <div class="ui raised segment">
       <h2 class="ui icon header center aligned">
-        <img class="ui tiny image" src="{{loyaliLogo}}" alt="icone Loyali" data-action="vouchers" />
+         <i class="blue users icon" data-action="vouchers"></i>
         <div class="content">
           Utilisez Loyali pour votre commerce
           <div class="sub header">C'est gratuit pour toujours. Garanti sans pub, ni notification.</div>

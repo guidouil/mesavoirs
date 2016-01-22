@@ -37,10 +37,12 @@
         Scan
       </a>
       {{/if}}
+      {{#if isConnected}}
       <a class="item {{isActiveRoute 'createPlace'}}" href="{{pathFor 'createPlace'}}">
         <i class="line chart icon"></i>
         Commerces
       </a>
+      {{/if}}
     {{/unless}}
     <a class="item {{isActiveRoute 'calc'}}" href="{{pathFor 'calc'}}">
       <i class="calculator icon"></i>
