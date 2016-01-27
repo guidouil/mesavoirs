@@ -217,7 +217,7 @@ Meteor.methods({
         'name': cardBrand.name,
         'note': cardBrand.baseline,
         'imageId': cardBrand.imageId
-      }});
+      }}, {multi: true});
     }
   },
   addPlaceCustomer: function (placeId, customerId) {
