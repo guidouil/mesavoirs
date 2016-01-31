@@ -9,6 +9,9 @@ Template.home.helpers({
       'Pour ne plus collectionner les cartes, ni les tickets dans votre porte monnaie.'
     ];
     return _.sample(baselines);
+  },
+  qrText: function () {
+    return 'userId:' + Meteor.userId();
   }
 });
 
@@ -21,14 +24,6 @@ Template.home.events({
   },
   'click [data-action=loyaltyCards]': function () {
     Router.go('loyaltyCards');
-  },
-  'submit #search, click #searchIcon': function (evt) {
-    evt.preventDefault();
-    var searchQuery = $('#searchQuery').val();
-    if (searchQuery) {
-      Session.set('searchQuery', searchQuery);
-      Router.go('search', {'searchQuery': encodeURIComponent(searchQuery)});
-    }
   },
   'click [data-action=scan]': function () {
     scan();

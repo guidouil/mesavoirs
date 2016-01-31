@@ -1,3 +1,27 @@
 <template name='promote'>
-
+  <div class="ui segment basic">
+    <h3>Utilisez Loyali dans votre commerce ? Rien de plus simple.</h3>
+    <p>
+      Il suffit d'<a href="{{pathFor 'createPlace'}}">inscrire votre commerce</a> en donnant son nom et son adresse.<br>
+      Puis vous définissez votre programme de carte de fidélité (ex: un café offert tout les dix points).<br>
+      Et, c'est tout.<br><br>
+      Vous êtes prêt à distribuer des points sur les cartes fidélité de vos clients et à rendre la monnaie sur les titres restaurant sous forme d'avoirs électronique. Il suffit de scanner le QR code que le client vous présente sur son application Loyali avec votre application Loyali.
+    </p>
+    <h2 class="ui icon header center aligned">
+       <i class="blue users icon" data-action="vouchers"></i>
+      <div class="content">
+        Inscrivez votre commerce
+        <div class="sub header">C'est gratuit pour toujours. Garanti sans publicité, ni notification.</div>
+      </div>
+    </h2>
+    <button type="button" class="teal right floated ui circular icon button" id="createPlaceHelp" data-position="top right"><i class="help icon"></i></button>
+    <div class="ui special popup">
+      C'est très simple d'inscrire votre commerce. C'est gratuit et ça ne prend que quelques minutes.<br>
+      <br>
+      Vous avez besoin d'aide ? Apellez Guillaume au <a href="tel:+33632424849">06 32 42 48 49</a>
+    </div>
+    <p>
+      <a type="button" class="ui button positive" href="{{pathFor 'createPlace'}}">J'inscris mon commerce</a>
+    </p>
+  </div>
 </template>

@@ -2,9 +2,9 @@
 
     <div class="ui center aligned basic segment">
       {{#if isInRole 'bo'}}
-      <a href="{{pathFor 'bo'}}" class="orange left floated ui circular icon button"><i class="large spy icon"></i></a>
+      <a href="{{pathFor 'bo'}}" class="ui red left floated big circular icon button"><i class="spy icon"></i></a>
       {{/if}}
-      <a href="{{pathFor 'editProfile'}}" class="teal right floated ui circular icon button"><i class="large pencil icon"></i></a><br>
+      <a href="{{pathFor 'editProfile'}}" class="ui orange right floated big circular icon button"><i class="pencil icon"></i></a><br>
       <h2 class="ui center aligned icon header">
         {{#if user.profile.imageId}}
           {{> image imageId=user.profile.imageId classNames='tiny rounded centered'}}
@@ -18,12 +18,9 @@
       </h2>
       {{> QrCode text=qrText }}
       <br>
-      <a class="ui fluid button" href="{{pathFor 'atChangePwd'}}">
-        Changer de mot de passe
-      </a>
-      <br>
-      <button type="button" class="ui fluid orange button" data-action="logout">
-        Se déconnecter
+      <hr>
+      <button type="button" class="ui red button" data-action="logout">
+        Déconnexion
       </button>
     </div>
 

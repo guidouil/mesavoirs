@@ -38,7 +38,7 @@
       /* Skip button label in tooltip box */
       skipLabel: 'Ignorer',
       /* Done button label in tooltip box */
-      doneLabel: 'Fini',
+      doneLabel: 'OK',
       /* Default tooltip box position */
       tooltipPosition: 'bottom',
       /* Next CSS class for tooltip boxes */
@@ -66,7 +66,7 @@
       /* Precedence of positions, when auto is enabled */
       positionPrecedence: ["bottom", "top", "right", "left"],
       /* Disable an interaction with element? */
-      disableInteraction: true,
+      disableInteraction: false,
       /* Default hint position */
       hintPosition: 'top-middle',
       /* Hint button label */

@@ -1,28 +1,23 @@
 <template name='search'>
 
-    <form id="search">
-      <div class="ui large fluid icon input">
-        <input type="text" placeholder="Commerce, ville, cp" id="searchQuery" value="{{searchQuery}}">
-        <i class="search link icon" id="searchIcon"></i>
-      </div>
-    </form>
-    <div class="ui basic segment">
-      <div class="ui four doubling link cards">
-        {{#each places}}
-        <a class="card" href="{{pathFor 'place' placeId=_id}}">
-          <div class="image" >
-            {{> image imageId=imageId }}
+  {{> searchInput}}
+  <div class="ui basic segment">
+    <div class="ui four doubling link cards">
+      {{#each places}}
+      <a class="card" href="{{pathFor 'place' placeId=_id}}">
+        <div class="image" >
+          {{> image imageId=imageId }}
+        </div>
+        <div class="content">
+          <div class="header">{{name}}</div>
+          <div class="meta">
+            {{addresses.[0].street}}<br>
+            {{addresses.[0].zip}} {{addresses.[0].city}}
           </div>
-          <div class="content">
-            <div class="header">{{name}}</div>
-            <div class="meta">
-              {{addresses.[0].street}}<br>
-              {{addresses.[0].zip}} {{addresses.[0].city}}
-            </div>
-          </div>
-        </a>
-        {{/each}}
-      </div>
+        </div>
+      </a>
+      {{/each}}
     </div>
+  </div>
 
 </template>

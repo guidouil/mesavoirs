@@ -99,6 +99,7 @@
         </div>
         {{/if}}
       </div>
+
       <div class="ui relaxed divided items">
       {{#if myLoyaltyCard}}
         <div class="item">
@@ -119,6 +120,10 @@
       {{#if myVoucher}}
         <div class="item" data-action="voucherHistory">
           <div class="content">
+            <button type="button" class="teal right floated ui circular icon button" id="voucherHelp" data-position="top right"><i class="help icon"></i></button>
+            <div class="ui special popup">
+              L'avoir cumulé peut-être dépensé dans ce commerce uniquement. Il ne peut être remboursé contre sa valeur monétaire.
+            </div>
             <a class="header"><i class=" blue ticket icon"></i> {{{formatMoney myVoucher.value}}} d'avoir ici</a>
             <div class="meta">
               &nbsp;<i class="grey history icon"></i> Mis à jour {{#if myVoucher.updatedAt}}{{fromNow myVoucher.updatedAt}}{{else}}{{fromNow myVoucher.createdAt}}{{/if}}

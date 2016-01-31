@@ -6,18 +6,18 @@
     </a>
     {{#if isSellerOrOwnerRole}}
       {{#if isMobile}}
-        <a class="item {{isActiveRoute 'scanned'}}" data-action="scan">
+        <a class="item {{isActiveRoute 'scanned'}} green" data-action="scan">
           <i class="qrcode icon"></i>
           Scan
         </a>
       {{/if}}
-      <a class="item {{isActiveRoute 'customers'}}" href="{{pathFor 'customers' placeId=currentUser.profile.currentPlace}}">
+      <a class="item {{isActiveRoute 'customers'}} teal" href="{{pathFor 'customers' placeId=currentUser.profile.currentPlace}}">
         <i class="users icon"></i>
         Clients
       </a>
       {{#if isInRole 'owners'}}
-        <a class="item {{isActiveRoute 'myPlaces'}}" href="{{pathFor 'myPlaces'}}">
-          <i class="line chart icon"></i>
+        <a class="item {{isActiveRoute 'myPlaces'}} orange" href="{{pathFor 'myPlaces'}}">
+          <i class="setting icon"></i>
           Commerces
         </a>
       {{/if}}
@@ -38,16 +38,12 @@
       </a>
       {{/if}}
       {{#if isConnected}}
-      <a class="item {{isActiveRoute 'createPlace'}}" href="{{pathFor 'createPlace'}}">
-        <i class="line chart icon"></i>
+      <a class="item {{isActiveRoute 'createPlace'}}" href="{{pathFor 'promote'}}">
+        <i class="users icon"></i>
         Commerces
       </a>
       {{/if}}
     {{/unless}}
-    <a class="item {{isActiveRoute 'calc'}}" href="{{pathFor 'calc'}}">
-      <i class="calculator icon"></i>
-      Calc.
-    </a>
     <a class="item {{isActiveRoute 'about'}}" href="{{pathFor 'about'}}">
       <i class="question icon"></i>
       A propos

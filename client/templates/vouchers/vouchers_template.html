@@ -1,5 +1,5 @@
 <template name='vouchers'>
-
+    <a href="{{pathFor 'calc'}}" class="green right floated ui circular big icon button"><i class="calculator icon"></i></a>
     <h2>Mes avoirs</h2>
     <div class="ui relaxed divided list">
       {{#each vouchers}}
@@ -23,6 +23,7 @@
             <div class="sub header">Cherchez l'affiche <strong>Loyali</strong> dans vos commerces habituels ou parlez en à votre commerçant. Merci ツ</div>
           </div>
         </h2>
+        {{> searchInput}}
       </div>
       {{/each}}
     </div>

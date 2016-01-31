@@ -34,6 +34,9 @@ Template.loyaltyCards.events({
   },
   'click .privateLoyaltyCard': function () {
     Router.go('card', {cardId: this._id});
+  },
+  'click #intro': function () {
+    introJs().goToStep(3).start();
   }
 });
 

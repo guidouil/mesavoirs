@@ -1,10 +1,10 @@
 <template name='loyaltyCards'>
 
-    <a href="{{pathFor 'addCard'}}" class="teal right floated ui circular icon button"><i class="add icon"></i></a>
+    <a href="{{pathFor 'addCard'}}" class="green right floated ui circular big icon button" data-intro="Cliquez sur le + pour ajouter une carte de fidélité, vous pourrez la scanner" data-step="6" data-position="bottom-right-aligned"><i class="add icon"></i></a>
     <h2>Mes cartes de fidélité</h2>
     <div class="ui top attached tabular menu" id="loyaltyTabs">
-      <a class="{{activeLoyaltyTab 'Loyali'}} item loyaltyTabHead" data-tab="Loyali">Loyali</a>
-      <a class="{{activeLoyaltyTab 'private'}} right item loyaltyTabHead" data-tab="private">Personnelles</a>
+      <a class="{{activeLoyaltyTab 'Loyali'}} item loyaltyTabHead" data-tab="Loyali" data-intro="Dans cet onglet sont rangées toutes vos cartes Loyali obtenus chez les commerçants partenaires" data-step="4" >Cartes Loyali</a>
+      <a class="{{activeLoyaltyTab 'private'}} right item loyaltyTabHead" data-tab="private" data-intro="Dans cet onglet  sont rangées toutes vos cartes personelles des grandes que vous avez dématerialisées" data-step="5" data-position="bottom-right-aligned">Cartes personnelles</a>
     </div>
     <div class="ui bottom attached tab basic segment {{activeLoyaltyTab 'Loyali'}}" data-tab="Loyali">
       <div class="ui relaxed divided list">
@@ -31,6 +31,7 @@
               <div class="sub header">Cherchez l'affiche <strong>Loyali</strong> dans vos commerces habituels ou parlez en à votre commerçant. Merci ツ</div>
             </div>
           </h2>
+          {{> searchInput}}
         </div>
         {{/each}}
       </div>
@@ -59,13 +60,13 @@
               Vous n'avez pas encore ajouté de cartes de fidélité personelles
               <div class="sub header">Loyali vous permet de dématerialiser vos cartes de fidélité en les scannant.</div>
             </div>
-            <p>
-              <a href="{{pathFor 'addCard'}}" class="ui button">Ajouter une carte de fidélité</a>
-            </p>
           </h2>
+          <a href="{{pathFor 'addCard'}}" class="ui positive fluid button">Ajouter une carte de fidélité</a>
         </div>
         {{/each}}
       </div>
     </div>
+    <button type="button" class="ui button fluid" id="intro">Besoin d'aide ?</button>
+    <br>
 
 </template>

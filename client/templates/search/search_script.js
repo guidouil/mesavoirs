@@ -1,19 +1,6 @@
 Template.search.helpers({
-  searchQuery: function () {
-    return Router.current().params.searchQuery;
-  },
   places: function () {
     return Session.get('searchResults');
-  }
-});
-
-Template.search.events({
-  'input #searchQuery, submit #search, click #searchIcon': function (evt) {
-    evt.preventDefault();
-    var searchQuery = $('#searchQuery').val();
-    if (searchQuery) {
-      Session.set('searchQuery', searchQuery);
-    }
   }
 });
 
