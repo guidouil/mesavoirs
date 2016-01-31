@@ -44,6 +44,12 @@ Template.placeEdit.events({
 });
 
 Template.placeEdit.onRendered(function () {
+  var template = this;
+  Tracker.autorun(function () {
+    if (template.subscriptionsReady()) {
+      setDefaultCurrentPlace();
+    }
+  });
 });
 
 Template.placeEdit.onCreated(function () {

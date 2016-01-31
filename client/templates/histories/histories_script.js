@@ -23,6 +23,12 @@ Template.histories.helpers({
     } else {
       return formatedValue;
     }
+  },
+  feedIcon: function (value) {
+    if (value < 0) {
+      return 'minus red';
+    }
+    return 'plus green';
   }
 });
 

@@ -68,13 +68,18 @@ Template.place.onRendered(function () {
     $('#loyaltyCardHelp').popup({
       inline: true
     });
+    $('#voucherHelp').popup({
+      inline: true
+    });
   }, 1000);
 });
 
 Template.place.onCreated(function () {
   var template = this;
   template.subscribe('Place', Router.current().params.placeId);
-  template.subscribe('placeCounts', Router.current().params.placeId);
-  template.subscribe('UserPlaceVouchers', Router.current().params.placeId, Meteor.userId());
-  template.subscribe('UserPlaceLoyaltyCard', Router.current().params.placeId, Meteor.userId());
+  if (Meteor.userId()) {
+    template.subscribe('placeCounts', Router.current().params.placeId);
+    template.subscribe('UserPlaceVouchers', Router.current().params.placeId, Meteor.userId());
+    template.subscribe('UserPlaceLoyaltyCard', Router.current().params.placeId, Meteor.userId());
+  }
 });

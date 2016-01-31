@@ -9,9 +9,12 @@
         {{#if histories}}
         {{#each reverseArray histories}}
         <div class="event">
+          <div class="label">
+            <i class="{{feedIcon what}} large icon"></i>
+          </div>
           <div class="content">
             <div class="summary">
-              {{{plusSign what}}}
+              {{{plusSign what}}}, {{longFormatDate when}}.
               <div class="date">
                 {{fromNow when}}
               </div>

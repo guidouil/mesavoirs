@@ -56,6 +56,18 @@ UI.registerHelper('formatDate', function (date) {
   }
 });
 
+UI.registerHelper('longFormatDate', function (date) {
+  if (date !== '') {
+    return moment(date).format('LLLL');
+  }
+});
+
+UI.registerHelper('calendarDate', function (date) {
+  if (date !== '') {
+    return moment(date).calendar();
+  }
+});
+
 UI.registerHelper('fromNow', function (date) {
   if (date !== null) {
     moment.locale('fr');

@@ -112,21 +112,21 @@
             </div>
             <a class="header" data-action="loyaltyCardHistory"><i class=" yellow star icon"></i> {{myLoyaltyCard.points}} / {{myLoyaltyCard.size}} points sur votre carte</a>
             <div class="meta" data-action="loyaltyCardHistory">
-              &nbsp;<i class="grey history icon"></i> Mise à jour {{#if myLoyaltyCard.updatedAt}}{{fromNow myLoyaltyCard.updatedAt}}{{else}}{{fromNow myLoyaltyCard.createdAt}}{{/if}}
+              &nbsp;<i class="blue history icon"></i> Mise à jour {{#if myLoyaltyCard.updatedAt}}{{fromNow myLoyaltyCard.updatedAt}}{{else}}{{fromNow myLoyaltyCard.createdAt}}{{/if}}
             </div>
           </div>
         </div>
       {{/if}}
       {{#if myVoucher}}
-        <div class="item" data-action="voucherHistory">
+        <div class="item">
           <div class="content">
             <button type="button" class="teal right floated ui circular icon button" id="voucherHelp" data-position="top right"><i class="help icon"></i></button>
             <div class="ui special popup">
-              L'avoir cumulé peut-être dépensé dans ce commerce uniquement. Il ne peut être remboursé contre sa valeur monétaire.
+              L'avoir cumulé peut-être dépensé dans ce commerce uniquement.<br>Il ne peut être remboursé contre sa valeur monétaire.
             </div>
-            <a class="header"><i class=" blue ticket icon"></i> {{{formatMoney myVoucher.value}}} d'avoir ici</a>
-            <div class="meta">
-              &nbsp;<i class="grey history icon"></i> Mis à jour {{#if myVoucher.updatedAt}}{{fromNow myVoucher.updatedAt}}{{else}}{{fromNow myVoucher.createdAt}}{{/if}}
+            <a class="header" data-action="voucherHistory"><i class=" blue ticket icon"></i> {{{formatMoney myVoucher.value}}} d'avoir ici</a>
+            <div class="meta" data-action="voucherHistory">
+              &nbsp;<i class="blue history icon"></i> Mis à jour {{#if myVoucher.updatedAt}}{{fromNow myVoucher.updatedAt}}{{else}}{{fromNow myVoucher.createdAt}}{{/if}}
             </div>
           </div>
         </div>
