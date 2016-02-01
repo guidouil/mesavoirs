@@ -4,8 +4,9 @@
       <div class="left item">
         {{#if isNotHome}}
           <i class="big left chevron icon" data-action="goBack"></i>
+        {{else}}
+          <i class="big sidebar icon" data-intro="Cliquez ici pour voir le menu et toutes les fonctionalités de Loyali" data-step="1" data-action="sidebar"></i>
         {{/if}}
-        <i class="big sidebar icon" data-intro="Cliquez ici pour voir le menu et toutes les fonctionalités de Loyali" data-step="1" data-action="sidebar"></i>
       </div>
     </div>
     <div class="center header item" data-action="goHome">
@@ -13,7 +14,7 @@
     </div>
     <div class="right menu">
       {{#unless isConnected}}
-      <div class="item" data-action="signIn" data-intro="Cliquez là pour afficher votre profil et vous faire scanner par les commerçants qui utilisent Loyali" data-step="3" data-position="bottom-right-aligned">
+      <div class="item" data-action="signIn" data-intro="Cliquez là pour afficher votre profil et modifier vos information" data-step="3" data-position="bottom-right-aligned">
         <i class="big user icon"></i>
       </div>
       {{else}}

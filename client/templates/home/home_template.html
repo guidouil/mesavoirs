@@ -15,7 +15,7 @@
       </div>
     {{else}}
       {{#if isConnected}}
-      <div class="ui raised center aligned segment">
+      <div class="ui raised center aligned segment" data-intro="Faites le scanner par votre commerçant pour obtenir vos points de fidélité" data-step="4" data-position="bottom-middle-aligned">
         <h3 class="ui header">Mon code Loyali</h3>
         {{> QrCode text=qrText }}
       </div>
@@ -57,8 +57,10 @@
       </p>
     </div>
     {{/unless}}
-    <a type="button" class="ui button fluid" href="{{pathFor 'about'}}">A propos</a>
-    <br>
-    <button type="button" class="ui button fluid" id="intro">Besoin d'aide ?</button>
-    <br>
+    <div class="ui grid">
+      <div class="two column row">
+        <div class="column"><a type="button" class="ui labeled icon blue fluid button" href="{{pathFor 'about'}}"><i class="info icon"></i>Loyali</a></div>
+        <div class="column"><button type="button" class="ui labeled icon yellow fluid button" id="intro"><i class="help icon"></i>Aide</button></div>
+      </div>
+    </div>
 </template>

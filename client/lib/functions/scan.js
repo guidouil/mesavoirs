@@ -8,6 +8,9 @@ scan = function () {
             Router.go('scanned', {type: scanned[0], id: scanned[1]});
             return;
           }
+          if (result.text === 'http://loya.li') {
+            // todo starter kit
+          }
         }
         Router.go('scanned', {type: result.format, id: encodeURIComponent(result.text)});
       }

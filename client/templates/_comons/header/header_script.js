@@ -5,7 +5,7 @@ Template.header.helpers({
 });
 
 Template.header.events({
-  'click [data-action=sidebar]': function () {
+  'click [data-action=sidebar], menubutton': function () {
     if (! $('.sidebar').hasClass('visible')) {
       $('.ui.labeled.icon.sidebar')
         .sidebar('setting', 'transition', 'overlay')

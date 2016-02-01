@@ -36,7 +36,7 @@ Template.loyaltyCards.events({
     Router.go('card', {cardId: this._id});
   },
   'click #intro': function () {
-    introJs().goToStep(3).start();
+    introJs().goToStep(2).start();
   }
 });
 
