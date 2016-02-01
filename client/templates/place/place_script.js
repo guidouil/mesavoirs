@@ -38,7 +38,7 @@ Template.place.events({
     if (voucher.histories) {
       Session.set('histories', voucher.histories);
       Session.set('historyFormat', 'formatMoney');
-      $('.histories-modal').modal('show');
+      Router.go('histories');
     }
   },
   'click [data-action=loyaltyCardHistory]': function () {
@@ -46,7 +46,7 @@ Template.place.events({
     if (loyaltyCard.histories) {
       Session.set('histories', loyaltyCard.histories);
       Session.set('historyFormat', 'formatPoint');
-      $('.histories-modal').modal('show');
+      Router.go('histories');
     }
   },
   'click .statistics': function () {

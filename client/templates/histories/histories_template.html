@@ -1,29 +1,24 @@
 <template name='histories'>
-  <div class="ui modal histories-modal">
-    <i class="close icon"></i>
-    <div class="header">
-      <i class="grey history icon"></i>{{placeName}}
-    </div>
-    <div class="content">
-      <div class="ui feed">
-        {{#if histories}}
-        {{#each reverseArray histories}}
-        <div class="event">
-          <div class="label">
-            <i class="{{feedIcon what}} large icon"></i>
-          </div>
-          <div class="content">
-            <div class="summary">
-              {{{plusSign what}}}, {{longFormatDate when}}.
-              <div class="date">
-                {{fromNow when}}
-              </div>
+  <div class="ui basic segment">
+    <h3>Historique {{historyTitle}} @ {{placeName}}</h3>
+    <div class="ui feed">
+      {{#if histories}}
+      {{#each reverseArray histories}}
+      <div class="event">
+        <div class="label">
+          <i class="{{feedIcon what}} large icon"></i>
+        </div>
+        <div class="content">
+          <div class="summary">
+            {{{plusSign what}}}, {{longFormatDate when}}.
+            <div class="date">
+              {{fromNow when}}
             </div>
           </div>
         </div>
-        {{/each}}
-        {{/if}}
       </div>
+      {{/each}}
+      {{/if}}
     </div>
   </div>
 </template>

@@ -7,6 +7,15 @@ Template.histories.helpers({
       return Session.get('histories');
     }
   },
+  historyTitle: function () {
+    if (Session.get('historyFormat')) {
+      if (Session.equals('historyFormat', 'formatMoney')) {
+        return 'de l\'avoir';
+      } else {
+        return 'de la carte'
+      }
+    }
+  },
   plusSign: function (value) {
     var formatedValue = value;
     var historyFormat = Session.get('historyFormat');
@@ -33,6 +42,6 @@ Template.histories.helpers({
 });
 
 Template.histories.onDestroyed(function () {
-  Session.set('histories', '');
-  Session.set('historyFormat', '');
+  Session.delete('histories');
+  Session.delete('historyFormat');
 });
