@@ -6,7 +6,7 @@ Template.growls.events({
 
 Template.growls.onCreated(function () {
   var template = this;
-  template.subscribe('Growls');
+  subs.subscribe('Growls');
 });
 
 Template.growls.onRendered(function () {

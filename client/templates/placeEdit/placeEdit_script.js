@@ -44,15 +44,12 @@ Template.placeEdit.events({
 });
 
 Template.placeEdit.onRendered(function () {
-  var template = this;
-  Tracker.autorun(function () {
-    if (template.subscriptionsReady()) {
-      setDefaultCurrentPlace();
-    }
-  });
+  setTimeout(function () {
+    setDefaultCurrentPlace();
+  }, 1000);
 });
 
 Template.placeEdit.onCreated(function () {
   var template = this;
-  template.subscribe('MyPlace', Router.current().params.placeId);
+  subs.subscribe('MyPlace', Router.current().params.placeId);
 });

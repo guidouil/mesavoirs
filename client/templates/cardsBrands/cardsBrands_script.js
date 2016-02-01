@@ -9,5 +9,5 @@ Template.cardsBrands.events({
 
 Template.cardsBrands.onCreated(function () {
   var template = this;
-  template.subscribe('CardsBrands');
+  subs.subscribe('CardsBrands');
 });

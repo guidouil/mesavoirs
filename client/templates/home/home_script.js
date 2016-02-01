@@ -35,7 +35,7 @@ Template.home.events({
 
 Template.home.onCreated(function () {
   var template = this;
-  template.subscribe('MyPlaces');
+  subs.subscribe('MyPlaces');
   setDefaultCurrentPlace();
 });
 

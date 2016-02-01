@@ -175,7 +175,7 @@ Template.scanned.onRendered(function () {
 
 Template.scanned.onCreated(function () {
   var template = this;
-  template.subscribe('MyPlaces');
+  subs.subscribe('MyPlaces');
   if (Session.equals('scanCard', true)) {
     Session.set('cardCode', Router.current().params.id);
     Session.set('cardFormat', Router.current().params.type);
@@ -190,7 +190,7 @@ Template.scanned.onCreated(function () {
   var user = Meteor.user();
   if (user.profile && user.profile.currentPlace) {
     Session.set('placeId', user.profile.currentPlace);
-    template.subscribe('MyPlace', user.profile.currentPlace);
+    subs.subscribe('MyPlace', user.profile.currentPlace);
     var place = Places.findOne({_id: user.profile.currentPlace, $or: [{owners: Meteor.userId()}, {sellers: Meteor.userId()}]});
     if (place) {
       Session.set('placeName', place.name);

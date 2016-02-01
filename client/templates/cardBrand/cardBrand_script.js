@@ -32,6 +32,6 @@ Template.cardBrand.events({
 Template.cardBrand.onCreated(function () {
   var template = this;
   if (Router.current().params.cardBrandId) {
-    template.subscribe('CardBrand', Router.current().params.cardBrandId);
+    subs.subscribe('CardBrand', Router.current().params.cardBrandId);
   }
 });

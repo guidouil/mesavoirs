@@ -24,5 +24,5 @@ Template.contacts.events({
 
 Template.contacts.onCreated(function () {
   var template = this;
-  template.subscribe('Contacts');
+  subs.subscribe('Contacts');
 });

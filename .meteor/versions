@@ -106,6 +106,7 @@ mdg:validation-error@0.2.0
 meteor@1.1.10
 meteor-base@1.0.1
 meteor-platform@1.2.3
+meteorhacks:subs-manager@1.6.3
 meteortoys:toykit@2.2.1
 minifiers@1.1.7
 minimongo@1.0.10

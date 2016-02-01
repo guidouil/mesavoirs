@@ -37,6 +37,6 @@ Template.editCard.events({
 
 Template.editCard.onCreated(function () {
   var template = this;
-  template.subscribe('CardsBrands');
-  template.subscribe('PrivateLoyaltyCard', Router.current().params.cardId);
+  subs.subscribe('CardsBrands');
+  subs.subscribe('PrivateLoyaltyCard', Router.current().params.cardId);
 });

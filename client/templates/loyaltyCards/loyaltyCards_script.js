@@ -49,6 +49,6 @@ Template.loyaltyCards.onRendered(function () {
 
 Template.loyaltyCards.onCreated(function () {
   var template = this;
-  template.subscribe('UserLoyaltyCards');
-  template.subscribe('PrivateLoyaltyCards');
+  subs.subscribe('UserLoyaltyCards');
+  subs.subscribe('PrivateLoyaltyCards');
 });

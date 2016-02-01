@@ -11,7 +11,7 @@ Template.card.onRendered(function () {
   var template = this;
   setTimeout(function () {
     var canvas = template.find('#barcodeCanvas');
-    if (template.subscriptionsReady() && canvas) {
+    if (canvas) {
       var card = PrivateLoyaltyCards.findOne({_id: Router.current().params.cardId});
       if (card && card.format !== 'QR_CODE') {
         var codeFormats = {
@@ -40,5 +40,5 @@ Template.card.onRendered(function () {
 
 Template.card.onCreated(function () {
   var template = this;
-  template.subscribe('PrivateLoyaltyCard', Router.current().params.cardId);
+  subs.subscribe('PrivateLoyaltyCard', Router.current().params.cardId);
 });

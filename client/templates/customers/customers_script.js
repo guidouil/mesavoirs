@@ -39,5 +39,5 @@ Template.customers.onRendered(function () {
 
 Template.customers.onCreated(function () {
   var template = this;
-  template.subscribe('Place', Router.current().params.placeId);
+  subs.subscribe('Place', Router.current().params.placeId);
 });

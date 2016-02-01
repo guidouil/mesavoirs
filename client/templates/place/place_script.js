@@ -76,10 +76,10 @@ Template.place.onRendered(function () {
 
 Template.place.onCreated(function () {
   var template = this;
-  template.subscribe('Place', Router.current().params.placeId);
+  subs.subscribe('Place', Router.current().params.placeId);
   if (Meteor.userId()) {
-    template.subscribe('placeCounts', Router.current().params.placeId);
-    template.subscribe('UserPlaceVouchers', Router.current().params.placeId, Meteor.userId());
-    template.subscribe('UserPlaceLoyaltyCard', Router.current().params.placeId, Meteor.userId());
+    subs.subscribe('placeCounts', Router.current().params.placeId);
+    subs.subscribe('UserPlaceVouchers', Router.current().params.placeId, Meteor.userId());
+    subs.subscribe('UserPlaceLoyaltyCard', Router.current().params.placeId, Meteor.userId());
   }
 });

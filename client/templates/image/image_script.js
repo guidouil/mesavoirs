@@ -13,6 +13,6 @@ Template.image.helpers({
 Template.image.onCreated(function () {
   var template = this;
   if (template.data.imageId) {
-    template.subscribe('Image', template.data.imageId);
+    subs.subscribe('Image', template.data.imageId);
   }
 });
