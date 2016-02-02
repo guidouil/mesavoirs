@@ -41,6 +41,12 @@ Template.histories.helpers({
   }
 });
 
+Template.histories.onRendered(function () {
+  setTimeout(function () {
+    $('html, body').animate({scrollTop: 0}, 'fast');
+  }, 500);
+});
+
 Template.histories.onDestroyed(function () {
   Session.delete('histories');
   Session.delete('historyFormat');
