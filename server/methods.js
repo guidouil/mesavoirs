@@ -1,6 +1,8 @@
 Meteor.methods({
   imgsTransfer: function () {
     Images.find().forEach(function (fileObj) {
+      fileObj.name('loyali.png');
+      fileObj.extension('png');
       var readStream = fileObj.createReadStream('images');
       var writeStream = fileObj.createWriteStream('images-fs');
       readStream.pipe(writeStream);
