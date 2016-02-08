@@ -3,6 +3,9 @@ Template.contact.helpers({
     if (Meteor.userId()) {
       return contactEmail(Meteor.user());
     }
+  },
+  name: function () {
+    return Meteor.user().profile.name;
   }
 });
 

@@ -8,7 +8,7 @@ Template.home.helpers({
       'Vous n\'oublierez plus jamais une carte de fidélité.',
       'Pour ne plus collectionner les cartes, ni les tickets dans votre porte monnaie.'
     ];
-    return _.sample(baselines);
+    return Random.choice(baselines);
   },
   qrText: function () {
     return 'userId:' + Meteor.userId();

@@ -15,7 +15,12 @@ Template.cropper.events({
       if (err) {
         console.error(err);
       } else {
+        // force image name and extension for base64 file
+        fileObj.name('loyali.png');
+        fileObj.extension('png');
+
         var imageId = fileObj._id;
+        Meteor.call('compressImage', imageId);
         var imgType = Session.get('imgType');
         var theId = Session.get('theId');
         if (imgType === 'place') {
@@ -48,8 +53,15 @@ Template.cropper.onRendered(function () {
   var originalData = {width: 600};
   $('#cropping').cropper({
     aspectRatio: 1,
+    minWidth: 300,
+    minHeight: 300,
     maxWidth: 600,
     maxHeight: 600,
     data: originalData
   });
+});
+
+Template.cropper.onDestroyed(function(){
+  Session.delete('imgType');
+  Session.delete('theId');
 });

@@ -1,16 +1,21 @@
 Meteor.methods({
-  uploadImage: function (base64EncodedImage) {
-    Future = Npm.require('fibers/future');
-    let future = new Future();
-    let onComplete = future.resolver();
-    let fsFile = new FS.File();
-    fsFile.attachData(base64EncodedImage, function(error) {
-      if (error) resolve(error, null);
-      Images.insert(fsFile, function (err, fileObj) {
-        onComplete(null, fileObj._id);
-      });
+  imgsTransfer: function () {
+    Images.find().forEach(function (fileObj) {
+      var readStream = fileObj.createReadStream('images');
+      var writeStream = fileObj.createWriteStream('images-fs');
+      readStream.pipe(writeStream);
+      Meteor.call('compressImage', fileObj._id);
     });
-    return future.wait();
+  },
+  compressImage: function (imageId) {
+    Images.find({_id : imageId}).observe({
+      changed : function (fileObj, oldFile) {
+        if (fileObj.url() !== null && fileObj.isUploaded()) {
+          var imageFileName = fileObj.collectionName + '-' + fileObj._id + '-loyali.png';
+          PNGQuant('/var/uploads/' + imageFileName, '/var/uploads/compressed/' + imageFileName, [256, '--quality=65-80 --speed=1 --force']);
+        }
+      }
+    });
   },
   SearchPlaces: function (searchQuery, limit) {
     check(searchQuery, String);

@@ -2,7 +2,7 @@
 
     <h2 class="ui header">Contactez l'équipe Loyali</h2>
     {{#autoForm id="contact" type="insert" collection="Contacts" enctype="multipart/form-data" doc=this}}
-      {{> afQuickField placeholder="schemaLabel" name="name"}}
+      {{> afQuickField placeholder="schemaLabel" name="name" value=name}}
       {{> afQuickField placeholder="schemaLabel" name="email" value=email}}
       {{> afQuickField placeholder="schemaLabel" name="subject"}}
       {{> afQuickField placeholder="schemaLabel" name="message"}}
