@@ -1,8 +1,11 @@
 Meteor.methods({
   imgsTransfer: function () {
     Images.find().forEach(function (fileObj) {
-      fileObj.name('loyali.png');
-      fileObj.extension('png');
+      if (! fileObj.name()) {
+        fileObj.name('loyali.png');
+        fileObj.extension('png');
+      }
+      console.log(fileObj);
       var readStream = fileObj.createReadStream('images');
       var writeStream = fileObj.createWriteStream('images-fs');
       readStream.pipe(writeStream);
@@ -13,7 +16,9 @@ Meteor.methods({
     Images.find({_id : imageId}).observe({
       changed : function (fileObj, oldFile) {
         if (fileObj.url() !== null && fileObj.isUploaded()) {
-          var imageFileName = fileObj.collectionName + '-' + fileObj._id + '-loyali.png';
+          var postPath = fileObj.copies.images.name || 'loyali.png';
+          var imageFileName = fileObj.collectionName + '-' + fileObj._id + '-' + postPath;
+          console.log(imageFileName);
           PNGQuant('/var/uploads/' + imageFileName, '/var/uploads/compressed/' + imageFileName, [256, '--quality=65-80 --speed=1 --force']);
         }
       }
