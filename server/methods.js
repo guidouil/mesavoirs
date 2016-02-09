@@ -1,25 +1,15 @@
 Meteor.methods({
-  imgsTransfer: function () {
-    Images.find().forEach(function (fileObj) {
-      if (! fileObj.name()) {
-        fileObj.name('loyali.png');
-        fileObj.extension('png');
-      }
-      console.log(fileObj);
-      var readStream = fileObj.createReadStream('images');
-      var writeStream = fileObj.createWriteStream('images-fs');
-      readStream.pipe(writeStream);
-      Meteor.call('compressImage', fileObj._id);
-    });
-  },
   compressImage: function (imageId) {
-    Images.find({_id : imageId}).observe({
+    var imgObs = Images.find({_id : imageId}).observe({
       changed : function (fileObj, oldFile) {
+        console.log(fileObj);
         if (fileObj.url() !== null && fileObj.isUploaded()) {
           var postPath = fileObj.copies.images.name || 'loyali.png';
           var imageFileName = fileObj.collectionName + '-' + fileObj._id + '-' + postPath;
-          console.log(imageFileName);
+          console.log('Copressing', imageFileName);
           PNGQuant('/var/uploads/' + imageFileName, '/var/uploads/compressed/' + imageFileName, [256, '--quality=65-80 --speed=1 --force']);
+          console.log('Done');
+          imgObs.stop();
         }
       }
     });
