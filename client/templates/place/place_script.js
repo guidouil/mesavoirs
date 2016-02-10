@@ -1,9 +1,9 @@
 Template.place.helpers({
   myVoucher: function () {
-    return Vouchers.findOne({userId: Meteor.userId()});
+    return Vouchers.findOne({placeId: Router.current().params.placeId, userId: Meteor.userId()});
   },
   myLoyaltyCard: function () {
-    return LoyaltyCards.findOne({userId: Meteor.userId()});
+    return LoyaltyCards.findOne({placeId: Router.current().params.placeId, userId: Meteor.userId()});
   },
   voucherCount: function () {
     return Counts.get('voucherCount');
