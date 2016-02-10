@@ -2,13 +2,17 @@ Meteor.methods({
   compressImage: function (imageId) {
     var imgObs = Images.find({_id : imageId}).observe({
       changed : function (fileObj, oldFile) {
-        console.log(fileObj);
         if (fileObj.url() !== null && fileObj.isUploaded()) {
           var postPath = fileObj.copies.images.name || 'loyali.png';
           var imageFileName = fileObj.collectionName + '-' + fileObj._id + '-' + postPath;
-          console.log('Copressing', imageFileName);
-          PNGQuant('/var/uploads/' + imageFileName, '/var/uploads/compressed/' + imageFileName, [256, '--quality=65-80 --speed=1 --force']);
-          console.log('Done');
+          var exec = Npm.require('child_process').exec;
+          var cmd = 'pngquant --quality=65-80 --speed=1 --force 256 /var/uploads/' + imageFileName + ' --output /var/uploads/compressed/' + imageFileName;
+          exec(cmd, function (error, stdout, stderr) {
+            // command output is in stdout
+            if (error) {
+              console.log(error);
+            }
+          });
           imgObs.stop();
         }
       }
