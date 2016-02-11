@@ -34,7 +34,7 @@ Template.place.events({
     Meteor.users.update( { _id: Meteor.userId() }, { $set: { 'profile.currentPlace': this._id }});
   },
   'click [data-action=voucherHistory]': function () {
-    var voucher = Vouchers.findOne({userId: Meteor.userId()});
+    var voucher = Vouchers.findOne({placeId: Router.current().params.placeId, userId: Meteor.userId()});
     if (voucher.histories) {
       Session.set('histories', voucher.histories);
       Session.set('historyFormat', 'formatMoney');
@@ -42,7 +42,7 @@ Template.place.events({
     }
   },
   'click [data-action=loyaltyCardHistory]': function () {
-    var loyaltyCard = LoyaltyCards.findOne({userId: Meteor.userId()});
+    var loyaltyCard = LoyaltyCards.findOne({placeId: Router.current().params.placeId, userId: Meteor.userId()});
     if (loyaltyCard.histories) {
       Session.set('histories', loyaltyCard.histories);
       Session.set('historyFormat', 'formatPoint');

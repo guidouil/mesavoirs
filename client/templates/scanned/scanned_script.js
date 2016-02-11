@@ -127,7 +127,7 @@ Template.scanned.events({
     }
   },
   'click [data-action=voucherHistory]': function () {
-    var voucher = Vouchers.findOne({userId: Session.get('customerId')});
+    var voucher = Vouchers.findOne({placeId: Session.get('placeId'), userId: Session.get('customerId')});
     if (voucher.histories) {
       Session.set('histories', voucher.histories);
       Session.set('historyFormat', 'formatMoney');
@@ -135,7 +135,7 @@ Template.scanned.events({
     }
   },
   'click [data-action=loyaltyCardHistory]': function () {
-    var loyaltyCard = LoyaltyCards.findOne({userId: Session.get('customerId')});
+    var loyaltyCard = LoyaltyCards.findOne({placeId: Session.get('placeId'), userId: Session.get('customerId')});
     if (loyaltyCard.histories) {
       Session.set('histories', loyaltyCard.histories);
       Session.set('historyFormat', 'formatPoint');
