@@ -61,4 +61,6 @@ App.accessRule('*.googleapis.com/*');
 App.accessRule('*.gstatic.com/*');
 
 // upload bug
+App.accessRule('data:*');
 App.accessRule('blob:*');
+App.accessRule('*');
