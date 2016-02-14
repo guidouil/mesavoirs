@@ -6,7 +6,7 @@
     </div>
     {{ #if myPlaces }}
       <h3>Mes commerces</h3>
-      <div class="ui four doubling link cards">
+      <div class="ui four stackable link cards">
       {{#each myPlaces}}
         <a class="card" href="{{pathFor 'place' placeId=_id}}">
           <div class="image" >
@@ -29,11 +29,12 @@
           <div class="content">
             <div class="header">{{name}}</div>
             <div class="meta">
-              <i class="grey history icon"></i> {{#if updatedAt}}{{fromNow updatedAt}}{{else}}{{fromNow createdAt}}{{/if}}<br>
-              {{addresses.[0].zip}} {{addresses.[0].city}}
+              {{description}}
             </div>
             <div class="description">
-              {{description}}
+              {{#each addresses}}
+                <div class="ui label">{{city}}</div>
+              {{/each}}
             </div>
           </div>
         </a>

@@ -56,6 +56,12 @@
         <button type="button" class="ui button positive" data-action="createPlace">Inscrivez votre commerce</button>
       </p>
     </div>
+    {{else}}
+    <div class="ui grid">
+      <div class="one column row">
+        <div class="column"><a type="button" class="ui labeled icon basic green fluid button" href="{{pathFor 'loyaltyCards'}}"><i class="star icon"></i>Mes cartes</a></div>
+      </div>
+    </div>
     {{/unless}}
     <div class="ui grid">
       <div class="two column row">

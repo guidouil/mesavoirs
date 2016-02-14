@@ -1,8 +1,8 @@
 <template name='place'>
 
   {{#with place}}
-    <div class="ui basic segment">
     {{#if isSellerOrOwner}}
+    <div class="ui basic segment">
       <div id="myPlaceHeader">
         {{#if isOwner}}
         <a href="{{pathFor 'placeEdit' placeId=_id}}" class="teal right floated ui circular icon button"><i class="pencil icon"></i></a>
@@ -18,13 +18,13 @@
           <div class="height wide column">
             <button type="button" class="ui {{#if currentPlace}}green{{/if}} labeled icon button fluid" data-action="setCurrentPlace">
               <i class="marker icon"></i>
-              J'y {{#if currentPlace}}suis{{else}}vais{{/if}}
+              {{#if currentPlace}}En cours{{else}}Entrer{{/if}}
             </button>
           </div>
           <div class="height wide column">
             <a class="ui blue labeled icon button fluid disabled" href="{{pathFor 'promotions' placeId=_id}}">
               <i class="star icon"></i>
-              Mes promos
+              Promotions
             </a>
           </div>
         </div>
@@ -56,12 +56,13 @@
           </div>
         </div>
       </div>
-      <i class="up arrow  grey icon" id="toggleMyPlaceHeader"></i>
+      <i class="up arrow grey icon" id="toggleMyPlaceHeader"></i>
+    </div>
     {{/if}}
     <div class="ui one stackable cards">
       <div class="ui card">
         <div class="image">
-            {{> image imageId=imageId classNames='ui centered medium rounded image'}}
+            {{> image imageId=imageId}}
         </div>
         <div class="content">
           <div class="header">{{name}}</div>
@@ -133,6 +134,5 @@
         </div>
       </div>
     </div>
-  </div>
   {{/with}}
 </template>
