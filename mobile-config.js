@@ -63,4 +63,3 @@ App.accessRule('*.gstatic.com/*');
 // upload bug
 App.accessRule('data:*');
 App.accessRule('blob:*');
-App.accessRule('*');
