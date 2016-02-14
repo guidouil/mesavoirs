@@ -13,14 +13,14 @@
           <div class="meta">
             <span class="date">{{points}}</span>
           </div>
-          <div class="description">
+          <div class="description center aligned">
             {{#if isQrCode format}}
-              {{> QrCode text=code classNames="large centered"}}
+              {{> QrCode text=code}}
             {{else}}
               <canvas id="barcodeCanvas" width="300" height="100"></canvas>
             {{/if}}
+            <p>{{code}}</p>
           </div>
-          <h5 class="ui center aligned header">{{code}}</h5>
         </div>
         {{#if notes}}
         <div class="extra content">
