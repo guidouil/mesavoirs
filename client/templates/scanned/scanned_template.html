@@ -37,12 +37,27 @@
                -1
             </div>
             {{/if}}
+            <div class="ui blue button" id="addMorePoint">
+               +/-
+            </div>
           </div>
           {{#if loyaltyCardDate}}
           <p data-action="loyaltyCardHistory">
             <i class="history icon"></i> Mise à jour {{fromNow loyaltyCardDate}}<br>
           </p>
           {{/if}}
+          <div class="ui fluid left icon action input" id="morePointsInput">
+            <i class="yellow star icon"></i>
+            <input type="number" placeholder="Points" tabindex="1" id="numberPoints" size="3">
+            <button type="button" class="ui green button" id="givePoints">
+              Donner
+            </button>
+            {{#if gt userPoints 0}}
+            <button type="button" class="ui red button" id="takePoints">
+              Prendre
+            </button>
+            {{/if}}
+          </div>
           <hr>
         {{/if}}
         <a class="teal right floated ui circular icon button" href="{{pathFor 'calc'}}"><i class="calculator icon"></i></a>

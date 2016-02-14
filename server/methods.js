@@ -48,10 +48,8 @@ Meteor.methods({
     check(placeId, String);
     check(customerId, String);
     if (isPlaceOwner(placeId, this.userId) || isPlaceSeller(placeId, this.userId)) {
+      Meteor.call('addPlaceCustomer', placeId, customerId);
       var place = Places.findOne({_id: placeId});
-      if (place.customers && _.contains( place.customers, customerId )) {
-        Meteor.call('addPlaceCustomer', placeId, customerId);
-      }
       var history = {what: 1, who: this.userId, when: new Date()};
       var loyaltyCard = LoyaltyCards.findOne({placeId: placeId, userId: customerId});
       var points = 0;
@@ -105,7 +103,6 @@ Meteor.methods({
           $inc:{points: -1},
           $push:{ histories: history }
         });
-        return loyaltyCard.points - 1;
         Growls.insert({
           placeId: place._id,
           from: this.userId,
@@ -114,6 +111,58 @@ Meteor.methods({
           title: place.name,
           message: '-1 point sur votre carte fidélité'
         });
+        return loyaltyCard.points - 1;
+      }
+    }
+    return false;
+  },
+  givePoints: function (placeId, customerId, points) {
+    check(placeId, String);
+    check(customerId, String);
+    check(points, Number);
+    if (isPlaceOwner(placeId, this.userId) || isPlaceSeller(placeId, this.userId)) {
+      var place = Places.findOne({_id: placeId});
+      var history = {what: points, who: this.userId, when: new Date()};
+      var loyaltyCard = LoyaltyCards.findOne({placeId: placeId, userId: customerId});
+      if (loyaltyCard) {
+        if (points > 0 || loyaltyCard.points >= Math.abs(points)) {
+          LoyaltyCards.update({_id:loyaltyCard._id}, {
+            $inc:{points: points},
+            $push:{ histories: history }
+          });
+          Growls.insert({
+            placeId: place._id,
+            from: this.userId,
+            to: customerId,
+            type: 'info',
+            title: place.name,
+            message: points + ' points sur votre carte fidélité'
+          });
+          return loyaltyCard.points + points;
+        } else {
+          return {maxValue: loyaltyCard.points};
+        }
+      } else {
+        var newLoyaltyCard = {
+          'placeId': placeId,
+          'name': place.name,
+          'userId': customerId,
+          'points': Math.abs(points),
+          'size': place.loyaltyCard.size,
+          'creatorId': this.userId,
+          'imageId': place.imageId,
+          'histories': [history]
+        };
+        LoyaltyCards.insert(newLoyaltyCard);
+        Growls.insert({
+          placeId: place._id,
+          from: this.userId,
+          to: customerId,
+          type: 'info',
+          title: place.name,
+          message: points + ' points sur votre carte fidélité'
+        });
+        return points;
       }
     }
     return false;

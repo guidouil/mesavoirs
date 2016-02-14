@@ -5,7 +5,7 @@ App.info({
   author: 'guillaume.darbonne@gmail.com',
   email: 'guillaume.darbonne@gmail.com',
   website: 'http://loya.li',
-  version: '1.2.3'
+  version: '1.2.4'
 });
 
 App.icons({

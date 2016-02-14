@@ -58,6 +58,8 @@
       </div>
       <i class="up arrow grey icon" id="toggleMyPlaceHeader"></i>
     </div>
+    {{else}}
+    <br>
     {{/if}}
     <div class="ui one stackable cards">
       <div class="ui card">
@@ -113,7 +115,7 @@
           <span class="right floated">
             <a class="ui link" id="voucherHelp" data-position="top right"><i class=" blue ticket icon"></i> {{{formatMoney myVoucher.value}}} d'avoir</a>
             <div class="ui special popup">
-              L'avoir cumulé peut-être dépensé dans ce commerce uniquement.<br>Il ne peut être remboursé contre sa valeur monétaire.
+              L'avoir cumulé peut-être dépensé uniquement dans ce commerce.<br>Il ne peut être remboursé contre sa valeur monétaire.
             </div>
           </span>
           {{/if}}

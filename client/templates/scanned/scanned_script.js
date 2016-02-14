@@ -123,7 +123,49 @@ Template.scanned.events({
           }
         });
       });
-
+    }
+  },
+  'click #addMorePoint': function () {
+    $('#morePointsInput').slideToggle('fast');
+  },
+  'click #givePoints': function () {
+    if (Session.get('placeId') && Session.get('customerId')) {
+      var value = Math.abs(parseFloat($('#numberPoints').val()));
+      if (value && _.isNumber(value)) {
+        Meteor.call('givePoints',  Session.get('placeId'), Session.get('customerId'), value, function (error, result) {
+          if (error){
+            console.error(error);
+          }
+          if (_.isNumber(result)){
+            swal('Cool', 'La carte de votre client à maintenant ' + result + ' points', 'success');
+            $('#numberPoints').val('');
+            $('#morePointsInput').hide();
+          } else if (result && result.maxValue) {
+            swal('Négatif', 'Le nombre de points de votre client est ' + result.maxValue, 'error');
+            $('#numberPoints').val(result.maxValue);
+          }
+        });
+      }
+    }
+  },
+  'click #takePoints': function () {
+    if (Session.get('placeId') && Session.get('customerId')) {
+      var value = Math.abs(parseFloat($('#numberPoints').val())) * -1;
+      if (value && _.isNumber(value)) {
+        Meteor.call('givePoints',  Session.get('placeId'), Session.get('customerId'), value, function (error, result) {
+          if (error){
+            console.error(error);
+          }
+          if (_.isNumber(result)){
+            swal('Cool', 'La carte de votre client à maintenant ' + result + ' points', 'success');
+            $('#numberPoints').val('');
+            $('#morePointsInput').hide();
+          } else if (result && result.maxValue) {
+            swal('Négatif', 'Le nombre de points de votre client est ' + result.maxValue, 'error');
+            $('#numberPoints').val(result.maxValue);
+          }
+        });
+      }
     }
   },
   'click [data-action=voucherHistory]': function () {
@@ -150,10 +192,11 @@ Template.scanned.events({
 });
 
 Template.scanned.onRendered(function () {
+  $('#morePointsInput').hide();
   Tracker.autorun(function () {
     if (Session.get('placeId') && Session.get('customerId')) {
-      Meteor.subscribe('UserPlaceVouchers', Session.get('placeId'), Session.get('customerId'));
-      Meteor.subscribe('UserPlaceLoyaltyCard', Session.get('placeId'), Session.get('customerId'));
+      subs.subscribe('UserPlaceVouchers', Session.get('placeId'), Session.get('customerId'));
+      subs.subscribe('UserPlaceLoyaltyCard', Session.get('placeId'), Session.get('customerId'));
       Meteor.call('getCustomerInfo', Session.get('placeId'), Session.get('customerId'), function (error, result) {
         if (error) {
           console.error(error);

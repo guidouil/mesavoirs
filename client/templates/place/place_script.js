@@ -28,7 +28,7 @@ Template.place.helpers({
 
 Template.place.events({
   'click #showPlaceInfo': function () {
-    $('#placeInfo').slideToggle();
+    $('#placeInfo').slideToggle('fast');
     $('#showPlaceInfo').toggleClass('blue');
   },
   'click #placeHistories': function () {
@@ -45,7 +45,7 @@ Template.place.events({
     Router.go('customers', {placeId: Router.current().params.placeId});
   },
   'click #toggleMyPlaceHeader': function () {
-    $('#myPlaceHeader').slideToggle().toggleClass('up').toggleClass('down');
+    $('#myPlaceHeader').slideToggle('fast');
     $('#toggleMyPlaceHeader').toggleClass('up').toggleClass('down');
   },
   'click .placeMap': function () {
