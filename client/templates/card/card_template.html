@@ -11,7 +11,7 @@
         <div class="content">
           <a class="header">{{name}}</a>
           <div class="meta">
-            <span class="date">{{points}}</span>
+            <span class="date">{{notes}}</span>
           </div>
           <div class="description center aligned">
             {{#if isQrCode format}}
@@ -25,8 +25,8 @@
         {{#if notes}}
         <div class="extra content">
           <a>
-            <i class="info icon"></i>
-            {{notes}}
+            <i class="arrow right icon"></i>
+            {{points}}
           </a>
         </div>
         {{/if}}
