@@ -1,0 +1,50 @@
+<template name='placeHistories'>
+  <h2>{{place.name}}</h2>
+  <div class="ui top attached tabular menu" id="historyTabs">
+    <a class="{{activeHistoryTab 'loyalty'}} item historyTabHead" data-tab="loyalty">Historique points</a>
+    <a class="{{activeHistoryTab 'voucher'}} right item historyTabHead" data-tab="voucher">Historique avoir</a>
+  </div>
+  <div class="ui bottom attached tab basic segment {{activeHistoryTab 'loyalty'}}" data-tab="loyalty">
+    <div class="ui feed">
+      {{#with myLoyaltyCard}}
+      {{#each reverseArray histories}}
+      <div class="event">
+        <div class="label">
+          <i class="{{feedIcon what}} large icon"></i>
+        </div>
+        <div class="content">
+          <div class="summary">
+            {{what}} point{{#if greaterThan what 1}}s{{/if}} , {{longFormatDate when}}.
+            <div class="date">
+              {{fromNow when}}
+            </div>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+      {{/with}}
+    </div>
+  </div>
+  <div class="ui bottom attached tab basic segment {{activeHistoryTab 'voucher'}}" data-tab="voucher">
+    <div class="ui feed">
+      {{#with myVoucher}}
+      {{#each reverseArray histories}}
+      <div class="event">
+        <div class="label">
+          <i class="{{feedIcon what}} large icon"></i>
+        </div>
+        <div class="content">
+          <div class="summary">
+            {{{formatMoney what}}} , {{longFormatDate when}}.
+            <div class="date">
+              {{fromNow when}}
+            </div>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+      {{/with}}
+    </div>
+  </div>
+
+</template>

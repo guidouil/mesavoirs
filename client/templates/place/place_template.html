@@ -1,6 +1,6 @@
 <template name='place'>
 
-    {{#with place}}
+  {{#with place}}
     <div class="ui basic segment">
     {{#if isSellerOrOwner}}
       <div id="myPlaceHeader">
@@ -58,80 +58,81 @@
       </div>
       <i class="up arrow  grey icon" id="toggleMyPlaceHeader"></i>
     {{/if}}
-
-      <h1 class="ui center aligned header">
-        {{name}}
-        <div class="sub header">{{description}}</div>
-      </h1>
-      {{> image imageId=imageId classNames='ui centered medium rounded image'}}
-      <div class="ui list">
-        {{#each addresses}}
-          <div class="item">
-            <i class="map marker icon"></i>
-            <div class="content">
-              <a class="header placeMap">{{street}}</a>
-              <div class="description">{{zip}} {{city}}</div>
-            </div>
+    <div class="ui one stackable cards">
+      <div class="ui card">
+        <div class="image">
+            {{> image imageId=imageId classNames='ui centered medium rounded image'}}
+        </div>
+        <div class="content">
+          <div class="header">{{name}}</div>
+          <div class="meta">
+            <i class="right floated blue info icon" id="showPlaceInfo"></i>
+            <a>{{description}}</a>
           </div>
-          {{#if phone}}
-          <div class="item">
-            <i class="phone icon"></i>
-            <div class="content">
-              <a class="header" href="tel:{{phone}}">{{phone}}</a>
+          <div class="description">
+            <div class="ui list" id="placeInfo">
+              {{#each addresses}}
+                <div class="item">
+                  <i class="map marker icon"></i>
+                  <div class="content">
+                    <a class="header placeMap">{{street}}</a>
+                    <div class="description">{{zip}} {{city}}</div>
+                  </div>
+                </div>
+                {{#if phone}}
+                <div class="item">
+                  <i class="phone icon"></i>
+                  <div class="content">
+                    <a class="header" href="tel:{{phone}}">{{phone}}</a>
+                  </div>
+                </div>
+                {{/if}}
+                {{#if email}}
+                <div class="item">
+                  <i class="mail icon"></i>
+                  <div class="content">
+                    <a class="header" href="mailto:{{email}}">{{email}}</a>
+                  </div>
+                </div>
+                {{/if}}
+              {{/each}}
+              {{#if website}}
+              <div class="item">
+                <i class="world icon"></i>
+                <div class="content">
+                  <a class="header" href="{{website}}" target="_blank">{{trimProtocol website}}</a>
+                </div>
+              </div>
+              {{/if}}
             </div>
-          </div>
-          {{/if}}
-          {{#if email}}
-          <div class="item">
-            <i class="mail icon"></i>
-            <div class="content">
-              <a class="header" href="mailto:{{email}}">{{email}}</a>
-            </div>
-          </div>
-          {{/if}}
-        {{/each}}
-        {{#if website}}
-        <div class="item">
-          <i class="world icon"></i>
-          <div class="content">
-            <a class="header" href="{{website}}" target="_blank">{{trimProtocol website}}</a>
           </div>
         </div>
-        {{/if}}
-      </div>
-
-      <div class="ui relaxed divided items">
-      {{#if myLoyaltyCard}}
-        <div class="item">
-          <div class="content">
-            <button type="button" class="teal right floated ui circular icon button" id="loyaltyCardHelp" data-position="top right"><i class="help icon"></i></button>
+        <div class="extra content">
+          {{#if myVoucher}}
+          <span class="right floated">
+            <a class="ui link" id="voucherHelp" data-position="top right"><i class=" blue ticket icon"></i> {{{formatMoney myVoucher.value}}} d'avoir</a>
+            <div class="ui special popup">
+              L'avoir cumulé peut-être dépensé dans ce commerce uniquement.<br>Il ne peut être remboursé contre sa valeur monétaire.
+            </div>
+          </span>
+          {{/if}}
+          {{#if myLoyaltyCard}}
+          <span>
+            <a class="ui link" id="loyaltyCardHelp" data-position="top left"><i class=" yellow star icon"></i> {{myLoyaltyCard.points}} / {{myLoyaltyCard.size}} points</a>
             <div class="ui special popup">
               Chaque tranche d'achat de {{{formatMoney loyaltyCard.pointCost}}} ajoute 1 point à la carte de fidélité.
               <br><br>
               Quand votre carte atteint {{loyaltyCard.size}} points, vous recevez automatiquement un avoir de {{{formatMoney loyaltyCard.voucherValue}}} et le compte de points est remis a zéro.
             </div>
-            <a class="header" data-action="loyaltyCardHistory"><i class=" yellow star icon"></i> {{myLoyaltyCard.points}} / {{myLoyaltyCard.size}} points sur votre carte</a>
-            <div class="meta" data-action="loyaltyCardHistory">
-              &nbsp;<i class="blue history icon"></i> Mise à jour {{#if myLoyaltyCard.updatedAt}}{{fromNow myLoyaltyCard.updatedAt}}{{else}}{{fromNow myLoyaltyCard.createdAt}}{{/if}}
-            </div>
-          </div>
+          </span>
+          {{/if}}
         </div>
-      {{/if}}
-      {{#if myVoucher}}
-        <div class="item">
-          <div class="content">
-            <button type="button" class="teal right floated ui circular icon button" id="voucherHelp" data-position="top right"><i class="help icon"></i></button>
-            <div class="ui special popup">
-              L'avoir cumulé peut-être dépensé dans ce commerce uniquement.<br>Il ne peut être remboursé contre sa valeur monétaire.
-            </div>
-            <a class="header" data-action="voucherHistory"><i class=" blue ticket icon"></i> {{{formatMoney myVoucher.value}}} d'avoir ici</a>
-            <div class="meta" data-action="voucherHistory">
-              &nbsp;<i class="blue history icon"></i> Mis à jour {{#if myVoucher.updatedAt}}{{fromNow myVoucher.updatedAt}}{{else}}{{fromNow myVoucher.createdAt}}{{/if}}
-            </div>
-          </div>
+        <div class="ui bottom attached basic green button" id="placeHistories">
+          <i class="history icon"></i>
+          Historique
         </div>
-      {{/if}}
       </div>
     </div>
-    {{/with}}
+  </div>
+  {{/with}}
 </template>
