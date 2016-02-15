@@ -137,11 +137,11 @@ Template.scanned.events({
             console.error(error);
           }
           if (_.isNumber(result)){
-            swal('Cool', 'La carte de votre client à maintenant ' + result + ' points', 'success');
+            swal('Cool', 'La carte à maintenant ' + result + ' points', 'success');
             $('#numberPoints').val('');
             $('#morePointsInput').hide();
           } else if (result && result.maxValue) {
-            swal('Négatif', 'Le nombre de points de votre client est ' + result.maxValue, 'error');
+            swal('Négatif', result.maxValue + ' points au maximum', 'error');
             $('#numberPoints').val(result.maxValue);
           }
         });
@@ -157,11 +157,11 @@ Template.scanned.events({
             console.error(error);
           }
           if (_.isNumber(result)){
-            swal('Cool', 'La carte de votre client à maintenant ' + result + ' points', 'success');
+            swal('Ok', 'La carte à maintenant ' + result + ' points', 'success');
             $('#numberPoints').val('');
             $('#morePointsInput').hide();
           } else if (result && result.maxValue) {
-            swal('Négatif', 'Le nombre de points de votre client est ' + result.maxValue, 'error');
+            swal('Négatif', 'Seulement ' + result.maxValue + ' points disponibles', 'error');
             $('#numberPoints').val(result.maxValue);
           }
         });

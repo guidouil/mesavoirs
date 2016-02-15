@@ -125,6 +125,9 @@ Meteor.methods({
       var history = {what: points, who: this.userId, when: new Date()};
       var loyaltyCard = LoyaltyCards.findOne({placeId: placeId, userId: customerId});
       if (loyaltyCard) {
+        if (loyaltyCard.points + points >= place.loyaltyCard.size) {
+          return {maxValue: place.loyaltyCard.size - loyaltyCard.points - 1};
+        }
         if (points > 0 || loyaltyCard.points >= Math.abs(points)) {
           LoyaltyCards.update({_id:loyaltyCard._id}, {
             $inc:{points: points},
@@ -142,7 +145,10 @@ Meteor.methods({
         } else {
           return {maxValue: loyaltyCard.points};
         }
-      } else {
+      } else if (points > 0) {
+        if (points >= place.loyaltyCard.size) {
+          return {maxValue: place.loyaltyCard.size - 1};
+        }
         var newLoyaltyCard = {
           'placeId': placeId,
           'name': place.name,
@@ -201,7 +207,7 @@ Meteor.methods({
         } else {
           return {maxValue: voucher.value};
         }
-      } else {
+      } else if (value > 0) {
         var voucher = {
           'placeId': placeId,
           'name': place.name,

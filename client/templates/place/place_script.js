@@ -29,7 +29,6 @@ Template.place.helpers({
 Template.place.events({
   'click #showPlaceInfo': function () {
     $('#placeInfo').slideToggle('fast');
-    $('#showPlaceInfo').toggleClass('blue');
   },
   'click #placeHistories': function () {
     Router.go('placeHistories', {placeId: this._id});
@@ -63,7 +62,7 @@ Template.place.onRendered(function () {
     $('#voucherHelp').popup({
       inline: true
     });
-  }, 100);
+  }, 200);
 });
 
 Template.place.onCreated(function () {
