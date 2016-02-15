@@ -45,6 +45,9 @@ Template.loyaltyCards.onRendered(function () {
     Session.set('loyaltyTab', 'Loyali');
   }
   $('#loyaltyTabs .item').tab();
+  setTimeout(function () {
+    $('html, body').animate({scrollTop: 0}, 'fast');
+  }, 500);
 });
 
 Template.loyaltyCards.onCreated(function () {

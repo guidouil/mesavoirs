@@ -12,5 +12,8 @@ Template.contact.helpers({
 Template.contact.events({
 });
 
-Template.contact.onRendered(function ( ){
+Template.contact.onRendered(function () {
+  setTimeout(function () {
+    $('html, body').animate({scrollTop: 0}, 'fast');
+  }, 500);
 });

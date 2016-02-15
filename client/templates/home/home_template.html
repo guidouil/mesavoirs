@@ -11,14 +11,14 @@
         <br>
         <a class="ui labeled icon button fluid orange" href="{{pathFor 'myPlaces'}}"><i class="setting icon"></i>Gérez vos commerces</a>
         <br>
-        <a class="ui labeled icon button fluid" href="{{pathFor 'contact'}}"><i class="mail icon"></i>Contacter Loyali</a>
+        <a type="button" class="ui labeled icon green fluid button" href="{{pathFor 'contact'}}"><i class="mail icon"></i>Contact</a>
       </div>
     {{else}}
       {{#if isConnected}}
       <div class="ui raised center aligned segment" data-intro="QR Code qui vous sert d'identifiant auprès des commerçants qui utilisent Loyali" data-step="4" data-position="bottom-middle-aligned">
         <h3 class="ui header">Mon QR code</h3>
         {{> QrCode text=qrText }}
-        <p>Faites le scanner par votre commerçant pour cumuler des points ou utiliser vos avoirs</p>
+        <p>Faites le scanner par votre commerçant pour cumuler des points et des avoirs</p>
       </div>
       {{/if}}
     {{/if}}
@@ -70,4 +70,10 @@
         <div class="column"><button type="button" class="ui labeled icon basic yellow fluid button" id="intro"><i class="help icon"></i>Aide</button></div>
       </div>
     </div>
+    <div class="ui grid">
+      <div class="one column row">
+        <div class="column"><a type="button" class="ui labeled icon basic fluid button" href="{{pathFor 'contact'}}"><i class="mail icon"></i>Contact</a></div>
+      </div>
+    </div>
+    <br>
 </template>
