@@ -8,7 +8,7 @@ Template.cropper.events({
   'click #rotate': function () {
     $('#cropping').cropper('rotate', 90);
   },
-  'click #save': function () {
+  'click #save': function (evt, tmpl) {
     var canvas = $('#cropping').cropper('getCroppedCanvas', {width: 600, height: 600});
     var croppedImgData = canvas.toDataURL('image/png');
     Images.insert(croppedImgData, function (err, fileObj) {
@@ -20,8 +20,8 @@ Template.cropper.events({
         fileObj.extension('png');
         var imageId = fileObj._id;
         Meteor.call('compressImage', imageId);
-        $('button').addClass('disabled');
-        $('.icon').addClass('loading');
+        tmpl.$('button').addClass('disabled');
+        tmpl.$('.icon').addClass('loading');
         setTimeout(function () {
           var imgType = Session.get('imgType');
           var theId = Session.get('theId');

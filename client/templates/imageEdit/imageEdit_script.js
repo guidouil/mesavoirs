@@ -63,7 +63,7 @@ Template.imageEdit.events({
       confirmButtonColor: '#DD6B55',
       confirmButtonText: 'Oui',
       cancelButtonText: 'Non',
-      closeOnConfirm: false
+      closeOnConfirm: true
     }, function () {
       if (! cardId) {
         Images.remove({_id: tmpl.data.imageId});
