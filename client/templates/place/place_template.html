@@ -67,10 +67,12 @@
             {{> image imageId=imageId}}
         </div>
         <div class="content">
-          <div class="header">{{name}}</div>
+          <div class="header">
+            {{name}}
+            <i class="right floated circular blue info icon" id="showPlaceInfo"></i>
+          </div>
           <div class="meta">
-            <i class="right floated blue info icon" id="showPlaceInfo"></i>
-            <a>{{description}}</a>
+            {{description}}
           </div>
           <div class="description">
             <div class="ui list" id="placeInfo">

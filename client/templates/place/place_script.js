@@ -63,7 +63,7 @@ Template.place.onRendered(function () {
     $('#voucherHelp').popup({
       inline: true
     });
-  }, 1000);
+  }, 100);
 });
 
 Template.place.onCreated(function () {
