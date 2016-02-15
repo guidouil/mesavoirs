@@ -14,7 +14,7 @@ Template.cardBrand.helpers({
 Template.cardBrand.events({
   'click .deleteCardBrand': function () {
     swal({
-      title: 'Etes-vous sur ?',
+      title: 'Êtes-vous sûr ?',
       text: 'Effacer un marque est définitif.',
       type: 'warning',
       showCancelButton: true,

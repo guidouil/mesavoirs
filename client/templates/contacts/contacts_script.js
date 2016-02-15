@@ -8,7 +8,7 @@ Template.contacts.events({
   'click #deleteContact': function () {
     var contactId = this._id;
     swal({
-      title: 'Etes-vous sur ?',
+      title: 'Êtes-vous sûr ?',
       text: 'Effacer un contact est définitif.',
       type: 'warning',
       showCancelButton: true,

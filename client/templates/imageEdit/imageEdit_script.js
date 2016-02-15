@@ -55,20 +55,31 @@ Template.imageEdit.events({
     var placeId = Router.current().params.placeId;
     var cardId = Router.current().params.cardId;
     var cardBrandId = Router.current().params.cardBrandId;
-    if (! cardId) {
-      Images.remove({_id: tmpl.data.imageId});
-    } else {
-      // TODO remove unlinked images
-    }
-    if (placeId) {
-      Places.update({_id: placeId}, {$unset: {imageId: ''}});
-    } else if (cardId) {
-      PrivateLoyaltyCards.update({_id: cardId}, {$unset: {imageId: ''}});
-    } else if (cardBrandId) {
-      CardsBrands.update({_id: cardBrandId}, {$unset: {imageId: ''}});
-    } else {
-      Meteor.users.update( { _id: Meteor.userId() }, { $unset: { 'profile.imageId': '' }});
-    }
+    swal({
+      title: 'Êtes-vous sûr ?',
+      text: 'Effacer une image est définitif.',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#DD6B55',
+      confirmButtonText: 'Oui',
+      cancelButtonText: 'Non',
+      closeOnConfirm: false
+    }, function () {
+      if (! cardId) {
+        Images.remove({_id: tmpl.data.imageId});
+      } else {
+        // TODO remove unlinked images
+      }
+      if (placeId) {
+        Places.update({_id: placeId}, {$unset: {imageId: ''}});
+      } else if (cardId) {
+        PrivateLoyaltyCards.update({_id: cardId}, {$unset: {imageId: ''}});
+      } else if (cardBrandId) {
+        CardsBrands.update({_id: cardBrandId}, {$unset: {imageId: ''}});
+      } else {
+        Meteor.users.update( { _id: Meteor.userId() }, { $unset: { 'profile.imageId': '' }});
+      }
+    });
   }
 });
 

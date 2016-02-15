@@ -18,30 +18,33 @@ Template.cropper.events({
         // force image name and extension for base64 file
         fileObj.name('loyali.png');
         fileObj.extension('png');
-
         var imageId = fileObj._id;
         Meteor.call('compressImage', imageId);
-        var imgType = Session.get('imgType');
-        var theId = Session.get('theId');
-        if (imgType === 'place') {
-          var placeId = Session.get('theId');
-          Places.update(placeId, {$set: {imageId: imageId}});
-          Meteor.call('updateLoyaltyCards', placeId);
-          Meteor.call('updateVouchers', placeId);
-          Router.go('place', {placeId: placeId});
-        } else if (imgType === 'card') {
-          var cardId = Session.get('theId');
-          PrivateLoyaltyCards.update(cardId, {$set: {imageId: imageId}});
-          Router.go('card', {cardId: cardId});
-        } else if (imgType === 'cardBrand') {
-          var cardBrandId = Session.get('theId');
-          CardsBrands.update(cardBrandId, {$set: {imageId: imageId}});
-          Meteor.call('updatePrivateLoyaltyCards', cardBrandId);
-          Router.go('cardsBrands');
-        } else if (imgType === 'profile') {
-          Meteor.users.update( { _id: Meteor.userId() }, { $set: { 'profile.imageId': imageId }});
-          Router.go('profile');
-        }
+        $('button').addClass('disabled');
+        $('.icon').addClass('loading');
+        setTimeout(function () {
+          var imgType = Session.get('imgType');
+          var theId = Session.get('theId');
+          if (imgType === 'place') {
+            var placeId = Session.get('theId');
+            Places.update(placeId, {$set: {imageId: imageId}});
+            Meteor.call('updateLoyaltyCards', placeId);
+            Meteor.call('updateVouchers', placeId);
+            Router.go('place', {placeId: placeId});
+          } else if (imgType === 'card') {
+            var cardId = Session.get('theId');
+            PrivateLoyaltyCards.update(cardId, {$set: {imageId: imageId}});
+            Router.go('card', {cardId: cardId});
+          } else if (imgType === 'cardBrand') {
+            var cardBrandId = Session.get('theId');
+            CardsBrands.update(cardBrandId, {$set: {imageId: imageId}});
+            Meteor.call('updatePrivateLoyaltyCards', cardBrandId);
+            Router.go('cardsBrands');
+          } else if (imgType === 'profile') {
+            Meteor.users.update( { _id: Meteor.userId() }, { $set: { 'profile.imageId': imageId }});
+            Router.go('profile');
+          }
+        }, 7000);
       }
     });
 

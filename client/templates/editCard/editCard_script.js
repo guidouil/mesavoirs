@@ -20,7 +20,7 @@ Template.editCard.events({
   },
   'click .deleteCard': function () {
     swal({
-      title: 'Etes-vous sur ?',
+      title: 'Êtes-vous sûr ?',
       text: 'Effacer un carte de fidélité est définitif.',
       type: 'warning',
       showCancelButton: true,

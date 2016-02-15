@@ -23,7 +23,7 @@ Template.editProfile.events({
   },
   'click [data-action=deleteMe]': function () {
     swal({
-      title: 'Etes-vous sur ?',
+      title: 'Êtes-vous sûr ?',
       text: 'Effacer votre compte est définitif.',
       type: 'warning',
       showCancelButton: true,

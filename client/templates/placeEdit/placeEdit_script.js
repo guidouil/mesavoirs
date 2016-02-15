@@ -8,7 +8,7 @@ Template.placeEdit.events({
   'click [data-action=deletePlace]': function (evt) {
     var placeId = this._id;
     swal({
-      title: 'Etes-vous sur ?',
+      title: 'Êtes-vous sûr ?',
       text: 'Effacer un commerce est définitif, toutes les données seront effacées.',
       type: 'warning',
       showCancelButton: true,

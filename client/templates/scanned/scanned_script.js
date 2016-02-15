@@ -101,7 +101,7 @@ Template.scanned.events({
   'click #removeOnePoint': function () {
     if (Session.get('placeId') && Session.get('customerId')) {
       swal({
-        title: 'Etes-vous sur ?',
+        title: 'Êtes-vous sûr ?',
         text: 'Normalement, vous ne devez pas enlever de points à un client.',
         type: 'warning',
         showCancelButton: true,
