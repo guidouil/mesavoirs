@@ -1,7 +1,7 @@
 <template name='card'>
   {{#with card}}
     <br>
-    <div class="ui one stackable cards">
+    <div class="ui stackable cards">
       <div class="card">
         {{#if imageId}}
         <div class="image">
@@ -30,10 +30,11 @@
           </a>
         </div>
         {{/if}}
+        <a href="{{pathFor 'editCard' cardId=_id}}" class="ui bottom attached basic orange button">
+          <i class="pencil icon"></i>
+          Editer
+        </a>
       </div>
-    </div>
-    <div class="ui  basic segment">
-      <a href="{{pathFor 'editCard' cardId=_id}}" class="ui labeled icon basic green fluid button"><i class="pencil icon"></i>Editer</a>
     </div>
   {{/with}}
 </template>
