@@ -47,5 +47,5 @@ Template.home.onRendered(function () {
     $('#createPlaceHelp').popup({
       inline: true
     });
-  }, 1000);
+  }, 200);
 });

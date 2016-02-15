@@ -15,9 +15,10 @@
       </div>
     {{else}}
       {{#if isConnected}}
-      <div class="ui raised center aligned segment" data-intro="Faites le scanner par votre commerçant pour obtenir vos points de fidélité" data-step="4" data-position="bottom-middle-aligned">
-        <h3 class="ui header">Mon code Loyali</h3>
+      <div class="ui raised center aligned segment" data-intro="QR Code qui vous sert d'identifiant auprès des commerçants qui utilisent Loyali" data-step="4" data-position="bottom-middle-aligned">
+        <h3 class="ui header">Mon QR code</h3>
         {{> QrCode text=qrText }}
+        <p>Faites le scanner par votre commerçant pour cumuler des points ou utiliser vos avoirs</p>
       </div>
       {{/if}}
     {{/if}}
@@ -59,14 +60,14 @@
     {{else}}
     <div class="ui grid">
       <div class="one column row">
-        <div class="column"><a type="button" class="ui labeled icon basic blue fluid button" href="{{pathFor 'loyaltyCards'}}"><i class="yellow star icon"></i>Mes cartes</a></div>
+        <div class="column"><a type="button" class="ui labeled icon blue fluid button" href="{{pathFor 'loyaltyCards'}}"><i class="yellow star icon"></i>Mes cartes</a></div>
       </div>
     </div>
     {{/unless}}
     <div class="ui grid">
       <div class="two column row">
-        <div class="column"><a type="button" class="ui labeled icon blue fluid button" href="{{pathFor 'about'}}"><i class="info icon"></i>Loyali</a></div>
-        <div class="column"><button type="button" class="ui labeled icon yellow fluid button" id="intro"><i class="help icon"></i>Aide</button></div>
+        <div class="column"><a type="button" class="ui labeled icon basic blue fluid button" href="{{pathFor 'about'}}"><i class="info icon"></i>Loyali</a></div>
+        <div class="column"><button type="button" class="ui labeled icon basic yellow fluid button" id="intro"><i class="help icon"></i>Aide</button></div>
       </div>
     </div>
 </template>
