@@ -55,8 +55,8 @@ Template.place.events({
 });
 
 Template.place.onRendered(function () {
-  $('#placeInfo').hide();
   setTimeout(function () {
+    $('#placeInfo').hide();
     $('#loyaltyCardHelp').popup({
       inline: true
     });
