@@ -22,11 +22,6 @@
       </div>
       {{/if}}
     {{/if}}
-    {{#unless isMobile}}
-      <div class="ui raised center aligned segment">
-        <h4>Disponible sur <a class="ui link" href="https://itunes.apple.com/fr/app/loyali/id1073418073" target="_blank"><i class="apple icon"></i>App Store</a> et <a href="https://play.google.com/store/apps/details?id=loya.ly.app" target="_blank"><i class="play icon"></i>Google Play</a></h4>
-      </div>
-    {{/unless}}
 
     {{#unless isConnected}}
     <div class="ui basic center aligned segment">
@@ -75,5 +70,9 @@
         <div class="column"><a type="button" class="ui labeled icon basic fluid button" href="{{pathFor 'contact'}}"><i class="mail icon"></i>Contact</a></div>
       </div>
     </div>
-    <br>
+    {{#unless isMobile}}
+      <div class="ui raised center aligned segment">
+        <h4>Disponible sur <a class="ui link" href="https://itunes.apple.com/fr/app/loyali/id1073418073" target="_blank"><i class="apple icon"></i>App Store</a> et <a href="https://play.google.com/store/apps/details?id=loya.ly.app" target="_blank"><i class="play icon"></i>Google Play</a></h4>
+      </div>
+    {{/unless}}
 </template>
