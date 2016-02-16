@@ -188,7 +188,7 @@ Meteor.methods({
         } else {
           return parseFloat(value).toMoney(2, ',', ' ') + ' € retiré';
         };
-      }
+      };
       if (voucher) {
         if (value > 0 || voucher.value >= Math.abs(value)) {
           Vouchers.update({_id: voucher._id}, {
@@ -450,7 +450,7 @@ Meteor.methods({
           Places.update({_id: place._id}, {$set:{
             customers: cleanedCustomers
           }});
-        })
+        });
       }
       Vouchers.remove({userId: userId});
       LoyaltyCards.remove({userId: userId});
@@ -466,5 +466,76 @@ Meteor.methods({
     if (isPlaceOwner(placeId, this.userId)) {
       Meteor.users.update({'profile.currentPlace': placeId}, {$unset: {'profile.currentPlace': ''}});
     }
+  },
+  canIHasMagicPoint: function () {
+    var userId = this.userId;
+    if (userId) {
+      var loyaltyCardsCount = LoyaltyCards.find({userId: userId}).count();
+      if (loyaltyCardsCount === 0) {
+        return true;
+      }
+    }
+    return false;
+  },
+  giveMeMagicPoint: function (placeId) {
+    var userId = this.userId;
+    if (userId) {
+      Meteor.call('canIHasMagicPoint', function (error, result) {
+        if (result === true) {
+          // ad customer to place
+          var place = Places.findOne({_id: placeId});
+          if (place) {
+            if (place.customers) {
+              var existingCustomer = _.find( place.customers, function (placeCustomer) {
+                return placeCustomer.customerId === userId;
+              });
+            }
+            var customerInfo = Meteor.users.findOne({_id: userId});
+            var email = contactEmail(customerInfo);
+            var customer = {
+              'customerId': userId,
+              'email': email,
+              'name': customerInfo.profile.name,
+              'imageId': customerInfo.profile.imageId
+            };
+            if (existingCustomer) { // always get fresh customer info
+              Places.update({_id: placeId}, {$pull: { customers: existingCustomer }});
+            }
+            Places.update({_id: placeId}, {$push: { customers: customer }});
+            Growls.insert({
+              placeId: placeId,
+              from: userId,
+              to: place.owners[0],
+              type: 'success',
+              title: place.name,
+              message: 'Vous avez un nouveau client enregistré'
+            });
+            // ad point
+            var history = {what: 1, who: userId, when: new Date()};
+            var newLoyaltyCard = {
+              'placeId': placeId,
+              'name': place.name,
+              'userId': userId,
+              'points': 1,
+              'size': place.loyaltyCard.size,
+              'creatorId': userId,
+              'imageId': place.imageId,
+              'histories': [history]
+            };
+            LoyaltyCards.insert(newLoyaltyCard);
+            Growls.insert({
+              placeId: placeId,
+              from: userId,
+              to: userId,
+              type: 'success',
+              title: place.name,
+              message: '+1 point sur votre carte fidélité'
+            });
+            return true;
+          }
+        }
+      });
+    }
+    return false;
   }
 });

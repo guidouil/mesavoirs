@@ -3,6 +3,10 @@ Meteor.publish('Places', function (limit) {
   return Places.find({$or: [{enabled: true}, {owners: this.userId}, {sellers: this.userId}]}, { reactive: true, sort: {createdAt: -1}, limit: limit });
 });
 
+Meteor.publish('activePlaces', function () {
+  return Places.find({enabled: true}, {fields: {name: 1, 'addresses.city': 1}} );
+});
+
 Meteor.publish('MyPlaces', function () {
   return Places.find({$or: [{owners: this.userId}, {sellers: this.userId}]}, { reactive: true, sort: {createdAt: -1} });
 });

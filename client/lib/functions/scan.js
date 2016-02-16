@@ -9,7 +9,8 @@ scan = function () {
             return;
           }
           if (result.text === 'http://loya.li') {
-            // todo starter kit
+            Router.go('magicPoint');
+            return;
           }
         }
         Router.go('scanned', {type: result.format, id: encodeURIComponent(result.text)});

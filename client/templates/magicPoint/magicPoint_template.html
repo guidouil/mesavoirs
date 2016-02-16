@@ -1,0 +1,47 @@
+<template name='magicPoint'>
+  <div class="ui basic center aligned segment">
+  {{#if isConnected}}
+    {{#if iCanHasMagicPoint}}
+        <h2 class="ui icon header">
+          <img class="ui small image" src="{{loyaliLogo}}" alt="Loyali" />
+          <div class="content">
+            Bievenue sur Loyali
+            <div class="sub header">Pour obtenir votre 1er point, vous devez nous dire dans quel commerce vous obtenu cette carte.<br>
+            <small>C'est souvent écrit au dos.</small></div>
+          </div>
+        </h2>
+        <p>
+          <select id="places" name="places" class="ui fluid dropdown">
+            <option value="">Sélectionnez un commerce</option>
+            {{#each places}}
+            <option value="{{_id}}">{{name}} - {{#each addresses}}{{city}} {{/each}}</option>
+            {{/each}}
+          </select>
+        </p>
+        <p>
+          <button id="giveMeMagicPoint" class="ui fluid positive button">Obtenir votre 1er point</button>
+        </p>
+    {{else}}
+      <h2 class="ui icon header">
+        <img class="ui small image" src="{{loyaliLogo}}" alt="Loyali" />
+        <div class="content">
+          Désolé
+          <div class="sub header">il semble que vous avez déjà eu votre 1er poins</div>
+        </div>
+      </h2>
+      <p>
+        Si ce n'est pas le cas, veuillez prendre contact avec votre commerçant ou directement avec nous. Merci ツ
+      </p>
+      <a type="button" class="ui labeled icon basic fluid button" href="{{pathFor 'contact'}}"><i class="mail icon"></i>Contact</a>
+    {{/if}}
+  {{else}}
+    <h2 class="ui icon header">
+      <img class="ui small image" src="{{loyaliLogo}}" alt="Loyali" />
+      <div class="content">
+        Bievenue sur Loyali
+      </div>
+    </h2>
+    {{> loginText}}
+  {{/if}}
+  </div>
+</template>
