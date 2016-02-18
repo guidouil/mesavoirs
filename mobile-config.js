@@ -52,6 +52,11 @@ App.setPreference('StatusBarBackgroundColor', '#ffffff', 'ios');
 App.setPreference('Orientation', 'portrait');
 App.setPreference('Orientation', 'portrait', 'ios');
 
+App.configurePlugin('com.phonegap.plugins.facebookconnect', {
+  APP_ID: '562245447284862',
+  APP_NAME: 'Loyali'
+});
+
 App.accessRule('*.loya.li/*');
 App.accessRule('*.mesavoirs.fr/*');
 App.accessRule('*.openfoodfacts.org/*');

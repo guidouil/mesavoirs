@@ -37,7 +37,6 @@ mdg:geolocation
 percolate:paginated-subscription
 patrickml:swal
 anti:fake
-accounts-facebook
 accounts-google
 accounts-twitter
 zimme:active-route
@@ -66,3 +65,4 @@ gadicohen:reactive-window
 meteorhacks:subs-manager
 cfs:filesystem
 random
+mrt:accounts-facebook-cordova
