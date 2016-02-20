@@ -40,10 +40,14 @@
       {{#if isConnected}}
       <a class="item {{isActiveRoute 'createPlace'}}" href="{{pathFor 'promote'}}">
         <i class="users icon"></i>
-        Commerces
+        Commerçants
       </a>
       {{/if}}
     {{/unless}}
+    <a class="item {{isActiveRoute 'search'}}" href="{{pathFor 'search'}}">
+      <i class="search icon"></i>
+      Recherche
+    </a>
     <a class="item {{isActiveRoute 'about'}}" href="{{pathFor 'about'}}">
       <i class="info icon"></i>
       A propos
