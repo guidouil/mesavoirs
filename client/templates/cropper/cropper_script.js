@@ -52,14 +52,16 @@ Template.cropper.events({
 });
 
 Template.cropper.onRendered(function () {
+  var ratio = 1.618;
+  if (Session.equals('imgType', 'profile')) {
+    ratio = 1;
+  }
   $('#cropping').attr('src', Session.get('imageTemp'));
   var originalData = {width: 600};
   $('#cropping').cropper({
-    aspectRatio: 1,
+    aspectRatio: ratio,
     minWidth: 300,
-    minHeight: 300,
     maxWidth: 600,
-    maxHeight: 600,
     data: originalData
   });
 });

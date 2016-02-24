@@ -6,7 +6,7 @@ Meteor.methods({
           var postPath = fileObj.copies.images.name || 'loyali.png';
           var imageFileName = fileObj.collectionName + '-' + fileObj._id + '-' + postPath;
           var exec = Npm.require('child_process').exec;
-          var cmd = 'pngquant --quality=65-80 --speed=1 --force 256 /var/uploads/' + imageFileName + ' --output /var/uploads/compressed/' + imageFileName;
+          var cmd = 'pngquant --force 256 /var/uploads/' + imageFileName + ' --output /var/uploads/compressed/' + imageFileName;
           exec(cmd, function (error, stdout, stderr) {
             // command output is in stdout
             if (error) {
