@@ -1,6 +1,10 @@
 Template.header.helpers({
   isNotHome: function () {
     return Router.current().route.getName() !== 'home';
+  },
+  isOffline: function () {
+    var connectionStatus = Meteor.status();
+    return connectionStatus['connected'] === false;
   }
 });
 

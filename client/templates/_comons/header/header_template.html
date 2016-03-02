@@ -15,14 +15,18 @@
     <div class="right menu">
       {{#unless isConnected}}
       <div class="item" data-action="signIn" data-intro="Cliquez là pour afficher votre profil et modifier vos information" data-step="3" data-position="bottom-right-aligned">
-        <i class="big user icon"></i>
+        <i class="big {{#if isOffline}}orange{{/if}} user icon"></i>
       </div>
       {{else}}
       <div class="item" data-action="profile" data-intro="Cliquez là pour afficher votre profil et vous faire scanner par les commerçants qui utilisent Loyali" data-step="3" data-position="bottom-right-aligned">
-        {{#if currentUser.profile.imageId}}
-          {{> image imageId=currentUser.profile.imageId classNames='avatar'}}
+        {{#if isOffline}}
+          <i class="big {{#if isOffline}}orange{{/if}} user icon"></i>
         {{else}}
+          {{#if currentUser.profile.imageId}}
+          {{> image imageId=currentUser.profile.imageId classNames='avatar'}}
+          {{else}}
           <i class="big user icon"></i>
+          {{/if}}
         {{/if}}
       </div>
       {{/unless}}
