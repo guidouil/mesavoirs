@@ -53,11 +53,11 @@ rzymek:moment-locale-fr
 tmeasday:publish-counts
 semantic:ui-tab
 froatsnook:bardcode
-mdg:camera@1.2.0
+mdg:camera
 dburles:google-maps
 mpowaga:autoform-autocomplete
-softwarerero:accounts-t9n@1.2.0
-lai:collection-extensions@0.2.1_1
+softwarerero:accounts-t9n
+lai:collection-extensions
 jonblum:jquery-cropper
 chrismbeckett:toastr
 okgrow:analytics
