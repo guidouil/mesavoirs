@@ -57,6 +57,10 @@ App.configurePlugin('com.phonegap.plugins.facebookconnect', {
   APP_NAME: 'Loyali'
 });
 
+// App.configurePlugin('cordova-plugin-googleplus', {
+//   'REVERSED_CLIENT_ID': 'com.googleusercontent.apps.277804142620-qfe4t0eham3mhd2mojps67fc3nd3kda5'
+// });
+
 App.accessRule('*.loya.li/*');
 App.accessRule('*.mesavoirs.fr/*');
 App.accessRule('*.openfoodfacts.org/*');
