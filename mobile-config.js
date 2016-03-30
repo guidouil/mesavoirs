@@ -11,9 +11,9 @@ App.info({
 App.icons({
   // iOS
   'ios_settings': 'resources/icons/icon-29x29.png',
-  'ios_settings_2x': 'resources/icons/icon/icon-58x58.png',
+  'ios_settings_2x': 'resources/icons/icon-58x58.png',
   'ios_settings_3x': 'resources/icons/icon-87x87.png',
-  'ios_spotlight': 'resources/icons/icon/icon-40x40.png',
+  'ios_spotlight': 'resources/icons/icon-40x40.png',
   'ios_spotlight_2x': 'resources/icons/icon-80x80.png',
   'iphone_2x': 'resources/icons/icon-120x120.png', // 120x120
   'iphone_3x': 'resources/icons/icon-180x180.png', // 180x180
