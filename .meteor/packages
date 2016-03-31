@@ -66,3 +66,4 @@ random
 mrt:accounts-facebook-cordova
 standard-minifier-css
 standard-minifier-js
+cfs:http-methods
