@@ -27,17 +27,25 @@ Template.place.helpers({
   stars: function () {
     var place = Places.findOne({_id: Router.current().params.placeId});
     var loyaltyCard = LoyaltyCards.findOne({placeId: Router.current().params.placeId, userId: Meteor.userId()});
+    var halfPoints = ~~(place.loyaltyCard.size/2);
     if (place && place.loyaltyCard && place.loyaltyCard.size) {
       var stars = [];
+      var starsFirst = [];
+      var starsSecond = [];
       for (var i = 1; i <= place.loyaltyCard.size; i++) {
         var star = {};
         star.position = i;
-        star.half = ~~(place.loyaltyCard.size/2);
         if (loyaltyCard && loyaltyCard.points) {
           star.filled = (i <= loyaltyCard.points ? true : false);
         };
-        stars.push(star);
+        if (i <= halfPoints) {
+          starsFirst.push(star);
+        } else {
+          starsSecond.push(star);
+        }
       }
+      stars.push(starsFirst);
+      stars.push(starsSecond);
       return stars;
     }
   }

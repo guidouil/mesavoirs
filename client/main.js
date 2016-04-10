@@ -33,7 +33,10 @@ UI.registerHelper('getImage', function (imageUrl) {
   return imageUrl || '/default-image.png';
 });
 
-UI.registerHelper('formatMoney', function (value) {
+UI.registerHelper('formatMoney', function (value, defaultValue) {
+  if (!value && isNumeric(defaultValue)) {
+    value = defaultValue;
+  }
   if (isNumeric(value)) {
     switch (Session.get('language')) {
     case 'en' :

@@ -113,29 +113,29 @@
             </div>
           </div>
         </div>
+
         {{#if stars}}
           <div class="extra content center aligned">
             {{#each stars}}
-            <i class="yellow big {{#unless filled}}empty{{/unless}} star icon"></i>
-            {{#if equals position half}}
-              <br>
-            {{/if}}
+            <div class="ui horizontal list">
+              {{#each this}}
+              <a class="item"><i class="yellow big {{#unless filled}}empty{{/unless}} star icon"></i></a>
+              {{/each}}
+            </div>
             {{/each}}
           </div>
         {{/if}}
 
         <div class="content">
-          {{#if myVoucher}}
           <span class="right floated">
-            <a class="ui link" id="voucherHelp" data-position="top right"><i class=" blue ticket icon"></i> {{{formatMoney myVoucher.value}}} d'avoir</a>
+            <a class="ui link" id="voucherHelp" data-position="top right"><i class=" blue ticket icon"></i> {{{formatMoney myVoucher.value 0}}} d'avoir</a>
             <div class="ui special popup">
               L'avoir cumulé peut-être dépensé uniquement dans ce commerce.<br>Il ne peut être remboursé contre sa valeur monétaire.
             </div>
           </span>
-          {{/if}}
-          {{#if myLoyaltyCard}}
+          {{#if loyaltyCard}}
           <span>
-            <a class="ui link" id="loyaltyCardHelp" data-position="top left"><i class=" yellow star icon"></i> {{myLoyaltyCard.points}} / {{myLoyaltyCard.size}} points</a>
+            <a class="ui link" id="loyaltyCardHelp" data-position="top left"><i class=" yellow star icon"></i> {{or myLoyaltyCard.points 0}} / {{loyaltyCard.size}} points</a>
             <div class="ui special popup">
               Chaque tranche d'achat de {{{formatMoney loyaltyCard.pointCost}}} ajoute 1 point à la carte de fidélité.
               <br><br>
