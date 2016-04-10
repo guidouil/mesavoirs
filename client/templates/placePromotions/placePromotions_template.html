@@ -1,0 +1,31 @@
+<template name='placePromotions'>
+  <div class="ui basic segment">
+    <h3 class="UI header">Promotions @ {{place.name}}</h3>
+    <div class="ui middle aligned animated list">
+      {{#each promotions}}
+      <div class="item">
+        {{#if enabled}}
+        <i class="green check icon"></i>
+        {{else}}
+        <i class="red close icon"></i>
+        {{/if}}
+        <div class="middle aligned content">
+          <a class="header" href="{{pathFor 'promotion' promotionId=_id}}">{{name}} <small>{{description}}</small></a>
+          <div class="description">
+            {{#if stop}}
+              Début {{fromNow start}}, fin {{fromNow stop}}.
+            {{/if}}
+            {{#if usageLimit}}
+              Reste {{usageLimit}} utilisations.
+            {{/if}}
+          </div>
+        </div>
+      </div>
+      {{else}}
+      <p>
+        Pas de promotion active pour l'instant...
+      </p>
+      {{/each}}
+    </div>
+  </div>
+</template>

@@ -37,6 +37,11 @@ Template.scanned.helpers({
   },
   voucherValue: function () {
     return Session.get('voucher');
+  },
+  promotion: function () {
+    if (Session.get('promotionId')) {
+      return Promotions.findOne({_id: Session.get('promotionId')});
+    }
   }
 });
 
@@ -188,6 +193,16 @@ Template.scanned.events({
     Session.set('cardCode', Router.current().params.id);
     Session.set('cardFormat', Router.current().params.type);
     Router.go('addCard');
+  },
+  'click #applyPromotion': function () {
+    Meteor.call('applyPromotion', Session.get('promotionId'), Router.current().params.id, function (error, result) {
+      if(error){
+        console.log('error', error);
+      }
+      if(result){
+        Session.delete('promotionId');
+      }
+    });
   }
 });
 
@@ -242,6 +257,9 @@ Template.scanned.onCreated(function () {
   if (scanType === 'userId' && Router.current().params.id) {
     Session.set('customerId', Router.current().params.id);
   }
+  if (Session.get('promotionId')) {
+    subs.subscribe('Promotion', Session.get('promotionId'));
+  }
 });
 
 Template.scanned.onDestroyed(function () {
@@ -250,4 +268,5 @@ Template.scanned.onDestroyed(function () {
   Session.delete('customerEmail');
   Session.delete('customerName');
   Session.delete('customerImageId');
+  Session.delete('promotionId');
 });

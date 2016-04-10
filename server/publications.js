@@ -110,8 +110,13 @@ Meteor.publish('CardBrand', function (cardBrandId) {
 Meteor.publish('Promotions', function (placeId) {
   check(placeId, String);
   if (isPlaceOwner(placeId, this.userId) || isPlaceSeller(placeId, this.userId)) {
-    return Promotions.find({placeId: placeId}, {sort: {start: -1, end: -1}});
+    return Promotions.find({placeId: placeId}, {sort: {start: -1, stop: -1}});
   }
+});
+
+Meteor.publish('PlacePromotions', function (placeId) {
+  check(placeId, String);
+  return Promotions.find({placeId: placeId,  start: {$lte: new Date()}, stop: {$gte: new Date()}, enabled: true}, {sort: {start: -1, stop: -1}});
 });
 
 Meteor.publish('Promotion', function (promotionId) {

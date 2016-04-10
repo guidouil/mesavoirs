@@ -17,6 +17,9 @@
             <div class="sub header">Dans le commerce {{place.name}}</div>
           </div>
         </h2>
+        {{#if promotion}}
+          <button type="button" class="ui fluid green button" id="applyPromotion">Appliquer : {{promotion.name}}</button>
+        {{/if}}
         {{#if place.loyaltyCard.enabled}}
           <h4>Carte de fidélité{{#if customerEmail}} de {{customerEmail}}{{/if}}</h4>
           <button type="button" class="teal right floated ui circular icon button" id="loyaltyCardHelp" data-position="top right"><i class="help icon"></i></button>

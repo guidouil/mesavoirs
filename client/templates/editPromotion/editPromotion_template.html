@@ -2,12 +2,12 @@
   {{#if isInRole 'owners'}}
 
       <div class="ui basic segment">
-        {{#if imageId}}
+        <!-- {{#if imageId}}
           {{> image imageId=imageId classNames='small right floated'}}
         {{/if}}
         {{#if _id}}
         {{> imageEdit imageId=imageId}}
-        {{/if}}
+        {{/if}} -->
         <h3 class="ui header">
           {{#if _id}}
             Editer la promotion {{name}}
@@ -16,11 +16,12 @@
           {{/if}}
         </h3>
         {{#autoForm id="editPromotion" type=type collection="Promotions" enctype="multipart/form-data" doc=this}}
-          {{> afQuickField placeholder="schemaLabel" name="name" }}
-          {{> afQuickField placeholder="schemaLabel" name="description" }}
-          {{> afQuickField placeholder="schemaLabel" name="voucherValue" }}
-          {{> afQuickField placeholder="schemaLabel" name="start" }}
-          {{> afQuickField placeholder="schemaLabel" name="stop" }}
+          {{> afQuickField name="name" placeholder="ex: Promo sur la formule aujourd'hui"}}
+          {{> afQuickField name="description" placeholder="ex: Venez acheter une formule aujourd'hui et nous vous donnons 50 centimes d'euro en avoirs en plus." }}
+          {{> afQuickField name="voucherValue" placeholder="ex: 0.5"}}
+          {{> afQuickField placeholder="ex: 100" name="usageLimit" }}
+          {{> afQuickField name="start" }}
+          {{> afQuickField name="stop" }}
           {{> afQuickField name="placeId" value=currentUser.profile.currentPlace}}
           <div class="ui grid">
             <div class="two column row">

@@ -8,6 +8,11 @@ scan = function () {
             Router.go('scanned', {type: scanned[0], id: scanned[1]});
             return;
           }
+          if (result.text.search('promoId:') === 0) {
+            var scanned = result.text.split(':');
+            Router.go('usePromotion', {promotionId: scanned[1]});
+            return;
+          }
           if (result.text === 'http://loya.li') {
             Router.go('magicPoint');
             return;

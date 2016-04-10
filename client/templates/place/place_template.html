@@ -22,7 +22,7 @@
             </button>
           </div>
           <div class="height wide column">
-            <a class="ui blue labeled icon button fluid disabled" href="{{pathFor 'promotions' placeId=_id}}">
+            <a class="ui blue labeled icon button fluid" href="{{pathFor 'promotions' placeId=_id}}">
               <i class="star icon"></i>
               Promotions
             </a>
@@ -61,6 +61,7 @@
     {{else}}
     <br>
     {{/if}}
+
     <div class="ui {{#unless isMobile}}one{{/unless}} stackable cards centered">
       <div class="card">
         <div class="image">
@@ -112,7 +113,18 @@
             </div>
           </div>
         </div>
-        <div class="extra content">
+        {{#if stars}}
+          <div class="extra content center aligned">
+            {{#each stars}}
+            <i class="yellow big {{#unless filled}}empty{{/unless}} star icon"></i>
+            {{#if equals position half}}
+              <br>
+            {{/if}}
+            {{/each}}
+          </div>
+        {{/if}}
+
+        <div class="content">
           {{#if myVoucher}}
           <span class="right floated">
             <a class="ui link" id="voucherHelp" data-position="top right"><i class=" blue ticket icon"></i> {{{formatMoney myVoucher.value}}} d'avoir</a>
@@ -132,10 +144,18 @@
           </span>
           {{/if}}
         </div>
-        <div class="ui bottom attached basic green button" id="placeHistories">
-          <i class="history icon"></i>
-          Historique
+
+        <div class="ui two bottom attached buttons">
+          <div class="ui basic yellow button" id="placePromotions">
+            <i class="star icon"></i>
+            Promotions
+          </div>
+          <div class="ui basic green button" id="placeHistories">
+            <i class="history icon"></i>
+            Historique
+          </div>
         </div>
+
       </div>
     </div>
     <br>

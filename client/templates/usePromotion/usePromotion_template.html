@@ -1,21 +1,9 @@
-<template name='promotion'>
-
-  {{#if isPlaceOwner placeId}}
-    <div class="ui basic section">
-      <div class="ui slider checkbox">
-        <input type="checkbox" name="enabled" checked="{{enabled}}" data-action="enablePromotion">
-        <label>promotion {{#unless enabled}}in{{/unless}}active</label>
-      </div>
-      <a href="{{pathFor 'editPromotion' promotionId=_id}}" class="teal right floated ui circular icon button"><i class="pencil icon"></i></a>
-      <br>
-    </div>
-  {{/if}}
-  <div class="ui basic section">
-    <h3 class="ui header">{{name}}</h3>
-    <p>
-      {{description}}
-    </p>
-  </div>
+<template name='usePromotion'>
+  <div class="ui basic segment">
+  <h3 class="ui header">Promotion : {{name}}</h3>
+  <p>
+    {{description}}
+  </p>
   <table class="ui single line striped unstackable table">
     <tbody>
       {{#if voucherValue}}
@@ -44,10 +32,21 @@
       {{/if}}
     </tbody>
   </table>
-
-  <h3 class="ui header center aligned">
-    {{> QrCode text=qrText }}
-  </h3>
-
-
+  {{#with place}}
+    {{#if isSellerOrOwner}}
+      <select id="customer" name="customer" class="fluid ui dropdown">
+        <option value="">Sélectionnez un client</option>
+        {{#each sortArray customers 'email'}}
+          <option value="{{customerId}}" {{selectedCustomer}}>{{name}} {{email}}</option>
+        {{/each}}
+      </select>
+      {{#if isMobile}}
+        <p class="ui header aligned center">
+          Ou
+        </p>
+        <button type="button" class="ui labeled icon button fluid green" data-action="scan"><i class="qrcode icon"></i>Scanner un code client</button>
+      {{/if}}
+    {{/if}}
+  {{/with}}
+  </div>
 </template>

@@ -6,10 +6,21 @@
       <div class="ui middle aligned animated list">
         {{#each promotions}}
         <div class="item">
-          {{> image imageId=imageId classNames='mini rounded'}}
-          <div class="content">
+          {{#if enabled}}
+          <i class="green check icon"></i>
+          {{else}}
+          <i class="red close icon"></i>
+          {{/if}}
+          <div class="middle aligned content">
             <a class="header" href="{{pathFor 'promotion' promotionId=_id}}">{{name}} <small>{{description}}</small></a>
-            <div class="description"><small>Début {{fromNow start}}, fin {{fromNow stop}}</small></div>
+            <div class="description">
+              {{#if stop}}
+                Début {{fromNow start}}, fin {{fromNow stop}}.
+              {{/if}}
+              {{#if usageLimit}}
+                Reste {{usageLimit}} utilisation{{#if greaterThan usageLimit 1}}s{{/if}}.
+              {{/if}}
+            </div>
           </div>
         </div>
         {{/each}}

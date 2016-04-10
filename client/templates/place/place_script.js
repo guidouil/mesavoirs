@@ -23,6 +23,23 @@ Template.place.helpers({
       Session.set('placeName', place.name);
       return place;
     }
+  },
+  stars: function () {
+    var place = Places.findOne({_id: Router.current().params.placeId});
+    var loyaltyCard = LoyaltyCards.findOne({placeId: Router.current().params.placeId, userId: Meteor.userId()});
+    if (place && place.loyaltyCard && place.loyaltyCard.size) {
+      var stars = [];
+      for (var i = 1; i <= place.loyaltyCard.size; i++) {
+        var star = {};
+        star.position = i;
+        star.half = ~~(place.loyaltyCard.size/2);
+        if (loyaltyCard && loyaltyCard.points) {
+          star.filled = (i <= loyaltyCard.points ? true : false);
+        };
+        stars.push(star);
+      }
+      return stars;
+    }
   }
 });
 
@@ -32,6 +49,9 @@ Template.place.events({
   },
   'click #placeHistories': function () {
     Router.go('placeHistories', {placeId: this._id});
+  },
+  'click #placePromotions': function () {
+    Router.go('placePromotions', {placeId: this._id});
   },
   'click [data-action=enablePlace]': function (evt) {
     Meteor.call('enablePlace', this._id, evt.currentTarget.checked);

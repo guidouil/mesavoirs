@@ -44,6 +44,20 @@ Meteor.methods({
     }
     return false;
   },
+  enablePromotion: function (promotionId, enabled) {
+    check(promotionId, String);
+    check(enabled, Boolean);
+    var promotion = Promotions.findOne({_id: promotionId});
+    if (promotion && promotion.placeId) {
+      if (isPlaceOwner(promotion.placeId, this.userId)) {
+        Promotions.update({_id: promotionId}, {$set:{
+          enabled: enabled
+        }});
+        return true;
+      }
+    }
+    return false;
+  },
   addOnePoint: function (placeId, customerId) {
     check(placeId, String);
     check(customerId, String);
@@ -228,6 +242,26 @@ Meteor.methods({
           message: formatedValue() + ' à votre avoir'
         });
         return value;
+      }
+    }
+    return false;
+  },
+  applyPromotion: function (promotionId, customerId) {
+    check(promotionId, String);
+    check(customerId, String);
+    var promotion = Promotions.findOne({_id: promotionId});
+    if (promotion.usageLimit === undefined || promotion.usageLimit > 0) {
+      if (promotion.placeId && (isPlaceOwner(promotion.placeId, this.userId) || isPlaceSeller(promotion.placeId, this.userId))) {
+        Meteor.call('giveVoucher', promotion.placeId, customerId, promotion.voucherValue);
+        if (promotion.usageLimit !== undefined) {
+          Promotions.update({_id: promotionId}, {$inc:{
+            usageLimit: -1
+          }});
+        }
+        Promotions.update({_id: promotionId}, {$push:{
+          users: customerId
+        }});
+        return true;
       }
     }
     return false;

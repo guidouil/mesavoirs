@@ -50,6 +50,10 @@ function isNumeric (n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
+UI.registerHelper('today', function () {
+  return moment().unix();
+});
+
 UI.registerHelper('formatDate', function (date) {
   if (date !== '') {
     return moment(date).format('DD/MM/YYYY HH:mm');
