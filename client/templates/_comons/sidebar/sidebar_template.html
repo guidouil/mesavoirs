@@ -15,6 +15,10 @@
         <i class="users icon"></i>
         Clients
       </a>
+      <a class="item {{isActiveRoute 'place'}} teal" href="{{pathFor 'place' placeId=currentUser.profile.currentPlace}}">
+        <i class="marker icon"></i>
+        Commerce
+      </a>
       {{#if isInRole 'owners'}}
         <a class="item {{isActiveRoute 'myPlaces'}} orange" href="{{pathFor 'myPlaces'}}">
           <i class="setting icon"></i>
