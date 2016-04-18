@@ -5,9 +5,9 @@
       {{#each vouchers}}
       <div class="item voucher">
         {{#if imageId}}
-          {{> image imageId=imageId classNames='mini rounded'}}
+          {{> image imageId=imageId classNames='mini middle aligned rounded'}}
         {{else}}
-          <i class="large blue ticket icon"></i>
+          <i class="large middle aligned blue ticket icon"></i>
         {{/if}}
         <div class="content">
           <a class="header" href="{{pathFor 'place' placeId=placeId}}">{{name}}</a>

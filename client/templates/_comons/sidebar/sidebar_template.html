@@ -8,7 +8,7 @@
       {{#if isMobile}}
         <a class="item {{isActiveRoute 'scanned'}} green" data-action="scan">
           <i class="qrcode icon"></i>
-          Scan
+          Scanner
         </a>
       {{/if}}
       <a class="item {{isActiveRoute 'customers'}} teal" href="{{pathFor 'customers' placeId=currentUser.profile.currentPlace}}">
@@ -19,16 +19,16 @@
         <i class="marker icon"></i>
         Commerce
       </a>
-      {{#if isInRole 'owners'}}
+      <!-- {{#if isInRole 'owners'}}
         <a class="item {{isActiveRoute 'myPlaces'}} orange" href="{{pathFor 'myPlaces'}}">
           <i class="setting icon"></i>
           Commerces
         </a>
-      {{/if}}
+      {{/if}} -->
     {{/if}}
     <a class="item {{isActiveRoute 'loyaltyCards'}}" href="{{pathFor 'loyaltyCards'}}">
       <i class="star icon"></i>
-      C. Fidélité
+      Cartes de fidélité
     </a>
     <a class="item {{isActiveRoute 'vouchers'}}" href="{{pathFor 'vouchers'}}">
       <i class="ticket icon"></i>
@@ -38,7 +38,7 @@
       {{#if isMobile}}
       <a class="item {{isActiveRoute 'scanned'}}" data-action="scan">
         <i class="qrcode icon"></i>
-        Scan
+        Scanner
       </a>
       {{/if}}
       {{#if isConnected}}

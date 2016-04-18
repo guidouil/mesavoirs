@@ -11,9 +11,9 @@
         {{#each loyaltyCards}}
         <div class="item loyaltyCard">
           {{#if imageId}}
-            {{> image imageId=imageId classNames='mini rounded'}}
+            {{> image imageId=imageId classNames='mini middle aligned rounded'}}
           {{else}}
-            <i class="large yellow star icon"></i>
+            <i class="large middle aligned yellow star icon"></i>
           {{/if}}
           <div class="content">
             <a class="header" href="{{pathFor 'place' placeId=placeId}}">{{name}}</a>
@@ -41,9 +41,9 @@
         {{#each privateLoyaltyCards}}
         <div class="item privateLoyaltyCard">
           {{#if imageId}}
-            {{> image imageId=imageId classNames='mini rounded'}}
+            {{> image imageId=imageId classNames='mini middle aligned rounded'}}
           {{else}}
-            <i class="large yellow star icon"></i>
+            <i class="large middle aligned yellow star icon"></i>
           {{/if}}
           <div class="content">
             <a class="header" href="{{pathFor 'card' cardId=_id}}">{{name}}</a>

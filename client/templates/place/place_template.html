@@ -29,7 +29,7 @@
           </div>
         </div>
         <br>
-        <div class="ui three tiny statistics">
+        <!-- <div class="ui three tiny statistics">
           <div class="ui statistic">
             <div class="value">
               {{or customers.length 0}}
@@ -54,9 +54,12 @@
               Carte{{#if greaterThan loyaltyCardCount 1}}s{{/if}}
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
-      <i class="up arrow grey icon" id="toggleMyPlaceHeader"></i>
+      <p id="toggleMyPlaceHeader">
+        <i class="up arrow grey icon" id="toggleMyPlaceHeaderIcon"></i>
+        Vue {{#if showPlaceAdmin}}commerçant{{else}}clients{{/if}}
+      </p>
     </div>
     {{else}}
     <br>
@@ -122,6 +125,7 @@
               <a class="item"><i class="yellow big {{#unless filled}}empty{{/unless}} star icon"></i></a>
               {{/each}}
             </div>
+            <br>
             {{/each}}
           </div>
         {{/if}}

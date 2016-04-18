@@ -87,7 +87,9 @@ Meteor.publish('PrivateLoyaltyCard', function (cardId) {
 Meteor.publish('placeCounts', function (placeId) {
   check(placeId, String);
   if (isPlaceOwner(placeId, this.userId) || isPlaceSeller(placeId, this.userId)) {
-    Counts.publish(this, 'voucherCount', Vouchers.find({ placeId: placeId }));
+    Counts.publish(this, 'voucherCount', Vouchers.aggregate([
+      { $group: {_id: null, totalVouchers: {$sum: '$value'}}}
+    ]));
     Counts.publish(this, 'loyaltyCardCount', LoyaltyCards.find({ placeId: placeId }));
   }
 });
