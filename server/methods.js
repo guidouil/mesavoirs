@@ -213,9 +213,9 @@ Meteor.methods({
       var voucher = Vouchers.findOne({ placeId: placeId, userId: customerId });
       var formatedValue = function () {
         if (value > 0) {
-          return '+' + parseFloat(value).toMoney(2, ',', ' ') + ' € ajouté';
+          return '+' + parseFloat(value).toMoney(2, ',', ' ') + place.currency + ' ajouté';
         } else {
-          return parseFloat(value).toMoney(2, ',', ' ') + ' € retiré';
+          return parseFloat(value).toMoney(2, ',', ' ') + place.currency + ' retiré';
         };
       };
       if (voucher) {

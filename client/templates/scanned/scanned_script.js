@@ -61,7 +61,7 @@ Template.scanned.events({
             console.error(error);
           }
           if (_.isNumber(result)){
-            swal('Excellent', 'L\'avoir de votre client est maintenant de ' + result + '€', 'success');
+            swal('Excellent', 'L\'avoir de votre client est maintenant de ' + result + Session.get('currency'), 'success');
             $('#voucherValue').val('');
           }
         });
@@ -77,10 +77,10 @@ Template.scanned.events({
             console.error(error);
           }
           if (_.isNumber(result)){
-            swal('Enregistré', 'L\'avoir de votre client est maintenant de ' + result + '€', 'success');
+            swal('Enregistré', 'L\'avoir de votre client est maintenant de ' + result + Session.get('currency'), 'success');
             $('#voucherValue').val('');
           } else if (result && result.maxValue) {
-            swal('Négatif', 'L\'avoir disponible de votre client est de ' + result.maxValue + '€', 'error');
+            swal('Négatif', 'L\'avoir disponible de votre client est de ' + result.maxValue + Session.get('currency'), 'error');
             $('#voucherValue').val(result.maxValue);
           }
         });

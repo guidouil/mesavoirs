@@ -25,7 +25,6 @@ semantic:ui-icon
 useraccounts:semantic-ui
 useraccounts:iron-routing
 momentjs:moment
-fastclick
 aldeed:simple-schema
 aldeed:collection2
 aldeed:autoform

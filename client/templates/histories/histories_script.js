@@ -20,7 +20,7 @@ Template.histories.helpers({
     var formatedValue = value;
     var historyFormat = Session.get('historyFormat');
     if (historyFormat === 'formatMoney') {
-      formatedValue = parseFloat(value).toMoney(2, ',', ' ') + ' €';
+      formatedValue = parseFloat(value).toMoney(2, ',', ' ') + Session.get('currency');
     } else {
       formatedValue = value + ' point';
       if (Math.abs(value) > 1 ) {
