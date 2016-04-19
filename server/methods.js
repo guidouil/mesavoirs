@@ -58,6 +58,21 @@ Meteor.methods({
     }
     return false;
   },
+  getPlaceStats: function (placeId) {
+    check(placeId, String);
+    if (isPlaceOwner(placeId, this.userId) || isPlaceSeller(placeId, this.userId)) {
+      var stats = {};
+      stats.vouchersValue = Vouchers.aggregate([
+        { $match: { placeId: placeId } },
+        { $group: { _id: placeId, vouchersValue: { $sum: '$value' } } }
+      ]);
+      stats.pointsCount = LoyaltyCards.aggregate([
+        { $match: { placeId: placeId } },
+        { $group: { _id: placeId, pointsCount: { $sum: '$points' } } }
+      ]);
+      return stats;
+    }
+  },
   addOnePoint: function (placeId, customerId) {
     check(placeId, String);
     check(customerId, String);

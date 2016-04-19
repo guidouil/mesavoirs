@@ -7,7 +7,7 @@
     {{#if isSellerOrOwnerRole}}
       {{#if isMobile}}
         <a class="item {{isActiveRoute 'scanned'}} green" data-action="scan">
-          <i class="qrcode icon"></i>
+          <i class="barcode icon"></i>
           Scanner
         </a>
       {{/if}}
@@ -37,7 +37,7 @@
     {{#unless isSellerOrOwnerRole}}
       {{#if isMobile}}
       <a class="item {{isActiveRoute 'scanned'}}" data-action="scan">
-        <i class="qrcode icon"></i>
+        <i class="barcode icon"></i>
         Scanner
       </a>
       {{/if}}

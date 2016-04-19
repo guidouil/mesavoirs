@@ -29,7 +29,7 @@
           </div>
         </div>
         <br>
-        <!-- <div class="ui three tiny statistics">
+        <div class="ui three tiny statistics">
           <div class="ui statistic">
             <div class="value">
               {{or customers.length 0}}
@@ -38,23 +38,25 @@
               Client{{#if greaterThan customers.length 1}}s{{/if}}
             </div>
           </div>
-          <div class="ui statistic">
-            <div class="value">
-              {{voucherCount}}
+          {{#with placeStats}}
+            <div class="ui statistic">
+              <div class="value">
+                {{or pointsCount.[0].pointsCount 0}}
+              </div>
+              <div class="label">
+                Point{{#if greaterThan pointsCount.[0].pointsCount 1}}s{{/if}}
+              </div>
             </div>
-            <div class="label">
-              Avoir{{#if greaterThan voucherCount 1}}s{{/if}}
+            <div class="ui statistic">
+              <div class="value">
+                {{{formatMoney vouchersValue.[0].vouchersValue 0}}}
+              </div>
+              <div class="label">
+                D'avoir
+              </div>
             </div>
-          </div>
-          <div class="ui statistic">
-            <div class="value">
-              {{loyaltyCardCount}}
-            </div>
-            <div class="label">
-              Carte{{#if greaterThan loyaltyCardCount 1}}s{{/if}}
-            </div>
-          </div>
-        </div> -->
+          {{/with}}
+        </div>
       </div>
       <p id="toggleMyPlaceHeader">
         <i class="up arrow grey icon" id="toggleMyPlaceHeaderIcon"></i>

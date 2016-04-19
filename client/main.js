@@ -38,13 +38,13 @@ UI.registerHelper('formatMoney', function (value, defaultValue) {
     value = defaultValue;
   }
   if (isNumeric(value)) {
-    switch (Session.get('language')) {
-    case 'en' :
-      return '€' + parseFloat(value).toMoney(2, '.', ',');
+    switch (Session.get('currencyLeft')) {
+    case true :
+      return (Session.get('currency') || '€') + parseFloat(value).toMoney(2, '.', ',');
       break;
-    case 'fr' :
+    case false :
     default :
-      return parseFloat(value).toMoney(2, ',', ' ') + ' €';
+      return parseFloat(value).toMoney(2, ',', ' ') + (Session.get('currency') || '€');
     }
   }
 });

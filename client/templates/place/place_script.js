@@ -5,11 +5,16 @@ Template.place.helpers({
   myLoyaltyCard: function () {
     return LoyaltyCards.findOne({placeId: Router.current().params.placeId, userId: Meteor.userId()});
   },
-  voucherCount: function () {
-    return Counts.get('voucherCount');
-  },
-  loyaltyCardCount: function () {
-    return Counts.get('loyaltyCardCount');
+  placeStats: function () {
+    Meteor.call('getPlaceStats', Router.current().params.placeId, function (error, result) {
+      if(error){
+        console.error(error);
+      }
+      if(result){
+        Session.set('placeStats', result);
+      }
+    });
+    return Session.get('placeStats');
   },
   currentPlace: function () {
     var user = Meteor.user();
@@ -21,6 +26,8 @@ Template.place.helpers({
     var place = Places.findOne({_id: Router.current().params.placeId});
     if (place) {
       Session.set('placeName', place.name);
+      Session.set('currency', place.currency);
+      Session.set('currencyLeft', place.currencyLeft);
       return place;
     }
   },
@@ -104,7 +111,6 @@ Template.place.onRendered(function () {
 Template.place.onCreated(function () {
   subs.subscribe('Place', Router.current().params.placeId);
   if (Meteor.userId()) {
-    // subs.subscribe('placeCounts', Router.current().params.placeId);
     subs.subscribe('UserPlaceVouchers', Router.current().params.placeId, Meteor.userId());
     subs.subscribe('UserPlaceLoyaltyCard', Router.current().params.placeId, Meteor.userId());
   }

@@ -84,16 +84,6 @@ Meteor.publish('PrivateLoyaltyCard', function (cardId) {
   return PrivateLoyaltyCards.find({ _id: cardId, owner: this.userId });
 });
 
-Meteor.publish('placeCounts', function (placeId) {
-  check(placeId, String);
-  if (isPlaceOwner(placeId, this.userId) || isPlaceSeller(placeId, this.userId)) {
-    Counts.publish(this, 'voucherCount', Vouchers.aggregate([
-      { $group: {_id: null, totalVouchers: {$sum: '$value'}}}
-    ]));
-    Counts.publish(this, 'loyaltyCardCount', LoyaltyCards.find({ placeId: placeId }));
-  }
-});
-
 Meteor.publish('CardsBrands', function () {
   return CardsBrands.find({}, {sort: {name: 1}});
 });
